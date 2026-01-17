@@ -112,9 +112,8 @@
     .signature-block p { text-align: center; }
     .signature-block .name { margin-top: 50px; font-weight: 700; } 
     
-    /* Style cho bảng ghi chú thủ công */
     .manual-check-table th { text-align: center; background-color: #e9ecef; font-weight: 700; }
-    .manual-check-table td { height: 20px; } /* Tạo khoảng trống để ghi tay */
+    .manual-check-table td { height: 20px; } 
 
     @media print {
         body { background: none; }
@@ -193,7 +192,7 @@
                 <p><strong>Hình thức cọc làm tin:</strong></p>
                 <ul style="padding-left: 40px; list-style-type: '☐ '; "><li>Đặt cọc tiền mặt</li></ul>
                 <p>Số tiền cọc: .......................................................................................................................................</p>
-                <p><strong>Hai bên thống nhất ký hợp đồng với những điều khoản như sau:</strong></p>
+                <p><strong>Hai bên thống nhất ký hợp đồng với những điều khoản như sau (điều khoản chỉ áp dụng với Sản phẩm là Trang phục):</strong></p>
             </div>
             <div class="print-block">
                 <h3>Điều 1: Nội dung dịch vụ và hiện trạng sản phẩm</h3>
@@ -450,9 +449,9 @@
                 
                 tableBody.innerHTML = '';
 
-                // Chỉ dùng dữ liệu có hang_muc="Phát sinh" cho contractType là 'dress'
                 let dataToDisplay = [];
-                if (contractType === 'service') {
+                // Cả Service và Family đều chỉ lấy hang_muc="Hợp đồng"
+                if (contractType === 'service' || contractType === 'family') {
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng');
                 } else if (contractType === 'dress') {
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh');
@@ -612,13 +611,11 @@
                     populateServiceTable('Trang phục', 'dress');
                     shootingInfoTable.style.display = 'none';
                     
-                    // Tính tổng tiền cho Hợp đồng Váy/Phát sinh (Tính tại Code)
                     const dressData = globalServiceData.filter(item => item.hang_muc === 'Phát sinh');
                     const totalAmount = dressData.reduce((sum, item) => sum + (item.thanhtien || 0), 0);
                     const totalPromo = dressData.reduce((sum, item) => sum + (item.sotien_km || 0), 0);
                     const totalDue = totalAmount - totalPromo;
 
-                    // Hiển thị bảng tính toán riêng cho Váy
                     const summaryHTML = `
                         <table class="summary-table">
                             <tbody>
@@ -634,7 +631,8 @@
                     shootingInfoTable.style.display = 'table';
                     let summaryHTML = '';
                     
-                    if (type === 'service') {
+                    // Cả Service và Family dùng chung cấu trúc bảng gọn (ẩn Phát sinh, Đã TT, Còn lại)
+                    if (type === 'service' || type === 'family') {
                         summaryHTML = `
                         <table class="summary-table">
                             <tbody>
@@ -645,15 +643,13 @@
                             </tbody>
                         </table>`;
                     } else {
-                        summaryHTML = `
+                        // Trường hợp khác (nếu có sau này)
+                         summaryHTML = `
                         <table class="summary-table">
                             <tbody>
                                 <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal" class="dynamic-data"></span></td></tr>
                                 <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span id="total-promotion" class="dynamic-data"></span></td></tr>
-                                <tr><td>Phát sinh:</td><td style="text-align:right;"><span id="additional-cost" class="dynamic-data"></span></td></tr>
                                 <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span id="total-due" class="dynamic-data"></span></td></tr>
-                                <tr><td>Đã TT:</td><td style="text-align:right;"><span id="amount-paid" class="dynamic-data"></span></td></tr>
-                                <tr><td class="highlight-red">Còn Lại:</td><td style="text-align:right;"><span class="dynamic-data highlight-red" id="amount-remaining"></span></td></tr>
                                 <tr><td colspan="2">(Bằng chữ: <span id="amount-in-words" class="dynamic-data"></span>)</td></tr>
                             </tbody>
                         </table>`;
@@ -678,7 +674,8 @@
                     }
                     
                     let numberToRead = "0";
-                    if (type === 'service') {
+                    // Service và Family đọc số "Phải thanh toán"
+                    if (type === 'service' || type === 'family') {
                         numberToRead = (urlParams.get('phai_thanh_toan') || "0").replace(/[^0-9]/g, '');
                     } else {
                         numberToRead = (urlParams.get('con_lai') || "0").replace(/[^0-9]/g, '');
