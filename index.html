@@ -155,6 +155,22 @@
         let globalServiceData = []; 
         let currentContractType = 'service';
 
+        /* Cập nhật phần Ký tên cho cả 3 mẫu hợp đồng: Ẩn Nhân viên tư vấn, Đổi tên Studio thành Đại diện Hộ KD */
+        const SIGNATURE_BLOCK_TEMPLATE = `
+            <div class="signature-block print-block">
+                <div class="customer-signature">
+                    <p style="font-weight: 700;">Khách hàng</p>
+                    <p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p>
+                    <p class="name" id="customer-signature-name" class="dynamic-data"></p>
+                </div>
+                <!-- Đã ẩn phần ký Nhân viên tư vấn -->
+                <div class="studio-signature">
+                    <p style="font-weight: 700;">Đại diện hộ kinh doanh</p>
+                    <p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p>
+                    <p class="name" id="representative-signature-name"></p>
+                </div>
+            </div>`;
+
         const CONTRACT_TERMS_SERVICE = `
             <div class="print-block">
                 <h3>Hình thức thanh toán:</h3>
@@ -178,9 +194,7 @@
                 <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
                 <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
             </div>
-            <div class="signature-block print-block">
-                <div class="customer-signature"><p style="font-weight: 700;">Khách hàng</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="customer-signature-name" class="dynamic-data"></p></div><div class="staff-signature"><p style="font-weight: 700;">Nhân viên tư vấn</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="staff-signature-name" class="dynamic-data"></p></div><div class="studio-signature"><p style="font-weight: 700;" id="studio-signature-name-top"></p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="studio-signature-name-bottom"></p></div>
-            </div>`;
+            ${SIGNATURE_BLOCK_TEMPLATE}`;
             
         const CONTRACT_TERMS_DRESS = `
             <div class="print-block">
@@ -229,9 +243,7 @@
                 <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
                 <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
             </div>
-            <div class="signature-block print-block">
-                <div class="customer-signature"><p style="font-weight: 700;">Khách hàng</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="customer-signature-name" class="dynamic-data"></p></div><div class="staff-signature"><p style="font-weight: 700;">Nhân viên tư vấn</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="staff-signature-name" class="dynamic-data"></p></div><div class="studio-signature"><p style="font-weight: 700;" id="studio-signature-name-top"></p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="studio-signature-name-bottom"></p></div>
-            </div>`;
+            ${SIGNATURE_BLOCK_TEMPLATE}`;
         
         const CONTRACT_TERMS_FAMILY = `
             <div class="print-block">
@@ -250,9 +262,7 @@
                 <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
                 <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
             </div>
-             <div class="signature-block print-block">
-                <div class="customer-signature"><p style="font-weight: 700;">Khách hàng</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="customer-signature-name" class="dynamic-data"></p></div><div class="staff-signature"><p style="font-weight: 700;">Nhân viên tư vấn</p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="staff-signature-name" class="dynamic-data"></p></div><div class="studio-signature"><p style="font-weight: 700;" id="studio-signature-name-top"></p><p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p><p class="name" id="studio-signature-name-bottom"></p></div>
-            </div>`;
+             ${SIGNATURE_BLOCK_TEMPLATE}`;
 
         function removeVietnameseTones(str) {if(!str)return"";str=str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");str=str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");str=str.replace(/ì|í|ị|ỉ|ĩ/g,"i");str=str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");str=str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");str=str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");str=str.replace(/đ/g,"d");str=str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g,"A");str=str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g,"E");str=str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g,"I");str=str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g,"O");str=str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g,"U");str=str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g,"Y");str=str.replace(/Đ/g,"D");str=str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g,"");str=str.replace(/\u02C6|\u0306|\u031B/g,"");return str.trim()}
         function readNumberInVietnamese(number) { const units=["","một","hai","ba","bốn","năm","sáu","bảy","tám","chín"],groupUnits=[""," nghìn"," triệu"," tỷ"," nghìn tỷ"," triệu tỷ"];function convertBlock(e){if("000"===e)return"";let t=parseInt(e[0]),r=parseInt(e[1]),n=parseInt(e[2]),i="";return t>0&&(i+=units[t]+" trăm"),0===r&&n>0?i+=t>0?" linh "+units[n]:units[n]:1===r?(i+=" mười",5===n?i+=" lăm":n>0&&(i+=" "+units[n])):r>1&&(i+=" "+units[r]+" mươi",1===n?i+=" mốt":5===n?i+=" lăm":n>0&&(i+=" "+units[n])),i.trim()}let numStr=String(parseInt(number,10));if("0"===numStr)return"Không đồng";let chunks=[];for(;numStr.length>0;)chunks.unshift(numStr.slice(-3)),numStr=numStr.slice(0,-3);const result=chunks.map((e,t)=>{for(;e.length<3;)e="0"+e;const r=convertBlock(e);if(!r)return"";let n=groupUnits[chunks.length-1-t];return 0===parseInt(e)&&" nghìn"===n?"":r+n}).filter(Boolean).join(" ");return(result.charAt(0).toUpperCase()+result.slice(1)).trim()+" đồng"}
@@ -321,8 +331,8 @@
 
             function populateFromUrl(params) {
                  const paramToIdMap = { 
-                     ten_studio: ['studio-name', 'studio-signature-name-top', 'studio-signature-name-bottom'],
-                     ten_chi_nhanh: 'branch-name-main',
+                     ten_studio: 'studio-name',
+                     ten_chi_nhanh: 'business-name', /* Mapping vào Tên hộ KD */
                      diachi_studio: 'studio-address',
                      website_studio: 'studio-website',
                      email_studio: 'studio-email',
@@ -334,11 +344,11 @@
                      so_cccd: 'customer-cccd', 
                      dien_thoai_kh: 'customer-phone', 
                      dia_chi_kh: 'customer-address', 
-                     nhan_vien: 'staff-name', 
+                     nhan_vien: 'consultant-name', /* Mapping vào Nhân viên tư vấn */
                      dien_thoai_nv: 'staff-phone', 
                      chuc_vu_nv: 'staff-title', 
                      ten_ky_kh: 'customer-signature-name', 
-                     ten_ky_nv: 'staff-signature-name',
+                     ten_ky_nv: ['representative-name', 'representative-signature-name'], /* Mapping vào Đại diện ở trên và dưới ký tên */
                      ngay_chup: 'shooting-date',
                      gio_chup: 'shooting-time',
                      dia_diem_chup: 'shooting-location',
@@ -397,7 +407,7 @@
                  document.body.insertAdjacentHTML('beforeend', '<div style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80pt; color: rgba(0, 0, 0, 0.05); font-weight: 700; text-transform: uppercase; pointer-events: none; z-index: 1000; display: block;">BẢN NHÁP</div>');
                  const demoParams = new URLSearchParams();
                  demoParams.set('ten_studio', '2H STUDIO');
-                 demoParams.set('ten_chi_nhanh', '2H STUDIO - SƠN TÂY');
+                 demoParams.set('ten_chi_nhanh', 'HKD 2H STUDIO - SƠN TÂY');
                  demoParams.set('diachi_studio', '566 Chùa Thông - Sơn Tây - Hà Nội');
                  demoParams.set('website_studio', 'http://2hstudio.vn/');
                  demoParams.set('email_studio', '2hstudio.wedding@gmail.com');
@@ -425,7 +435,7 @@
                  demoParams.set('khuyen_mai_vay', '0');
                  demoParams.set('phai_thanh_toan_vay', '2000000');
                  demoParams.set('ten_ky_kh', 'Tên Khách Hàng Ký');
-                 demoParams.set('ten_ky_nv', 'Tên Nhân Viên Ký');
+                 demoParams.set('ten_ky_nv', 'Tên Chủ Studio (Đại Diện)');
                  demoParams.set('ma_bank', '970422');
                  demoParams.set('stk', '9395966');
                  demoParams.set('chu_tai_khoan', 'PHẠM VĂN ÁNH');
@@ -643,7 +653,6 @@
                             </tbody>
                         </table>`;
                     } else {
-                        // Trường hợp khác (nếu có sau này)
                          summaryHTML = `
                         <table class="summary-table">
                             <tbody>
@@ -700,9 +709,8 @@
                 const ten_studio = urlParams.get('ten_studio') || (urlParams.has('ma_hd') ? '' : '2H STUDIO');
 
                 if (document.getElementById('customer-signature-name')) document.getElementById('customer-signature-name').textContent = ten_ky_kh;
-                if (document.getElementById('staff-signature-name')) document.getElementById('staff-signature-name').textContent = ten_ky_nv;
-                if (document.getElementById('studio-signature-name-top')) document.getElementById('studio-signature-name-top').textContent = ten_studio;
-                if (document.getElementById('studio-signature-name-bottom')) document.getElementById('studio-signature-name-bottom').textContent = ten_studio;
+                /* Cập nhật tên Đại diện hộ KD vào ô ký tên */
+                if (document.getElementById('representative-signature-name')) document.getElementById('representative-signature-name').textContent = ten_ky_nv;
 
                 const maHd = urlParams.get('ma_hd') || '';
                 const bankBin = decodeURIComponent(urlParams.get('ma_bank') || '');
@@ -718,9 +726,10 @@
 
             function injectHTMLStructure() {
                  const logoUrl = "https://2hstudio.vn/wp-content/uploads/2024/10/8.jpg";
+                 /* Cập nhật HTML phần Thông tin Bên B */
                  document.querySelector(".header-content").innerHTML = `<header class="header"><div class="header-left"><div class="logo"><img id="studio-logo-img" src="${logoUrl}" alt="Studio Logo" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.style.display='none';"></div><div class="studio-info"><h2 id="studio-name"></h2><p><strong>Địa chỉ:</strong> <span id="studio-address"></span></p><p><strong>Website:</strong> <a id="studio-website" href="#" target="_blank"></a> | <strong>Email:</strong> <span id="studio-email"></span></p><p><strong>Điện thoại:</strong> <span id="studio-phone"></span> | <strong>Zalo:</strong> <span id="studio-zalo"></span></p></div></div><div id="contract-qr-container" title="Mã hợp đồng"></div></header>`;
                  
-                 document.querySelector(".main-content").innerHTML = `<div><h1 class="main-title" id="main-contract-title">HỢP ĐỒNG CUNG CẤP DỊCH VỤ</h1><div class="contract-meta">Số: <span id="contract-id" class="dynamic-data"></span>.......... | Ngày: <span id="contract-date" class="dynamic-data"></span></div><p><strong><span id="branch-name-main"></span></strong> Gửi tới quý khách hàng hoá đơn dịch vụ như sau:</p><div class="info-grid" style="display:flex; justify-content:space-between; margin-bottom:12px;"><div class="customer-info" style="width:50%;"><p style="margin-bottom: 2px;"><strong>Bên A:</strong></p><p style="margin: 2px 0;"><strong>Khách hàng:</strong> <span id="customer-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Số CCCD:</strong> <span id="customer-cccd" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Điện thoại:</strong> <span id="customer-phone" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Địa chỉ:</strong> <span id="customer-address" class="dynamic-data"></span></p></div><div class="staff-info" style="width: 40%;"><p style="margin-bottom: 2px;"><strong>Bên B:</strong></p><p style="margin: 2px 0;"><strong>Nhân viên:</strong> <span id="staff-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Điện thoại NV:</strong> <span id="staff-phone" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Chức Vụ:</strong> <span id="staff-title" class="dynamic-data"></span></p></div></div><table style="table-layout: fixed;"><colgroup></colgroup><thead></thead><tbody id="service-table-body"></tbody></table></div><div class="summary-and-payment-wrapper"><div class="left-column"><table class="shooting-info-table"><tbody><tr><td><strong>Ngày chụp:</strong></td><td style="text-align:right;"><span id="shooting-date" class="dynamic-data"></span></td></tr><tr><td><strong>Giờ chụp:</strong></td><td style="text-align:right;"><span id="shooting-time" class="dynamic-data"></span></td></tr><tr><td><strong>Địa điểm chụp:</strong></td><td style="text-align:right;"><span id="shooting-location" class="dynamic-data"></span></td></tr></tbody></table><div class="qr-payment-section"><div class="qr-payment-content"><div class="qr-code" id="payment-qr-container"></div><div class="payment-instructions"><p style="font-weight: bold;">QUÉT MÃ QR ĐỂ THANH TOÁN:</p><p>- STK: <span class="dynamic-data" id="payment-account-number"></span></p><p>- Chủ tài khoản: <span class="dynamic-data" id="payment-account-name"></span></p><p>- Nội dung CK: <span class="dynamic-data" id="payment-info"></span></p></div></div></div></div><div class="right-column" id="summary-section-container"></div></div><div class="terms-section"></div>`;
+                 document.querySelector(".main-content").innerHTML = `<div><h1 class="main-title" id="main-contract-title">HỢP ĐỒNG CUNG CẤP DỊCH VỤ</h1><div class="contract-meta">Số: <span id="contract-id" class="dynamic-data"></span>.......... | Ngày: <span id="contract-date" class="dynamic-data"></span></div><p><strong><span id="branch-name-main"></span></strong> Gửi tới quý khách hàng hoá đơn dịch vụ như sau:</p><div class="info-grid" style="display:flex; justify-content:space-between; margin-bottom:12px;"><div class="customer-info" style="width:50%;"><p style="margin-bottom: 2px;"><strong>Bên A:</strong></p><p style="margin: 2px 0;"><strong>Khách hàng:</strong> <span id="customer-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Số CCCD:</strong> <span id="customer-cccd" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Điện thoại:</strong> <span id="customer-phone" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Địa chỉ:</strong> <span id="customer-address" class="dynamic-data"></span></p></div><div class="staff-info" style="width: 40%;"><p style="margin-bottom: 2px;"><strong>Bên B:</strong></p><p style="margin: 2px 0;"><strong>Tên hộ KD:</strong> <span id="business-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Đại diện:</strong> <span id="representative-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Nhân viên tư vấn:</strong> <span id="consultant-name" class="dynamic-data"></span></p></div></div><table style="table-layout: fixed;"><colgroup></colgroup><thead></thead><tbody id="service-table-body"></tbody></table></div><div class="summary-and-payment-wrapper"><div class="left-column"><table class="shooting-info-table"><tbody><tr><td><strong>Ngày chụp:</strong></td><td style="text-align:right;"><span id="shooting-date" class="dynamic-data"></span></td></tr><tr><td><strong>Giờ chụp:</strong></td><td style="text-align:right;"><span id="shooting-time" class="dynamic-data"></span></td></tr><tr><td><strong>Địa điểm chụp:</strong></td><td style="text-align:right;"><span id="shooting-location" class="dynamic-data"></span></td></tr></tbody></table><div class="qr-payment-section"><div class="qr-payment-content"><div class="qr-code" id="payment-qr-container"></div><div class="payment-instructions"><p style="font-weight: bold;">QUÉT MÃ QR ĐỂ THANH TOÁN:</p><p>- STK: <span class="dynamic-data" id="payment-account-number"></span></p><p>- Chủ tài khoản: <span class="dynamic-data" id="payment-account-name"></span></p><p>- Nội dung CK: <span class="dynamic-data" id="payment-info"></span></p></div></div></div></div><div class="right-column" id="summary-section-container"></div></div><div class="terms-section"></div>`;
             }
         });
     </script>
