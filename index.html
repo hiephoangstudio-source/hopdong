@@ -337,7 +337,7 @@
             function populateFromUrl(params) {
                  const paramToIdMap = { 
                      ten_studio: 'studio-name',
-                     ten_chi_nhanh: 'business-name', /* Được ánh xạ từ &ten_ho_kd */
+                     ten_ho_kd: 'business-name', /* Đã sửa: Chỉ nhận từ ten_ho_kd */
                      diachi_studio: 'studio-address',
                      website_studio: 'studio-website',
                      email_studio: 'studio-email',
@@ -349,17 +349,16 @@
                      so_cccd: 'customer-cccd', 
                      dien_thoai_kh: 'customer-phone', 
                      dia_chi_kh: 'customer-address', 
-                     nhan_vien_tu_van: 'consultant-name', /* Ánh xạ từ &nhan_vien_tu_van */
+                     nhan_vien_tu_van: 'consultant-name', 
                      dien_thoai_nv: 'staff-phone', 
                      chuc_vu_nv: 'staff-title', 
                      ten_ky_kh: 'customer-signature-name', 
-                     dai_dien: ['representative-name', 'representative-signature-name'], /* Ánh xạ từ &dai_dien */
+                     dai_dien: ['representative-name', 'representative-signature-name'], /* Đã sửa: Chỉ nhận từ dai_dien */
                      ngay_chup: 'shooting-date',
                      gio_chup: 'shooting-time',
                      dia_diem_chup: 'shooting-location',
                      stk: 'payment-account-number',
-                     chu_tai_khoan: 'payment-account-name',
-                     ten_ho_kd: 'business-name' /* Chỗ này để chắc chắn nhận biến mới */
+                     chu_tai_khoan: 'payment-account-name'
                  };
                 
                  for (const param in paramToIdMap) {
