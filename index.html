@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hợp Đồng Cung Cấp Dịch Vụ</title>
+    <title>Hợp Đồng Dịch Vụ - Combo Cưới</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -135,6 +135,8 @@
                 <a href="#" id="select-service-action">Hợp đồng Dịch vụ</a>
                 <a href="#" id="select-dress-action">Hợp đồng Váy/Phát sinh</a>
                 <a href="#" id="select-family-action">Hợp đồng Baby & GĐ</a>
+                <!-- Thêm mục mới -->
+                <a href="#" id="select-combo-action">Hợp đồng Combo Cưới</a>
             </div>
         </div>
         <button id="print-action" class="action-btn">🖨️ In Hợp Đồng</button>
@@ -268,6 +270,42 @@
             </div>
              ${SIGNATURE_BLOCK_TEMPLATE}`;
 
+        /* THÊM MỚI: CONTRACT_TERMS_COMBO */
+        const CONTRACT_TERMS_COMBO = `
+            <div class="print-block">
+                <h3>Hình thức thanh toán:</h3>
+                <ul>
+                    <li>Lần 1: 50% ( đặt cọc )</li>
+                    <li>Lần 2: 50% còn lại ( vào ngày nhận đồ - trước ngày cưới )</li>
+                </ul>
+                <p><strong>Phương thức thanh toán:</strong> Chuyển khoản hoặc Tiền mặt</p>
+                <p><strong>Hai bên thống nhất kí hợp đồng theo điều khoản như sau:</strong></p>
+            </div>
+            <div class="print-block">
+                <h3>Điều 1: Trách nhiệm và quyền lợi của các bên</h3>
+                <p><strong>1.1. Trách nhiệm và quyền lợi của bên A</strong></p>
+                <ul>
+                    <li>Bên A có trách nhiệm thanh toán cho bên B phí dịch vụ theo đúng thời hạn.</li>
+                    <li>Bên A được nhận toàn bộ sản phẩm theo phần chi tiết của hợp đồng này.</li>
+                    <li>Trường hợp bên A huỷ hợp đồng sẽ mất toàn bộ tiền cọc.</li>
+                </ul>
+                <p><strong>1.2. Trách nhiệm và quyền lợi của bên B</strong></p>
+                <ul>
+                    <li>Bên B có trách nhiệm thực hiện đầy đủ các nội dung nghiệp vụ tương ứng với các dịch vụ kí kết được niêm yết công khai kèm theo báo giá.</li>
+                    <li>Bên B đảm bảo thực hiện hợp đồng này với chất lượng cao và nhiệt tình với công việc, đúng nguyên tắc minh bạch, trung thực, uy tín, khách quan và bí mật về thông tin cá nhân của khách hàng.</li>
+                </ul>
+            </div>
+            <div class="print-block">
+                <h3>Điều 2: Cam kết thực hiện</h3>
+                <ul>
+                    <li>Hai bên cam kết thực hiện các điều khoản ghi trong hợp đồng:</li>
+                    <li>Trong quá trình thực hiện nếu gặp khó khăn hai bên phải kịp thời thông báo cho nhau, cần thiết sẽ trao đổi bằng văn bản và tìm giải pháp thích hợp.</li>
+                    <li>Hợp đồng này được lập thành 02 bản có giá trị như nhau. Bên A giữ 1 bản, Bên B giữ 1 bản và có hiệu lực từ ngày kí kết hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại điều 1 và bên A thanh toán xong phí dịch vụ cho bên B thì xem như hợp đồng này được thanh lý hoặc cả 2 bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</li>
+                    <li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm kể từ ngày kí hợp đồng.</li>
+                </ul>
+            </div>
+            ${SIGNATURE_BLOCK_TEMPLATE}`;
+
         function removeVietnameseTones(str) {if(!str)return"";str=str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a");str=str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e");str=str.replace(/ì|í|ị|ỉ|ĩ/g,"i");str=str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o");str=str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u");str=str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y");str=str.replace(/đ/g,"d");str=str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g,"A");str=str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g,"E");str=str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g,"I");str=str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g,"O");str=str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g,"U");str=str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g,"Y");str=str.replace(/Đ/g,"D");str=str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g,"");str=str.replace(/\u02C6|\u0306|\u031B/g,"");return str.trim()}
         function readNumberInVietnamese(number) { const units=["","một","hai","ba","bốn","năm","sáu","bảy","tám","chín"],groupUnits=[""," nghìn"," triệu"," tỷ"," nghìn tỷ"," triệu tỷ"];function convertBlock(e){if("000"===e)return"";let t=parseInt(e[0]),r=parseInt(e[1]),n=parseInt(e[2]),i="";return t>0&&(i+=units[t]+" trăm"),0===r&&n>0?i+=t>0?" linh "+units[n]:units[n]:1===r?(i+=" mười",5===n?i+=" lăm":n>0&&(i+=" "+units[n])):r>1&&(i+=" "+units[r]+" mươi",1===n?i+=" mốt":5===n?i+=" lăm":n>0&&(i+=" "+units[n])),i.trim()}let numStr=String(parseInt(number,10));if("0"===numStr)return"Không đồng";let chunks=[];for(;numStr.length>0;)chunks.unshift(numStr.slice(-3)),numStr=numStr.slice(0,-3);const result=chunks.map((e,t)=>{for(;e.length<3;)e="0"+e;const r=convertBlock(e);if(!r)return"";let n=groupUnits[chunks.length-1-t];return 0===parseInt(e)&&" nghìn"===n?"":r+n}).filter(Boolean).join(" ");return(result.charAt(0).toUpperCase()+result.slice(1)).trim()+" đồng"}
         
@@ -310,6 +348,8 @@
                 document.getElementById('select-service-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('service', closeAllDropdowns); });
                 document.getElementById('select-dress-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('dress', closeAllDropdowns); });
                 document.getElementById('select-family-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('family', closeAllDropdowns); });
+                // Sự kiện cho nút Combo mới
+                document.getElementById('select-combo-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('combo', closeAllDropdowns); });
                 
                 document.getElementById('print-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms(currentContractType, () => window.print()); });
                 document.getElementById('download-pdf-action').addEventListener('click', (e) => { e.preventDefault(); downloadAsPdf(); });
@@ -336,8 +376,8 @@
             function populateFromUrl(params) {
                  const paramToIdMap = { 
                      ten_studio: 'studio-name',
-                     ten_chi_nhanh: 'branch-name-main', /* Giữ nguyên dòng này để map vào Tên Chi Nhánh */
-                     ten_ho_kd: 'business-name', /* Map riêng vào Tên Hộ KD */
+                     ten_chi_nhanh: 'branch-name-main', 
+                     ten_ho_kd: 'business-name',
                      diachi_studio: 'studio-address',
                      website_studio: 'studio-website',
                      email_studio: 'studio-email',
@@ -353,7 +393,7 @@
                      dien_thoai_nv: 'staff-phone', 
                      chuc_vu_nv: 'staff-title', 
                      ten_ky_kh: 'customer-signature-name', 
-                     dai_dien: ['representative-name', 'representative-signature-name'], /* Map riêng vào Đại diện */
+                     dai_dien: ['representative-name', 'representative-signature-name'],
                      ngay_chup: 'shooting-date',
                      gio_chup: 'shooting-time',
                      dia_diem_chup: 'shooting-location',
@@ -449,7 +489,7 @@
                  populateFromUrl(demoParams);
                  
                  globalServiceData = [
-                    { sanpham: "Gói chụp Demo", chitiet: "Gói chụp hợp đồng", soluong: 1, thanhtien: 8900000, sotien_km: 500000, ghi_chu: "", hang_muc: "Hợp đồng" }, 
+                    { sanpham: "Combo Cưới Đặc Biệt", chitiet: "Gói chụp hợp đồng + Váy cưới", soluong: 1, thanhtien: 8900000, sotien_km: 500000, ghi_chu: "", hang_muc: "Hợp đồng" }, 
                     { sanpham: "Váy cưới Lux", chitiet: "Thuê ngày cưới", soluong: 1, thanhtien: 2000000, sotien_km: 200000, ghi_chu: "", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "01/01/2025", ngay_tra: "05/01/2025" }, 
                 ];
                  renderContractTerms('service');
@@ -466,8 +506,8 @@
                 tableBody.innerHTML = '';
 
                 let dataToDisplay = [];
-                // Cả Service và Family đều chỉ lấy hang_muc="Hợp đồng"
-                if (contractType === 'service' || contractType === 'family') {
+                // Cả Service, Family và Combo đều chỉ lấy hang_muc="Hợp đồng"
+                if (contractType === 'service' || contractType === 'family' || contractType === 'combo') {
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng');
                 } else if (contractType === 'dress') {
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh');
@@ -526,6 +566,7 @@
                 switch(currentContractType) {
                     case 'dress': return 'HD_Vay_DichVuKhac';
                     case 'family': return 'HD_Baby_GD';
+                    case 'combo': return 'HD_Combo_Cuoi'; // Tiền tố cho Combo
                     default: return 'HD_Dich_Vu';
                 }
             }
@@ -647,19 +688,9 @@
                     shootingInfoTable.style.display = 'table';
                     let summaryHTML = '';
                     
-                    // Cả Service và Family dùng chung cấu trúc bảng gọn (ẩn Phát sinh, Đã TT, Còn lại)
-                    if (type === 'service' || type === 'family') {
+                    // Cả Service, Family và Combo dùng chung cấu trúc bảng gọn
+                    if (type === 'service' || type === 'family' || type === 'combo') {
                         summaryHTML = `
-                        <table class="summary-table">
-                            <tbody>
-                                <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal" class="dynamic-data"></span></td></tr>
-                                <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span id="total-promotion" class="dynamic-data"></span></td></tr>
-                                <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span id="total-due" class="dynamic-data"></span></td></tr>
-                                <tr><td colspan="2">(Bằng chữ: <span id="amount-in-words" class="dynamic-data"></span>)</td></tr>
-                            </tbody>
-                        </table>`;
-                    } else {
-                         summaryHTML = `
                         <table class="summary-table">
                             <tbody>
                                 <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal" class="dynamic-data"></span></td></tr>
@@ -689,8 +720,8 @@
                     }
                     
                     let numberToRead = "0";
-                    // Service và Family đọc số "Phải thanh toán"
-                    if (type === 'service' || type === 'family') {
+                    // Service, Family và Combo đọc số "Phải thanh toán"
+                    if (type === 'service' || type === 'family' || type === 'combo') {
                         numberToRead = (urlParams.get('phai_thanh_toan') || "0").replace(/[^0-9]/g, '');
                     } else {
                         numberToRead = (urlParams.get('con_lai') || "0").replace(/[^0-9]/g, '');
@@ -707,15 +738,17 @@
                         termsContainer.innerHTML = CONTRACT_TERMS_SERVICE;
                         titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ';
                         populateServiceTable(null, 'service');
+                    } else if (type === 'combo') {
+                        termsContainer.innerHTML = CONTRACT_TERMS_COMBO;
+                        titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP COMBO CƯỚI';
+                        populateServiceTable(null, 'combo');
                     }
                 }
                 
                 const ten_ky_kh = urlParams.get('ten_ky_kh') || (urlParams.has('ma_hd') ? '' : 'Tên Khách Hàng Ký');
-                /* Lấy biến &dai_dien từ URL để hiển thị cho phần ký tên Đại Diện */
                 const dai_dien = urlParams.get('dai_dien') || (urlParams.has('ma_hd') ? '' : 'Tên Chủ Studio'); 
 
                 if (document.getElementById('customer-signature-name')) document.getElementById('customer-signature-name').textContent = ten_ky_kh;
-                /* Cập nhật cả 2 chỗ: Thông tin bên B và Ký tên */
                 if (document.getElementById('representative-name')) document.getElementById('representative-name').textContent = dai_dien;
                 if (document.getElementById('representative-signature-name')) document.getElementById('representative-signature-name').textContent = dai_dien;
 
