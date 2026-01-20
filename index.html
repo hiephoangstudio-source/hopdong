@@ -489,7 +489,7 @@
                  populateFromUrl(demoParams);
                  
                  globalServiceData = [
-                    { sanpham: "Combo Cưới Đặc Biệt", chitiet: "Gói chụp hợp đồng + Váy cưới", soluong: 1, thanhtien: 8900000, sotien_km: 500000, ghi_chu: "", hang_muc: "Hợp đồng" }, 
+                    { sanpham: "Combo Cưới Đặc Biệt", chitiet: "Gói chụp hợp đồng + Váy cưới", soluong: 1, thanhtien: 8900000, sotien_km: 500000, ghi_chu: "", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
                     { sanpham: "Váy cưới Lux", chitiet: "Thuê ngày cưới", soluong: 1, thanhtien: 2000000, sotien_km: 200000, ghi_chu: "", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "01/01/2025", ngay_tra: "05/01/2025" }, 
                 ];
                  renderContractTerms('service');
@@ -506,11 +506,16 @@
                 tableBody.innerHTML = '';
 
                 let dataToDisplay = [];
-                // Cả Service, Family và Combo đều chỉ lấy hang_muc="Hợp đồng"
+                
+                // Logic lọc dữ liệu đã được điều chỉnh theo yêu cầu:
                 if (contractType === 'service' || contractType === 'family' || contractType === 'combo') {
-                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng');
+                     // 1. Hợp đồng Cung cấp Dịch vụ (Service):
+                     // Lấy dòng có [hang_muc] là "Hợp đồng" VÀ loai_dich_vu là "Dịch vụ"
+                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Dịch vụ');
                 } else if (contractType === 'dress') {
-                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh');
+                     // 2. Hợp đồng Trang phục / Dịch vụ khác (Dress):
+                     // Lấy tất cả dòng có [hang_muc] là "Phát sinh" HOẶC ([hang_muc] là "Hợp đồng" VÀ [loai_dich_vu] = "Trang phục")
+                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
                 } else if (filterType) {
                      dataToDisplay = globalServiceData.filter(item => item.loai_dich_vu === filterType);
                 } else {
@@ -668,7 +673,8 @@
                     populateServiceTable('Trang phục', 'dress');
                     shootingInfoTable.style.display = 'none';
                     
-                    const dressData = globalServiceData.filter(item => item.hang_muc === 'Phát sinh');
+                    // Logic tính tổng tiền cho phần Dress (cần lọc lại dữ liệu tương ứng để tính)
+                    const dressData = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
                     const totalAmount = dressData.reduce((sum, item) => sum + (item.thanhtien || 0), 0);
                     const totalPromo = dressData.reduce((sum, item) => sum + (item.sotien_km || 0), 0);
                     const totalDue = totalAmount - totalPromo;
