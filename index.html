@@ -708,12 +708,11 @@
                     }
                     
                     summaryContainer.innerHTML = summaryHTML;
-                    
+
+                    // Mặc định vẫn điền các params khác từ URL (như đã thanh toán...)
                     const financialParams = {
-                        thanh_tien: 'subtotal',
+                        // thanh_tien và khuyen_mai_tong, phai_thanh_toan sẽ được xử lý riêng bên dưới
                         tong_phat_sinh: 'additional-cost',
-                        khuyen_mai_tong: 'total-promotion',
-                        phai_thanh_toan: 'total-due',
                         da_thanh_toan: 'amount-paid',
                         con_lai: 'amount-remaining'
                     };
@@ -724,17 +723,28 @@
                             el.textContent = value.toLocaleString('vi-VN');
                         }
                     }
+
+                    // --- LOGIC TÍNH TOÁN TRỰC TIẾP CHO SERVICE / FAMILY / COMBO ---
+                    // Lấy giá trị từ URL để tính toán lại Phải Thanh Toán
+                    const subtotalVal = parseFloat(urlParams.get('thanh_tien')?.replace(/,/g, '') || 0);
+                    const promotionVal = parseFloat(urlParams.get('khuyen_mai_tong')?.replace(/,/g, '') || 0);
                     
-                    let numberToRead = "0";
-                    // Service, Family và Combo đọc số "Phải thanh toán"
-                    if (type === 'service' || type === 'family' || type === 'combo') {
-                        numberToRead = (urlParams.get('phai_thanh_toan') || "0").replace(/[^0-9]/g, '');
-                    } else {
-                        numberToRead = (urlParams.get('con_lai') || "0").replace(/[^0-9]/g, '');
-                    }
-                    
+                    // Tính: Phải TT = Tổng tiền - Khuyến mãi
+                    const calculatedDue = subtotalVal - promotionVal;
+
+                    // Cập nhật lên giao diện
+                    const elSubtotal = document.getElementById('subtotal');
+                    if(elSubtotal) elSubtotal.textContent = subtotalVal.toLocaleString('vi-VN');
+
+                    const elPromotion = document.getElementById('total-promotion');
+                    if(elPromotion) elPromotion.textContent = promotionVal.toLocaleString('vi-VN');
+
+                    const elTotalDue = document.getElementById('total-due');
+                    if(elTotalDue) elTotalDue.textContent = calculatedDue.toLocaleString('vi-VN');
+
                     const wordsEl = document.getElementById('amount-in-words');
-                    if(wordsEl) wordsEl.textContent = readNumberInVietnamese(numberToRead);
+                    if(wordsEl) wordsEl.textContent = readNumberInVietnamese(calculatedDue);
+                    // -------------------------------------------------------------
 
                     if (type === 'family') {
                         termsContainer.innerHTML = CONTRACT_TERMS_FAMILY;
