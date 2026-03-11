@@ -192,7 +192,7 @@
     
     <script>
         let globalServiceData =[]; 
-        let currentContractType = 'service_3'; // Mặc định hiển thị hợp đồng TT 3 lần
+        let currentContractType = 'service_2'; // CẬP NHẬT: Mặc định hiển thị hợp đồng TT 2 lần
 
         const SIGNATURE_BLOCK_TEMPLATE = `
             <div class="signature-block print-block">
@@ -239,7 +239,7 @@
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
 
-        // Hợp đồng dịch vụ - Thanh toán 3 lần (như gốc)
+        // Hợp đồng dịch vụ - Thanh toán 3 lần
         const CONTRACT_TERMS_SERVICE_3 = `
             <div class="print-block">
                 <h3>Hình thức thanh toán:</h3>
@@ -507,7 +507,8 @@
                     } 
                  }
                  
-                 renderContractTerms('service_3'); 
+                 // CẬP NHẬT: Render mặc định là service_2 thay vì service_3
+                 renderContractTerms('service_2'); 
                  generateContractQRCode(params.get('ma_hd'));
             }
 
@@ -555,7 +556,8 @@
                     { sanpham: "G21_Chụp ảnh cưới_Gói chụp Nội Thành", chitiet: "* Trang phục:\\n- 3 Váy cưới cô dâu\\n- 2 Vest chụp", soluong: 1, thanhtien: 14200000, sotien_km: 0, ghi_chu: "km 1: 7 cặp áo dài cháp, vest cưới chú rể", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
                     { sanpham: "N96 Váy cưới cúp ngực ren", chitiet: "", soluong: 1, thanhtien: 8000000, sotien_km: 3000000, ghi_chu: "ngày 10/3 đã tt 2tr5 tiền nâng cấp váy...", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "15/03/2025", ngay_tra: "18/03/2025" }, 
                 ];
-                 renderContractTerms('service_3');
+                 // CẬP NHẬT: Render mặc định là service_2 thay vì service_3
+                 renderContractTerms('service_2');
             }
             
             function populateServiceTable(filterType, contractType) {
