@@ -115,11 +115,48 @@
     .manual-check-table th { text-align: center; background-color: #e9ecef; font-weight: 700; }
     .manual-check-table td { height: 20px; } 
 
+    /* TỐI ƯU GIAO DIỆN MOBILE & TABLET (Tuyệt đối không ảnh hưởng bản in/PDF) */
+    @media screen and (max-width: 768px) {
+        .actions-container {
+            justify-content: space-between;
+            padding: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .actions-container .action-btn {
+            margin-left: 0;
+            flex: 1 1 calc(33.33% - 8px); 
+            padding: 8px 5px;
+            font-size: 11px;
+            text-align: center;
+        }
+        .actions-container .dropdown {
+            width: 100%;
+            display: block;
+        }
+        .actions-container .dropdown .action-btn {
+            width: 100%;
+            margin: 0;
+            font-size: 13px;
+        }
+        .page-wrapper {
+            display: block; /* Tránh lỗi mất lề trái của flexbox khi scroll trên mobile */
+            overflow-x: auto; /* Kích hoạt cuộn ngang */
+            -webkit-overflow-scrolling: touch; /* Mượt mà trên iOS */
+            padding: 10px;
+        }
+        .a4-page {
+            margin: 0 auto;
+            /* Width vẫn giữ nguyên var(--page-width) để đảm bảo không sai tỷ lệ khi in/xuất file */
+        }
+    }
+
+    /* ĐỊNH DẠNG KHI BẤM NÚT IN */
     @media print {
         body { background: none; }
         .actions-container { display: none !important; }
-        .page-wrapper { padding: 0; }
-        .a4-page { box-shadow: none; border: none; margin: 0; width: 100%; }
+        .page-wrapper { padding: 0; display: block; overflow: visible; }
+        .a4-page { box-shadow: none; border: none; margin: 0; width: 100%; min-width: auto; }
         @page { size: A4; margin: 10mm; }
         #print-container { display: table; width: 100%; }
         #page-header { display: table-row-group; }
@@ -132,10 +169,10 @@
         <div class="dropdown">
             <button id="select-contract-btn" class="action-btn select-btn">📑 Chọn Hợp Đồng ▾</button>
             <div id="select-contract-content" class="dropdown-content">
-                <a href="#" id="select-service-action">Hợp đồng Dịch vụ</a>
+                <a href="#" id="select-service-2-action">Hợp đồng Dịch vụ (TT 2 lần)</a>
+                <a href="#" id="select-service-3-action">Hợp đồng Dịch vụ (TT 3 lần)</a>
                 <a href="#" id="select-dress-action">Hợp đồng Váy/Phát sinh</a>
                 <a href="#" id="select-family-action">Hợp đồng Baby & GĐ</a>
-                <!-- Thêm mục mới -->
                 <a href="#" id="select-combo-action">Hợp đồng Combo Cưới</a>
             </div>
         </div>
@@ -154,8 +191,8 @@
     </div>
     
     <script>
-        let globalServiceData = []; 
-        let currentContractType = 'service';
+        let globalServiceData =[]; 
+        let currentContractType = 'service_3'; // Mặc định hiển thị hợp đồng TT 3 lần
 
         const SIGNATURE_BLOCK_TEMPLATE = `
             <div class="signature-block print-block">
@@ -164,7 +201,6 @@
                     <p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p>
                     <p class="name" id="customer-signature-name" class="dynamic-data"></p>
                 </div>
-                <!-- Ẩn cột Nhân viên tư vấn -->
                 <div class="staff-signature" style="display: none;">
                     <p style="font-weight: 700;">Nhân viên tư vấn</p>
                     <p style="font-size: 8.5pt; color: #6c757d; font-style: italic;">(Ký và ghi họ tên)</p>
@@ -177,7 +213,8 @@
                 </div>
             </div>`;
 
-        const CONTRACT_TERMS_SERVICE = `
+        // Hợp đồng dịch vụ - Thanh toán 2 lần
+        const CONTRACT_TERMS_SERVICE_2 = `
             <div class="print-block">
                 <h3>Hình thức thanh toán:</h3>
                 <ul>
@@ -190,7 +227,34 @@
             <div class="print-block">
                 <h3>Điều 1: Trách nhiệm và quyền lợi của các Bên</h3>
                 <p><strong>1.1. Trách nhiệm và quyền lợi của bên A:</strong></p>
-                <ul><li>Nếu bên A có nhu cầu thay đổi gói chụp hoặc các dịch vụ phát sinh phí, bên B sẽ hỗ trợ thay đổi sang gói chụp hoặc dịch vụ có giá trị tương đương hoặc cao hơn.</li><li>Bên A có trách nhiệm thanh toán cho Bên B phí dịch vụ đúng hạn theo hình thức thanh toán nêu trên.</li><li>Bên A được nhận toàn bộ sản phẩm theo phần chi tiết của hợp đồng này.</li><li>Trường hợp bên A hủy hợp đồng sẽ mất toàn bộ tiền đặt cọc.</li><li>Bên A được quyền hoãn chụp hình (quay video) 01 lần mà không bị tính phí nhưng phải báo trước cho bên B muộn nhất 3 ngày trước ngày chụp.</li><li>Nếu bên A tiếp tục phát sinh việc hoãn lịch thì sẽ chịu chi phí phát sinh: 1.000.000 VND/lần.</li><li>Bên A được quyền hoãn chụp hình 01 lần vào ngày chụp trong trường hợp khách quan thời tiết xấu, tuy nhiên Bên A phải thanh toán các chi phí cố định đã phát sinh trong ngày này - VD: Hoa tay, thuê xe, trang điểm.</li><li>Bên A tự chịu trách nhiệm về an toàn cá nhân trong quá trình chụp ảnh, quay phim.</li><li>Trường hợp bên A hủy hợp đồng sau khi chụp đã copy toàn bộ file gốc sẽ không nhận lại được tiền thanh toán 2 lần đặt cọc.</li><li>Trường hợp bên A muốn copy file Raw, sẽ thanh toán hết phí dịch vụ.</li></ul>
+                <ul><li>Nếu bên A có nhu cầu thay đổi gói chụp hoặc các dịch vụ phát sinh phí, bên B sẽ hỗ trợ thay đổi sang gói chụp hoặc dịch vụ có giá trị tương đương hoặc cao hơn.</li><li>Bên A có trách nhiệm thanh toán cho Bên B phí dịch vụ đúng hạn theo hình thức thanh toán nêu trên.</li><li>Bên A được nhận toàn bộ sản phẩm theo phần chi tiết của hợp đồng này.</li><li>Trường hợp bên A hủy hợp đồng sẽ mất toàn bộ tiền đặt cọc.</li><li>Bên A được quyền hoãn chụp hình (quay video) 01 lần mà không bị tính phí nhưng phải báo trước cho bên B muộn nhất 3 ngày trước ngày chụp.</li><li>Nếu bên A tiếp tục phát sinh việc hoãn lịch thì sẽ chịu chi phí phát sinh: 1.000.000 VND/lần.</li><li>Bên A được quyền hoãn chụp hình 01 lần vào ngày chụp trong trường hợp khách quan thời tiết xấu, tuy nhiên Bên A phải thanh toán các chi phí cố định đã phát sinh trong ngày này - VD: Hoa tay, thuê xe, trang điểm.</li><li>Bên A tự chịu trách nhiệm về an toàn cá nhân trong quá trình chụp ảnh, quay phim.</li><li>Trường hợp bên A hủy hợp đồng sau khi chụp đã copy toàn bộ file gốc sẽ không nhận lại được tiền thanh toán 2 lần đặt cọc.</li><li>Trường hợp bên A muốn copy file Raw, sẽ thanh toán hết phí dịch vụ.</li><li>Bên A có trách nhiệm phản hồi về sản phẩm trong vòng 48 giờ kể từ khi nhận thông tin.</li></ul>
+                <p><strong>1.2. Trách nhiệm và quyền lợi của Bên B:</strong></p>
+                <ul><li>Bên B có trách nhiệm thực hiện đầy đủ các nội dung nghiệp vụ tương ứng với các dịch vụ ký kết, được niêm yết công khai kèm theo báo giá.</li><li>Bên B đảm bảo thực hiện hợp đồng này với chất lượng cao và nhiệt tình với công việc, đúng nguyên tắc minh bạch, trung thực, uy tín, khách quan và bí mật về thông tin cá nhân của khách hàng.</li></ul>
+            </div>
+            <div class="print-block">
+                <h3>Điều 2: Cam kết thực hiện</h3>
+                <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
+                <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
+                <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
+            </div>
+            ${SIGNATURE_BLOCK_TEMPLATE}`;
+
+        // Hợp đồng dịch vụ - Thanh toán 3 lần (như gốc)
+        const CONTRACT_TERMS_SERVICE_3 = `
+            <div class="print-block">
+                <h3>Hình thức thanh toán:</h3>
+                <ul>
+                    <li>Lần 1: 01 triệu (đặt cọc)</li>
+                    <li>Lần 2: 90% giá trị HĐ - (thanh toán cuối buổi chụp)</li>
+                    <li>Lần 3: Số tiền còn lại (thanh toán sau khi bên B bàn giao sản phẩm cuối cùng cho bên A)</li>
+                </ul>
+                <p><strong>Phương thức thanh toán:</strong> Chuyển khoản hoặc Tiền mặt</p>
+                <p><strong>Hai bên thống nhất ký hợp đồng với những điều khoản như sau:</strong></p>
+            </div>
+            <div class="print-block">
+                <h3>Điều 1: Trách nhiệm và quyền lợi của các Bên</h3>
+                <p><strong>1.1. Trách nhiệm và quyền lợi của bên A:</strong></p>
+                <ul><li>Nếu bên A có nhu cầu thay đổi gói chụp hoặc các dịch vụ phát sinh phí, bên B sẽ hỗ trợ thay đổi sang gói chụp hoặc dịch vụ có giá trị tương đương hoặc cao hơn.</li><li>Bên A có trách nhiệm thanh toán cho Bên B phí dịch vụ đúng hạn theo hình thức thanh toán nêu trên.</li><li>Bên A được nhận toàn bộ sản phẩm theo phần chi tiết của hợp đồng này.</li><li>Trường hợp bên A hủy hợp đồng sẽ mất toàn bộ tiền đặt cọc.</li><li>Bên A được quyền hoãn chụp hình (quay video) 01 lần mà không bị tính phí nhưng phải báo trước cho bên B muộn nhất 3 ngày trước ngày chụp.</li><li>Nếu bên A tiếp tục phát sinh việc hoãn lịch thì sẽ chịu chi phí phát sinh: 1.000.000 VND/lần.</li><li>Bên A được quyền hoãn chụp hình 01 lần vào ngày chụp trong trường hợp khách quan thời tiết xấu, tuy nhiên Bên A phải thanh toán các chi phí cố định đã phát sinh trong ngày này - VD: Hoa tay, thuê xe, trang điểm.</li><li>Bên A tự chịu trách nhiệm về an toàn cá nhân trong quá trình chụp ảnh, quay phim.</li><li>Trường hợp bên A hủy hợp đồng sau khi chụp đã copy toàn bộ file gốc sẽ không nhận lại được tiền thanh toán 2 lần đặt cọc.</li><li>Trường hợp bên A muốn copy file Raw, sẽ thanh toán hết phí dịch vụ.</li><li>Bên A có trách nhiệm phản hồi về sản phẩm trong vòng 48 giờ kể từ khi nhận thông tin.</li></ul>
                 <p><strong>1.2. Trách nhiệm và quyền lợi của Bên B:</strong></p>
                 <ul><li>Bên B có trách nhiệm thực hiện đầy đủ các nội dung nghiệp vụ tương ứng với các dịch vụ ký kết, được niêm yết công khai kèm theo báo giá.</li><li>Bên B đảm bảo thực hiện hợp đồng này với chất lượng cao và nhiệt tình với công việc, đúng nguyên tắc minh bạch, trung thực, uy tín, khách quan và bí mật về thông tin cá nhân của khách hàng.</li></ul>
             </div>
@@ -270,7 +334,6 @@
             </div>
              ${SIGNATURE_BLOCK_TEMPLATE}`;
 
-        /* THÊM MỚI: CONTRACT_TERMS_COMBO */
         const CONTRACT_TERMS_COMBO = `
             <div class="print-block">
                 <h3>Hình thức thanh toán:</h3>
@@ -315,7 +378,7 @@
             }
             const parts = dateString.split(/[\/-]/);
             if (parts.length === 3) {
-                let [part1, part2, year] = parts;
+                let[part1, part2, year] = parts;
                 if (parseInt(part1, 10) > 12) {
                     return `${part1}/${part2}/${year}`;
                 } else {
@@ -345,10 +408,10 @@
                     selectContent.classList.toggle('show');
                 });
                 
-                document.getElementById('select-service-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('service', closeAllDropdowns); });
+                document.getElementById('select-service-2-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('service_2', closeAllDropdowns); });
+                document.getElementById('select-service-3-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('service_3', closeAllDropdowns); });
                 document.getElementById('select-dress-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('dress', closeAllDropdowns); });
                 document.getElementById('select-family-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('family', closeAllDropdowns); });
-                // Sự kiện cho nút Combo mới
                 document.getElementById('select-combo-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms('combo', closeAllDropdowns); });
                 
                 document.getElementById('print-action').addEventListener('click', (e) => { e.preventDefault(); renderContractTerms(currentContractType, () => window.print()); });
@@ -383,7 +446,7 @@
                      email_studio: 'studio-email',
                      dienthoai_studio: 'studio-phone',
                      zalo_studio: 'studio-zalo',
-                     ma_hd: ['contract-id', 'payment-info'], 
+                     ma_hd:['contract-id', 'payment-info'], 
                      ngay_hd: 'contract-date', 
                      khach_hang: 'customer-name',
                      so_cccd: 'customer-cccd', 
@@ -393,7 +456,7 @@
                      dien_thoai_nv: 'staff-phone', 
                      chuc_vu_nv: 'staff-title', 
                      ten_ky_kh: 'customer-signature-name', 
-                     dai_dien: ['representative-name', 'representative-signature-name'],
+                     dai_dien:['representative-name', 'representative-signature-name'],
                      ngay_chup: 'shooting-date',
                      gio_chup: 'shooting-time',
                      dia_diem_chup: 'shooting-location',
@@ -404,7 +467,7 @@
                  for (const param in paramToIdMap) {
                      if (params.has(param)) {
                          let value = decodeURIComponent(params.get(param));
-                         const ids = Array.isArray(paramToIdMap[param]) ? paramToIdMap[param] : [paramToIdMap[param]];
+                         const ids = Array.isArray(paramToIdMap[param]) ? paramToIdMap[param] :[paramToIdMap[param]];
                          
                          if (param === 'website_studio') {
                              const aElement = document.getElementById(ids[0]);
@@ -444,7 +507,7 @@
                     } 
                  }
                  
-                 renderContractTerms('service'); 
+                 renderContractTerms('service_3'); 
                  generateContractQRCode(params.get('ma_hd'));
             }
 
@@ -473,10 +536,10 @@
                  demoParams.set('dia_diem_chup', 'Phim trường Smiley Ville');
                  demoParams.set('thanh_tien', '9500000');
                  demoParams.set('tong_phat_sinh', '0');
-                 demoParams.set('khuyen_mai_tong', '500000');
-                 demoParams.set('phai_thanh_toan', '9000000');
-                 demoParams.set('da_thanh_toan', '8000000');
-                 demoParams.set('con_lai', '1000000');
+                 demoParams.set('khuyen_mai_tong', '1000000');
+                 demoParams.set('phai_thanh_toan', '8500000');
+                 demoParams.set('da_thanh_toan', '1000000');
+                 demoParams.set('con_lai', '7500000');
                  demoParams.set('thanh_tien_vay', '2000000');
                  demoParams.set('khuyen_mai_vay', '0');
                  demoParams.set('phai_thanh_toan_vay', '2000000');
@@ -488,11 +551,11 @@
                  
                  populateFromUrl(demoParams);
                  
-                 globalServiceData = [
-                    { sanpham: "Combo Cưới Đặc Biệt", chitiet: "Gói chụp hợp đồng + Váy cưới", soluong: 1, thanhtien: 8900000, sotien_km: 500000, ghi_chu: "", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
-                    { sanpham: "Váy cưới Lux", chitiet: "Thuê ngày cưới", soluong: 1, thanhtien: 2000000, sotien_km: 200000, ghi_chu: "", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "01/01/2025", ngay_tra: "05/01/2025" }, 
+                 globalServiceData =[
+                    { sanpham: "G21_Chụp ảnh cưới_Gói chụp Nội Thành", chitiet: "* Trang phục:\\n- 3 Váy cưới cô dâu\\n- 2 Vest chụp", soluong: 1, thanhtien: 14200000, sotien_km: 0, ghi_chu: "km 1: 7 cặp áo dài cháp, vest cưới chú rể", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
+                    { sanpham: "N96 Váy cưới cúp ngực ren", chitiet: "", soluong: 1, thanhtien: 8000000, sotien_km: 3000000, ghi_chu: "ngày 10/3 đã tt 2tr5 tiền nâng cấp váy...", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "15/03/2025", ngay_tra: "18/03/2025" }, 
                 ];
-                 renderContractTerms('service');
+                 renderContractTerms('service_3');
             }
             
             function populateServiceTable(filterType, contractType) {
@@ -505,16 +568,13 @@
                 
                 tableBody.innerHTML = '';
 
-                let dataToDisplay = [];
+                let dataToDisplay =[];
                 
-                // Logic lọc dữ liệu đã được điều chỉnh theo yêu cầu:
-                if (contractType === 'service' || contractType === 'family' || contractType === 'combo') {
-                     // 1. Hợp đồng Cung cấp Dịch vụ (Service):
-                     // Lấy dòng có [hang_muc] là "Hợp đồng" VÀ loai_dich_vu là "Dịch vụ"
+                if (contractType === 'service_2' || contractType === 'service_3') {
+                     dataToDisplay = globalServiceData;
+                } else if (contractType === 'family' || contractType === 'combo') {
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Dịch vụ');
                 } else if (contractType === 'dress') {
-                     // 2. Hợp đồng Trang phục / Dịch vụ khác (Dress):
-                     // Lấy tất cả dòng có [hang_muc] là "Phát sinh" HOẶC ([hang_muc] là "Hợp đồng" VÀ [loai_dich_vu] = "Trang phục")
                      dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
                 } else if (filterType) {
                      dataToDisplay = globalServiceData.filter(item => item.loai_dich_vu === filterType);
@@ -571,7 +631,9 @@
                 switch(currentContractType) {
                     case 'dress': return 'HD_Vay_DichVuKhac';
                     case 'family': return 'HD_Baby_GD';
-                    case 'combo': return 'HD_Combo_Cuoi'; // Tiền tố cho Combo
+                    case 'combo': return 'HD_Combo_Cuoi';
+                    case 'service_2': return 'HD_Dich_Vu_TT2';
+                    case 'service_3': return 'HD_Dich_Vu_TT3';
                     default: return 'HD_Dich_Vu';
                 }
             }
@@ -600,7 +662,7 @@
                     const filename = `${getFileNamePrefix()}_${document.getElementById('contract-id').textContent.trim()}_${document.getElementById('customer-name').textContent.trim()}.pdf`;
                     
                     const opt = { 
-                        margin: [10, 5, 5, 10], 
+                        margin:[10, 5, 5, 10], 
                         filename: filename, 
                         image: { type: 'jpeg', quality: 0.98 }, 
                         html2canvas: { 
@@ -673,7 +735,6 @@
                     populateServiceTable('Trang phục', 'dress');
                     shootingInfoTable.style.display = 'none';
                     
-                    // Logic tính tổng tiền cho phần Dress (cần lọc lại dữ liệu tương ứng để tính)
                     const dressData = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
                     const totalAmount = dressData.reduce((sum, item) => sum + (item.thanhtien || 0), 0);
                     const totalPromo = dressData.reduce((sum, item) => sum + (item.sotien_km || 0), 0);
@@ -694,14 +755,16 @@
                     shootingInfoTable.style.display = 'table';
                     let summaryHTML = '';
                     
-                    // Cả Service, Family và Combo dùng chung cấu trúc bảng gọn
-                    if (type === 'service' || type === 'family' || type === 'combo') {
+                    if (type === 'service_2' || type === 'service_3' || type === 'family' || type === 'combo') {
                         summaryHTML = `
                         <table class="summary-table">
                             <tbody>
                                 <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal" class="dynamic-data"></span></td></tr>
                                 <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span id="total-promotion" class="dynamic-data"></span></td></tr>
+                                <tr><td>Phát sinh:</td><td style="text-align:right;"><span id="additional-cost" class="dynamic-data"></span></td></tr>
                                 <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span id="total-due" class="dynamic-data"></span></td></tr>
+                                <tr><td>Đã TT:</td><td style="text-align:right;"><span id="amount-paid" class="dynamic-data"></span></td></tr>
+                                <tr><td class="highlight-red">Còn Lại:</td><td style="text-align:right;" class="highlight-red"><span id="amount-remaining"></span></td></tr>
                                 <tr><td colspan="2">(Bằng chữ: <span id="amount-in-words" class="dynamic-data"></span>)</td></tr>
                             </tbody>
                         </table>`;
@@ -709,51 +772,46 @@
                     
                     summaryContainer.innerHTML = summaryHTML;
 
-                    // Mặc định vẫn điền các params khác từ URL (như đã thanh toán...)
-                    const financialParams = {
-                        // thanh_tien và khuyen_mai_tong, phai_thanh_toan sẽ được xử lý riêng bên dưới
-                        tong_phat_sinh: 'additional-cost',
-                        da_thanh_toan: 'amount-paid',
-                        con_lai: 'amount-remaining'
-                    };
-                    for(const param in financialParams){
-                        const el = document.getElementById(financialParams[param]);
-                        if(el){
-                            const value = parseFloat(urlParams.get(param)?.replace(/,/g, '') || 0);
-                            el.textContent = value.toLocaleString('vi-VN');
-                        }
-                    }
+                    const subtotalVal = parseFloat(urlParams.get('thanh_tien')?.replace(/,/g, '') || 0); 
+                    const promotionVal = parseFloat(urlParams.get('khuyen_mai_tong')?.replace(/,/g, '') || 0); 
+                    const addCostVal = parseFloat(urlParams.get('tong_phat_sinh')?.replace(/,/g, '') || 0); 
+                    const totalDueVal = parseFloat(urlParams.get('phai_thanh_toan')?.replace(/,/g, '') || 0); 
+                    const amountPaidVal = parseFloat(urlParams.get('da_thanh_toan')?.replace(/,/g, '') || 0); 
+                    const remainingVal = parseFloat(urlParams.get('con_lai')?.replace(/,/g, '') || 0); 
 
-                    // --- LOGIC TÍNH TOÁN TRỰC TIẾP CHO SERVICE / FAMILY / COMBO ---
-                    // Lấy giá trị từ URL để tính toán lại Phải Thanh Toán
-                    const subtotalVal = parseFloat(urlParams.get('thanh_tien')?.replace(/,/g, '') || 0);
-                    const promotionVal = parseFloat(urlParams.get('khuyen_mai_tong')?.replace(/,/g, '') || 0);
-                    
-                    // Tính: Phải TT = Tổng tiền - Khuyến mãi
-                    const calculatedDue = subtotalVal - promotionVal;
-
-                    // Cập nhật lên giao diện
                     const elSubtotal = document.getElementById('subtotal');
                     if(elSubtotal) elSubtotal.textContent = subtotalVal.toLocaleString('vi-VN');
 
                     const elPromotion = document.getElementById('total-promotion');
                     if(elPromotion) elPromotion.textContent = promotionVal.toLocaleString('vi-VN');
 
+                    const elAddCost = document.getElementById('additional-cost');
+                    if(elAddCost) elAddCost.textContent = addCostVal.toLocaleString('vi-VN');
+
                     const elTotalDue = document.getElementById('total-due');
-                    if(elTotalDue) elTotalDue.textContent = calculatedDue.toLocaleString('vi-VN');
+                    if(elTotalDue) elTotalDue.textContent = totalDueVal.toLocaleString('vi-VN');
+
+                    const elAmountPaid = document.getElementById('amount-paid');
+                    if(elAmountPaid) elAmountPaid.textContent = amountPaidVal.toLocaleString('vi-VN');
+
+                    const elRemaining = document.getElementById('amount-remaining');
+                    if(elRemaining) elRemaining.textContent = remainingVal.toLocaleString('vi-VN');
 
                     const wordsEl = document.getElementById('amount-in-words');
-                    if(wordsEl) wordsEl.textContent = readNumberInVietnamese(calculatedDue);
-                    // -------------------------------------------------------------
+                    if(wordsEl) wordsEl.textContent = readNumberInVietnamese(remainingVal); 
 
                     if (type === 'family') {
                         termsContainer.innerHTML = CONTRACT_TERMS_FAMILY;
                         titleElement.textContent = 'HỢP ĐỒNG BABY & GIA ĐÌNH';
                         populateServiceTable(null, 'family');
-                    } else if (type === 'service') {
-                        termsContainer.innerHTML = CONTRACT_TERMS_SERVICE;
+                    } else if (type === 'service_2') {
+                        termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_2;
                         titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ';
-                        populateServiceTable(null, 'service');
+                        populateServiceTable(null, 'service_2');
+                    } else if (type === 'service_3') {
+                        termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_3;
+                        titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ';
+                        populateServiceTable(null, 'service_3');
                     } else if (type === 'combo') {
                         termsContainer.innerHTML = CONTRACT_TERMS_COMBO;
                         titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP COMBO CƯỚI';
