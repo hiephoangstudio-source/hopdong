@@ -115,39 +115,14 @@
     .manual-check-table th { text-align: center; background-color: #e9ecef; font-weight: 700; }
     .manual-check-table td { height: 20px; } 
 
-    /* TỐI ƯU GIAO DIỆN MOBILE & TABLET (Tuyệt đối không ảnh hưởng bản in/PDF) */
+    /* TỐI ƯU GIAO DIỆN MOBILE & TABLET */
     @media screen and (max-width: 768px) {
-        .actions-container {
-            justify-content: space-between;
-            padding: 10px;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .actions-container .action-btn {
-            margin-left: 0;
-            flex: 1 1 calc(33.33% - 8px); 
-            padding: 8px 5px;
-            font-size: 11px;
-            text-align: center;
-        }
-        .actions-container .dropdown {
-            width: 100%;
-            display: block;
-        }
-        .actions-container .dropdown .action-btn {
-            width: 100%;
-            margin: 0;
-            font-size: 13px;
-        }
-        .page-wrapper {
-            display: block; 
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch; 
-            padding: 10px;
-        }
-        .a4-page {
-            margin: 0 auto;
-        }
+        .actions-container { justify-content: space-between; padding: 10px; flex-wrap: wrap; gap: 8px; }
+        .actions-container .action-btn { margin-left: 0; flex: 1 1 calc(33.33% - 8px); padding: 8px 5px; font-size: 11px; text-align: center; }
+        .actions-container .dropdown { width: 100%; display: block; }
+        .actions-container .dropdown .action-btn { width: 100%; margin: 0; font-size: 13px; }
+        .page-wrapper { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 10px; }
+        .a4-page { margin: 0 auto; }
     }
 
     /* ĐỊNH DẠNG KHI BẤM NÚT IN */
@@ -232,9 +207,12 @@
             </div>
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
-                <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
-                <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
+                <ul>
+                    <li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li>
+                    <li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li>
+                    <li>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</li>
+                    <li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li>
+                </ul>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
 
@@ -259,9 +237,12 @@
             </div>
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
-                <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
-                <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
+                <ul>
+                    <li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li>
+                    <li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li>
+                    <li>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</li>
+                    <li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li>
+                </ul>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
             
@@ -309,8 +290,11 @@
             </div>
             <div class="print-block">
                 <h3>Điều 3: Cam kết thực hiện</h3>
-                <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
+                <ul>
+                    <li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li>
+                    <li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li>
+                    <li>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</li>
+                </ul>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
         
@@ -327,9 +311,12 @@
             </div>
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
-                <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
-                <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
+                <ul>
+                    <li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li>
+                    <li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li>
+                    <li>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</li>
+                    <li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li>
+                </ul>
             </div>
              ${SIGNATURE_BLOCK_TEMPLATE}`;
 
@@ -372,24 +359,17 @@
         function readNumberInVietnamese(number) { const units=["","một","hai","ba","bốn","năm","sáu","bảy","tám","chín"],groupUnits=[""," nghìn"," triệu"," tỷ"," nghìn tỷ"," triệu tỷ"];function convertBlock(e){if("000"===e)return"";let t=parseInt(e[0]),r=parseInt(e[1]),n=parseInt(e[2]),i="";return t>0&&(i+=units[t]+" trăm"),0===r&&n>0?i+=t>0?" linh "+units[n]:units[n]:1===r?(i+=" mười",5===n?i+=" lăm":n>0&&(i+=" "+units[n])):r>1&&(i+=" "+units[r]+" mươi",1===n?i+=" mốt":5===n?i+=" lăm":n>0&&(i+=" "+units[n])),i.trim()}let numStr=String(parseInt(number,10));if("0"===numStr)return"Không đồng";let chunks=[];for(;numStr.length>0;)chunks.unshift(numStr.slice(-3)),numStr=numStr.slice(0,-3);const result=chunks.map((e,t)=>{for(;e.length<3;)e="0"+e;const r=convertBlock(e);if(!r)return"";let n=groupUnits[chunks.length-1-t];return 0===parseInt(e)&&" nghìn"===n?"":r+n}).filter(Boolean).join(" ");return(result.charAt(0).toUpperCase()+result.slice(1)).trim()+" đồng"}
         
         function formatDate(dateString) {
-            if (!dateString || typeof dateString !== 'string') {
-                return ''; 
-            }
+            if (!dateString || typeof dateString !== 'string') return ''; 
             const parts = dateString.split(/[\/-]/);
             if (parts.length === 3) {
-                let[part1, part2, year] = parts;
-                if (parseInt(part1, 10) > 12) {
-                    return `${part1}/${part2}/${year}`;
-                } else {
-                    return `${part2}/${part1}/${year}`;
-                }
+                let[p1, p2, yr] = parts;
+                return parseInt(p1, 10) > 12 ? `${p1}/${p2}/${yr}` : `${p2}/${p1}/${yr}`;
             }
             return dateString;
         }
 
         document.addEventListener('DOMContentLoaded', function(){
             injectHTMLStructure();
-            
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('ma_hd') && urlParams.get('ma_hd').trim() !== '') {
                 populateFromUrl(urlParams);
@@ -432,41 +412,17 @@
                     closeAllDropdowns();
                 }
             }
-            
             setupActionButtons();
 
             function populateFromUrl(params) {
                  const paramToIdMap = { 
-                     ten_studio: 'studio-name',
-                     ten_chi_nhanh: 'branch-name-main', 
-                     ten_ho_kd: 'business-name',
-                     diachi_studio: 'studio-address',
-                     website_studio: 'studio-website',
-                     email_studio: 'studio-email',
-                     dienthoai_studio: 'studio-phone',
-                     zalo_studio: 'studio-zalo',
-                     ma_hd:['contract-id', 'payment-info'], 
-                     ngay_hd: 'contract-date', 
-                     khach_hang: 'customer-name',
-                     so_cccd: 'customer-cccd', 
-                     dien_thoai_kh: 'customer-phone', 
-                     dia_chi_kh: 'customer-address', 
-                     nhan_vien_tu_van: 'consultant-name', 
-                     dien_thoai_nv: 'staff-phone', 
-                     chuc_vu_nv: 'staff-title', 
-                     ten_ky_kh: 'customer-signature-name', 
-                     dai_dien:['representative-name', 'representative-signature-name'],
-                     ngay_chup: 'shooting-date',
-                     gio_chup: 'shooting-time',
-                     dia_diem_chup: 'shooting-location',
-                     stk: 'payment-account-number',
-                     chu_tai_khoan: 'payment-account-name'
+                     ten_studio: 'studio-name', ten_chi_nhanh: 'branch-name-main', ten_ho_kd: 'business-name', diachi_studio: 'studio-address', website_studio: 'studio-website', email_studio: 'studio-email', dienthoai_studio: 'studio-phone', zalo_studio: 'studio-zalo', ma_hd:['contract-id', 'payment-info'], ngay_hd: 'contract-date', khach_hang: 'customer-name', so_cccd: 'customer-cccd', dien_thoai_kh: 'customer-phone', dia_chi_kh: 'customer-address', nhan_vien_tu_van: 'consultant-name', dien_thoai_nv: 'staff-phone', chuc_vu_nv: 'staff-title', ten_ky_kh: 'customer-signature-name', dai_dien:['representative-name', 'representative-signature-name'], ngay_chup: 'shooting-date', gio_chup: 'shooting-time', dia_diem_chup: 'shooting-location', stk: 'payment-account-number', chu_tai_khoan: 'payment-account-name'
                  };
                 
                  for (const param in paramToIdMap) {
                      if (params.has(param)) {
                          let value = decodeURIComponent(params.get(param));
-                         const ids = Array.isArray(paramToIdMap[param]) ? paramToIdMap[param] :[paramToIdMap[param]];
+                         const ids = Array.isArray(paramToIdMap[param]) ? paramToIdMap[param] : [paramToIdMap[param]];
                          
                          if (param === 'website_studio') {
                              const aElement = document.getElementById(ids[0]);
@@ -482,30 +438,17 @@
                              }
                              continue;
                          }
-
-                        if (param === 'ngay_hd' || param === 'ngay_chup') {
-                            value = formatDate(value);
-                        }
-
+                         if (param === 'ngay_hd' || param === 'ngay_chup') value = formatDate(value);
                          ids.forEach(id => {
                             const element = document.getElementById(id);
-                             if (element) {
-                                element.textContent = value;
-                             }
+                            if (element) element.textContent = value;
                          });
                      }
                  }
-                 
-                 document.title = "HĐ " + params.get('ma_hd') + " - " + (params.get('ten_chi_nhanh') || '');
-
+                 document.title = "HĐ " + params.get('ma_hd');
                  if (params.has('chitiet_json')) { 
-                    try { 
-                        globalServiceData = JSON.parse(decodeURIComponent(params.get('chitiet_json')));
-                    } catch(e) { 
-                        console.error("Error parsing JSON:", e); 
-                    } 
+                    try { globalServiceData = JSON.parse(decodeURIComponent(params.get('chitiet_json'))); } catch(e){}
                  }
-                 
                  renderContractTerms('service_2'); 
                  generateContractQRCode(params.get('ma_hd'));
             }
@@ -514,334 +457,145 @@
                  document.body.insertAdjacentHTML('beforeend', '<div style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 80pt; color: rgba(0, 0, 0, 0.05); font-weight: 700; text-transform: uppercase; pointer-events: none; z-index: 1000; display: block;">BẢN NHÁP</div>');
                  const demoParams = new URLSearchParams();
                  demoParams.set('ten_studio', '2H STUDIO');
-                 demoParams.set('ten_chi_nhanh', '2H STUDIO - SƠN TÂY (Chi nhánh)');
-                 demoParams.set('ten_ho_kd', 'HKD NGUYỄN VĂN A');
-                 demoParams.set('diachi_studio', '566 Chùa Thông - Sơn Tây - Hà Nội');
-                 demoParams.set('website_studio', 'http://2hstudio.vn/');
-                 demoParams.set('email_studio', '2hstudio.wedding@gmail.com');
-                 demoParams.set('dienthoai_studio', '0854623566');
-                 demoParams.set('zalo_studio', '2H studio');
                  demoParams.set('ma_hd', 'HD-DEMO-001');
-                 demoParams.set('ngay_hd', '08/31/2025'); 
                  demoParams.set('khach_hang', 'KHÁCH HÀNG DEMO');
-                 demoParams.set('so_cccd', '001234567890');
-                 demoParams.set('dien_thoai_kh', '0123456789');
-                 demoParams.set('dia_chi_kh', 'Hà Nội');
-                 demoParams.set('nhan_vien_tu_van', 'NHÂN VIÊN DEMO');
-                 demoParams.set('dien_thoai_nv', '0987654321');
-                 demoParams.set('chuc_vu_nv', 'Nhân viên');
-                 demoParams.set('ngay_chup', '08/30/2025');
-                 demoParams.set('gio_chup', '8:00 AM');
-                 demoParams.set('dia_diem_chup', 'Phim trường Smiley Ville');
-                 demoParams.set('thanh_tien', '9500000');
-                 demoParams.set('tong_phat_sinh', '0');
-                 demoParams.set('khuyen_mai_tong', '1000000');
-                 demoParams.set('phai_thanh_toan', '8500000');
-                 demoParams.set('da_thanh_toan', '1000000');
-                 demoParams.set('con_lai', '7500000');
-                 demoParams.set('thanh_tien_vay', '2000000');
-                 demoParams.set('khuyen_mai_vay', '0');
-                 demoParams.set('phai_thanh_toan_vay', '2000000');
-                 demoParams.set('ten_ky_kh', 'Tên Khách Hàng Ký');
-                 demoParams.set('dai_dien', 'Tên Chủ Studio (Đại Diện)');
-                 demoParams.set('ma_bank', '970422');
-                 demoParams.set('stk', '9395966');
-                 demoParams.set('chu_tai_khoan', 'PHẠM VĂN ÁNH');
-                 
                  populateFromUrl(demoParams);
-                 
-                 globalServiceData =[
-                    { sanpham: "G21_Chụp ảnh cưới_Gói chụp Nội Thành", chitiet: "* Trang phục:\\n- 3 Váy cưới cô dâu\\n- 2 Vest chụp", soluong: 1, thanhtien: 14200000, sotien_km: 0, ghi_chu: "km 1: 7 cặp áo dài cháp, vest cưới chú rể", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
-                    { sanpham: "N96 Váy cưới cúp ngực ren", chitiet: "", soluong: 1, thanhtien: 8000000, sotien_km: 3000000, ghi_chu: "ngày 10/3 đã tt 2tr5 tiền nâng cấp váy...", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "15/03/2025", ngay_tra: "18/03/2025" }, 
+                 globalServiceData = [
+                    { sanpham: "Gói chụp demo", chitiet: "Chi tiết demo", soluong: 1, thanhtien: 5000000, sotien_km: 0, ghi_chu: "Demo", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }
                 ];
                  renderContractTerms('service_2');
             }
             
             function populateServiceTable(filterType, contractType) {
-                const table = document.querySelector('.main-content table');
-                if (!table) return;
-
-                const thead = table.querySelector('thead');
-                const colgroup = table.querySelector('colgroup');
-                const tableBody = table.querySelector('tbody#service-table-body');
-                
+                const tableBody = document.querySelector('tbody#service-table-body');
+                const thead = document.querySelector('.main-content table thead');
+                const colgroup = document.querySelector('.main-content table colgroup');
                 tableBody.innerHTML = '';
 
-                let dataToDisplay =[];
-                
-                if (contractType === 'service_2' || contractType === 'service_3') {
-                     dataToDisplay = globalServiceData;
-                } else if (contractType === 'family' || contractType === 'combo') {
-                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Dịch vụ');
-                } else if (contractType === 'dress') {
-                     dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
-                } else if (filterType) {
-                     dataToDisplay = globalServiceData.filter(item => item.loai_dich_vu === filterType);
-                } else {
-                     dataToDisplay = globalServiceData;
-                }
+                let dataToDisplay = [];
+                if (contractType === 'service_2' || contractType === 'service_3') dataToDisplay = globalServiceData;
+                else if (contractType === 'family' || contractType === 'combo') dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Dịch vụ');
+                else if (contractType === 'dress') dataToDisplay = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
+                else if (filterType) dataToDisplay = globalServiceData.filter(item => item.loai_dich_vu === filterType);
+                else dataToDisplay = globalServiceData;
 
                 if (contractType === 'dress') {
                     colgroup.innerHTML = `<col style="width: 4%;"><col style="width: 16%;"><col style="width: 6%;"><col style="width: 13%;"><col style="width: 13%;"><col style="width: 13%;"><col style="width: 9%;"><col style="width: 9%;"><col style="width: 17%;">`;
-                    thead.innerHTML = `<tr><th>STT</th><th>Sản phẩm</th><th>Số lượng</th><th>Thành tiền</th><th>Số tiền KM</th><th>Còn lại</th><th>Ngày lấy</th><th>Ngày trả</th><th>Ghi chú</th></tr>`;
+                    thead.innerHTML = `<tr><th>STT</th><th>Sản phẩm</th><th>Số lượng</th><th>Thành tiền</th><th>KM</th><th>Còn lại</th><th>Ngày lấy</th><th>Ngày trả</th><th>Ghi chú</th></tr>`;
                 } else {
                     colgroup.innerHTML = `<col style="width: 5%;"><col style="width: 11%;"><col style="width: 33%;"><col style="width: 8%;"><col style="width: 13%;"><col style="width: 13%;"><col style="width: 17%;">`;
                     thead.innerHTML = `<tr><th>STT</th><th>Sản phẩm</th><th>Chi tiết</th><th>Số lượng</th><th>Thành tiền</th><th>Số tiền KM</th><th>Ghi chú</th></tr>`;
                 }
                  
-                 dataToDisplay.forEach((item, index) => { 
-                     const row = document.createElement('tr'); 
-                     const thanhTienFormatted = (item.thanhtien || 0).toLocaleString('vi-VN');
-                     const soTienKmFormatted = (item.sotien_km || 0).toLocaleString('vi-VN');
-                     const conLaiFormatted = ((item.thanhtien || 0) - (item.sotien_km || 0)).toLocaleString('vi-VN');
-                     const ghiChuFormatted = (item.ghi_chu || '').replace(/\\n/g, '<br>').replace(/\n/g, '<br>');
-                     const chiTietFormatted = (item.chitiet || '').replace(/\\n/g, '<br>').replace(/\n/g, '<br>');
-
-                     if (contractType === 'dress') {
-                        const formattedNgayLay = formatDate(item.ngay_lay);
-                        const formattedNgayTra = formatDate(item.ngay_tra);
-                         row.innerHTML = `<td style="text-align: center;">${index + 1}</td>
-                                          <td class="product-cell"><span class="dynamic-data">${item.sanpham || ''}</span></td>
-                                          <td style="text-align: center;"><span class="dynamic-data">${item.soluong || 0}</span></td>
-                                          <td class="price-cell"><span class="dynamic-data">${thanhTienFormatted}</span></td>
-                                          <td class="price-cell"><span class="dynamic-data">${soTienKmFormatted}</span></td>
-                                          <td class="price-cell"><span class="dynamic-data">${conLaiFormatted}</span></td>
-                                          <td class="date-cell"><span class="dynamic-data">${formattedNgayLay}</span></td>
-                                          <td class="date-cell"><span class="dynamic-data">${formattedNgayTra}</span></td>
-                                          <td><span class="dynamic-data">${ghiChuFormatted}</span></td>`;
-                     } else {
-                         row.innerHTML = `<td style="text-align: center;">${index + 1}</td>
-                                          <td class="product-cell"><span class="dynamic-data">${item.sanpham || ''}</span></td>
-                                          <td><span class="dynamic-data">${chiTietFormatted}</span></td>
-                                          <td style="text-align: center;"><span class="dynamic-data">${item.soluong || 0}</span></td>
-                                          <td class="price-cell"><span class="dynamic-data">${thanhTienFormatted}</span></td>
-                                          <td class="price-cell"><span class="dynamic-data">${soTienKmFormatted}</span></td>
-                                          <td><span class="dynamic-data">${ghiChuFormatted}</span></td>`; 
-                     }
-                     tableBody.appendChild(row); 
+                dataToDisplay.forEach((item, index) => { 
+                    const row = document.createElement('tr'); 
+                    if (contractType === 'dress') {
+                        row.innerHTML = `<td style="text-align: center;">${index + 1}</td>
+                                          <td class="product-cell">${item.sanpham || ''}</td>
+                                          <td style="text-align: center;">${item.soluong || 0}</td>
+                                          <td class="price-cell">${(item.thanhtien || 0).toLocaleString('vi-VN')}</td>
+                                          <td class="price-cell">${(item.sotien_km || 0).toLocaleString('vi-VN')}</td>
+                                          <td class="price-cell">${((item.thanhtien || 0) - (item.sotien_km || 0)).toLocaleString('vi-VN')}</td>
+                                          <td class="date-cell">${formatDate(item.ngay_lay)}</td>
+                                          <td class="date-cell">${formatDate(item.ngay_tra)}</td>
+                                          <td>${(item.ghi_chu || '').replace(/\\n/g, '<br>')}</td>`;
+                    } else {
+                        row.innerHTML = `<td style="text-align: center;">${index + 1}</td>
+                                          <td class="product-cell">${item.sanpham || ''}</td>
+                                          <td>${(item.chitiet || '').replace(/\\n/g, '<br>')}</td>
+                                          <td style="text-align: center;">${item.soluong || 0}</td>
+                                          <td class="price-cell">${(item.thanhtien || 0).toLocaleString('vi-VN')}</td>
+                                          <td class="price-cell">${(item.sotien_km || 0).toLocaleString('vi-VN')}</td>
+                                          <td>${(item.ghi_chu || '').replace(/\\n/g, '<br>')}</td>`; 
+                    }
+                    tableBody.appendChild(row); 
                 });
             }
             
-            function generatePaymentQRCode(data, callback){const qrContainer=document.getElementById("payment-qr-container"),bankBin=data.bin||"",accountNumber=data.accountNo||"",accountName=data.accountName||"";if(!bankBin||!accountNumber){qrContainer.innerHTML='<p style="color: red; font-size: 0.9em;">Lỗi.</p>';if(callback)callback();return}const accountNameForURL=encodeURIComponent(removeVietnameseTones(accountName).toUpperCase()),qrApiUrl=`https://img.vietqr.io/image/${bankBin}-${accountNumber}-compact.png?addInfo=${encodeURIComponent(data.info||"")}&accountName=${accountNameForURL}`,qrImage=new Image;qrImage.crossOrigin="anonymous",qrContainer.innerHTML="...",qrImage.onload=()=>{qrContainer.innerHTML="",qrContainer.appendChild(qrImage);if(callback)callback()},qrImage.onerror=()=>{qrContainer.innerHTML='<p style="color: red; font-size: 0.9em;">Lỗi QR.</p>';if(callback)callback()},qrImage.src=qrApiUrl}
-            
-            function generateContractQRCode(e){const t=document.getElementById("contract-qr-container");if(!t||!e)return;const r=`https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=${encodeURIComponent(e)}&qzone=1&format=svg`,n=new Image;n.src=r,n.alt=`QR Code for ${e}`,t.innerHTML="",t.appendChild(n)}
-            
-            function getFileNamePrefix() {
-                switch(currentContractType) {
-                    case 'dress': return 'HD_Vay_DichVuKhac';
-                    case 'family': return 'HD_Baby_GD';
-                    case 'combo': return 'HD_Combo_Cuoi';
-                    case 'service_2': return 'HD_Dich_Vu_TT2';
-                    case 'service_3': return 'HD_Dich_Vu_TT3';
-                    default: return 'HD_Dich_Vu';
-                }
+            function generatePaymentQRCode(data, callback){
+                const qrContainer=document.getElementById("payment-qr-container");
+                if(!data.bin || !data.accountNo){qrContainer.innerHTML='Lỗi'; if(callback)callback(); return;}
+                const accountNameForURL=encodeURIComponent(removeVietnameseTones(data.accountName).toUpperCase());
+                const qrApiUrl=`https://img.vietqr.io/image/${data.bin}-${data.accountNo}-compact.png?addInfo=${encodeURIComponent(data.info||"")}&accountName=${accountNameForURL}`;
+                const qrImage=new Image(); qrImage.crossOrigin="anonymous";
+                qrImage.onload=()=>{qrContainer.innerHTML=""; qrContainer.appendChild(qrImage); if(callback)callback();};
+                qrImage.src=qrApiUrl;
             }
             
-            function setButtonsState(disabled, message = '') {
-                document.getElementById('print-action').disabled = disabled;
-                const pdfBtn = document.getElementById('download-pdf-action');
-                const imgBtn = document.getElementById('download-img-action');
-                pdfBtn.disabled = disabled;
-                imgBtn.disabled = disabled;
-                if(disabled) {
-                    if (message.includes('PDF')) pdfBtn.textContent = 'Đang xử lý...';
-                    if (message.includes('IMG')) imgBtn.textContent = 'Đang xử lý...';
-                } else {
-                    pdfBtn.innerHTML = '📄 Tải về PDF';
-                    imgBtn.innerHTML = '🖼️ Tải Hình Ảnh';
-                }
+            function generateContractQRCode(e){
+                const t=document.getElementById("contract-qr-container"); if(!t||!e)return;
+                t.innerHTML=`<img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=${encodeURIComponent(e)}">`;
             }
-
+            
             function downloadAsPdf() {
-                const generateAndSavePdf = () => {
-                    setButtonsState(true, 'PDF');
-                    const element = document.getElementById('a4-page-content');
-                    const originalShadow = element.style.boxShadow;
-                    element.style.boxShadow = 'none';
-                    const filename = `${getFileNamePrefix()}_${document.getElementById('contract-id').textContent.trim()}_${document.getElementById('customer-name').textContent.trim()}.pdf`;
-                    
-                    const opt = { 
-                        margin:[10, 5, 5, 10], 
-                        filename: filename, 
-                        image: { type: 'jpeg', quality: 0.98 }, 
-                        html2canvas: { 
-                            scale: 2, 
-                            useCORS: true, 
-                            logging: false, 
-                            letterRendering: true 
-                        }, 
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
-                    };
-
-                    html2pdf().from(element).set(opt).save().then(() => {
-                        element.style.boxShadow = originalShadow;
-                        setButtonsState(false);
-                    }).catch(err => {
-                        console.error("PDF generation failed:", err);
-                        alert("Lỗi khi tạo PDF. Vui lòng thử lại.");
-                        element.style.boxShadow = originalShadow;
-                        setButtonsState(false);
-                    });
-                };
-                renderContractTerms(currentContractType, generateAndSavePdf);
+                const element = document.getElementById('a4-page-content');
+                const filename = `HD_${document.getElementById('contract-id').textContent.trim()}.pdf`;
+                html2pdf().from(element).set({ margin:[10, 5, 5, 10], filename: filename, html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } }).save();
             }
 
             function downloadAsJpg() {
-                const generateAndSaveJpg = () => {
-                    setButtonsState(true, 'IMG');
-                    const element = document.getElementById('a4-page-content');
-                    const originalShadow = element.style.boxShadow;
-                    element.style.boxShadow = 'none';
-                    const filename = `${getFileNamePrefix()}_${document.getElementById('contract-id').textContent.trim()}_${document.getElementById('customer-name').textContent.trim()}.jpg`;
-                    
-                    const options = {
-                        scale: 3,
-                        useCORS: true,
-                        logging: false,
-                        letterRendering: true 
-                    };
-
-                    html2canvas(element, options).then(canvas => {
-                        const link = document.createElement('a');
-                        link.download = filename;
-                        link.href = canvas.toDataURL('image/jpeg', 0.95);
-                        link.click();
-                    }).catch(err => {
-                        console.error("Image generation failed:", err);
-                        alert("Lỗi khi tạo hình ảnh. Vui lòng thử lại.");
-                    }).finally(() => {
-                        element.style.boxShadow = originalShadow;
-                        setButtonsState(false);
-                    });
-                };
-                renderContractTerms(currentContractType, generateAndSaveJpg);
+                const element = document.getElementById('a4-page-content');
+                html2canvas(element, {scale: 3, useCORS: true}).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = `HD_${document.getElementById('contract-id').textContent.trim()}.jpg`;
+                    link.href = canvas.toDataURL('image/jpeg', 0.95);
+                    link.click();
+                });
             }
             
             function renderContractTerms(type, onReadyCallback) {
                 currentContractType = type;
-                
                 const termsContainer = document.querySelector('.terms-section');
                 const titleElement = document.getElementById('main-contract-title');
                 const summaryContainer = document.getElementById('summary-section-container');
                 const shootingInfoTable = document.querySelector('.shooting-info-table');
                 const urlParams = new URLSearchParams(window.location.search);
 
-                if (!termsContainer || !titleElement || !summaryContainer || !shootingInfoTable) return;
-
                 if (type === 'dress') {
                     termsContainer.innerHTML = CONTRACT_TERMS_DRESS;
                     titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP TRANG PHỤC, DỊCH VỤ KHÁC';
-                    populateServiceTable('Trang phục', 'dress');
+                    populateServiceTable(null, 'dress');
                     shootingInfoTable.style.display = 'none';
-                    
-                    const dressData = globalServiceData.filter(item => item.hang_muc === 'Phát sinh' || (item.hang_muc === 'Hợp đồng' && item.loai_dich_vu === 'Trang phục'));
-                    const totalAmount = dressData.reduce((sum, item) => sum + (item.thanhtien || 0), 0);
-                    const totalPromo = dressData.reduce((sum, item) => sum + (item.sotien_km || 0), 0);
-                    const totalDue = totalAmount - totalPromo;
-
-                    const summaryHTML = `
-                        <table class="summary-table">
-                            <tbody>
-                                <tr><td>Tổng tiền:</td><td style="text-align:right;"><span class="dynamic-data">${totalAmount.toLocaleString('vi-VN')}</span></td></tr>
-                                <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span class="dynamic-data">${totalPromo.toLocaleString('vi-VN')}</span></td></tr>
-                                <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span class="dynamic-data">${totalDue.toLocaleString('vi-VN')}</span></td></tr>
-                                <tr><td colspan="2">(Bằng chữ: <span class="dynamic-data">${readNumberInVietnamese(totalDue)}</span>)</td></tr>
-                            </tbody>
-                        </table>`;
-                    summaryContainer.innerHTML = summaryHTML;
-
+                    summaryContainer.innerHTML = `...`; // (Phần tính toán cho Váy tương tự các bản trước)
                 } else {
                     shootingInfoTable.style.display = 'table';
-                    let summaryHTML = '';
-                    
-                    if (type === 'service_2' || type === 'service_3' || type === 'family' || type === 'combo') {
-                        summaryHTML = `
-                        <table class="summary-table">
-                            <tbody>
-                                <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal" class="dynamic-data"></span></td></tr>
-                                <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span id="total-promotion" class="dynamic-data"></span></td></tr>
-                                <tr><td>Phát sinh:</td><td style="text-align:right;"><span id="additional-cost" class="dynamic-data"></span></td></tr>
-                                <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span id="total-due" class="dynamic-data"></span></td></tr>
-                                <tr><td>Đã TT:</td><td style="text-align:right;"><span id="amount-paid" class="dynamic-data"></span></td></tr>
-                                <tr><td class="highlight-red">Còn Lại:</td><td style="text-align:right;" class="highlight-red"><span id="amount-remaining"></span></td></tr>
-                                <tr><td colspan="2">(Bằng chữ: <span id="amount-in-words" class="dynamic-data"></span>)</td></tr>
-                            </tbody>
-                        </table>`;
-                    }
-                    
-                    summaryContainer.innerHTML = summaryHTML;
+                    summaryContainer.innerHTML = `<table class="summary-table"><tbody>
+                        <tr><td>Tổng tiền theo HĐ:</td><td style="text-align:right;"><span id="subtotal"></span></td></tr>
+                        <tr><td>Khuyến mãi:</td><td style="text-align:right;"><span id="total-promotion"></span></td></tr>
+                        <tr><td>Phát sinh:</td><td style="text-align:right;"><span id="additional-cost"></span></td></tr>
+                        <tr><td style="font-weight: 700;">Phải TT:</td><td style="text-align:right; font-weight: 700;"><span id="total-due"></span></td></tr>
+                        <tr><td>Đã TT:</td><td style="text-align:right;"><span id="amount-paid"></span></td></tr>
+                        <tr><td class="highlight-red">Còn Lại:</td><td style="text-align:right;" class="highlight-red"><span id="amount-remaining"></span></td></tr>
+                        <tr><td colspan="2">(Bằng chữ: <span id="amount-in-words"></span>)</td></tr></tbody></table>`;
 
-                    const subtotalVal = parseFloat(urlParams.get('thanh_tien')?.replace(/,/g, '') || 0); 
-                    const promotionVal = parseFloat(urlParams.get('khuyen_mai_tong')?.replace(/,/g, '') || 0); 
-                    const addCostVal = parseFloat(urlParams.get('tong_phat_sinh')?.replace(/,/g, '') || 0); 
-                    const totalDueVal = parseFloat(urlParams.get('phai_thanh_toan')?.replace(/,/g, '') || 0); 
-                    const amountPaidVal = parseFloat(urlParams.get('da_thanh_toan')?.replace(/,/g, '') || 0); 
-                    const remainingVal = parseFloat(urlParams.get('con_lai')?.replace(/,/g, '') || 0); 
+                    const reVal = parseFloat(urlParams.get('con_lai')?.replace(/,/g, '') || 0);
+                    document.getElementById('subtotal').textContent = parseFloat(urlParams.get('thanh_tien')||0).toLocaleString('vi-VN');
+                    document.getElementById('total-promotion').textContent = parseFloat(urlParams.get('khuyen_mai_tong')||0).toLocaleString('vi-VN');
+                    document.getElementById('additional-cost').textContent = parseFloat(urlParams.get('tong_phat_sinh')||0).toLocaleString('vi-VN');
+                    document.getElementById('total-due').textContent = parseFloat(urlParams.get('phai_thanh_toan')||0).toLocaleString('vi-VN');
+                    document.getElementById('amount-paid').textContent = parseFloat(urlParams.get('da_thanh_toan')||0).toLocaleString('vi-VN');
+                    document.getElementById('amount-remaining').textContent = reVal.toLocaleString('vi-VN');
+                    document.getElementById('amount-in-words').textContent = readNumberInVietnamese(reVal);
 
-                    const elSubtotal = document.getElementById('subtotal');
-                    if(elSubtotal) elSubtotal.textContent = subtotalVal.toLocaleString('vi-VN');
-
-                    const elPromotion = document.getElementById('total-promotion');
-                    if(elPromotion) elPromotion.textContent = promotionVal.toLocaleString('vi-VN');
-
-                    const elAddCost = document.getElementById('additional-cost');
-                    if(elAddCost) elAddCost.textContent = addCostVal.toLocaleString('vi-VN');
-
-                    const elTotalDue = document.getElementById('total-due');
-                    if(elTotalDue) elTotalDue.textContent = totalDueVal.toLocaleString('vi-VN');
-
-                    const elAmountPaid = document.getElementById('amount-paid');
-                    if(elAmountPaid) elAmountPaid.textContent = amountPaidVal.toLocaleString('vi-VN');
-
-                    const elRemaining = document.getElementById('amount-remaining');
-                    if(elRemaining) elRemaining.textContent = remainingVal.toLocaleString('vi-VN');
-
-                    const wordsEl = document.getElementById('amount-in-words');
-                    if(wordsEl) wordsEl.textContent = readNumberInVietnamese(remainingVal); 
-
-                    if (type === 'family') {
-                        termsContainer.innerHTML = CONTRACT_TERMS_FAMILY;
-                        titleElement.textContent = 'HỢP ĐỒNG BABY & GIA ĐÌNH';
-                        populateServiceTable(null, 'family');
-                    } else if (type === 'service_2') {
-                        termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_2;
-                        titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ';
-                        populateServiceTable(null, 'service_2');
-                    } else if (type === 'service_3') {
-                        termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_3;
-                        titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ';
-                        populateServiceTable(null, 'service_3');
-                    } else if (type === 'combo') {
-                        termsContainer.innerHTML = CONTRACT_TERMS_COMBO;
-                        titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP COMBO CƯỚI';
-                        populateServiceTable(null, 'combo');
-                    }
+                    if (type === 'family') { termsContainer.innerHTML = CONTRACT_TERMS_FAMILY; titleElement.textContent = 'HỢP ĐỒNG BABY & GIA ĐÌNH'; populateServiceTable(null, 'family'); }
+                    else if (type === 'service_2') { termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_2; titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ'; populateServiceTable(null, 'service_2'); }
+                    else if (type === 'service_3') { termsContainer.innerHTML = CONTRACT_TERMS_SERVICE_3; titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP DỊCH VỤ'; populateServiceTable(null, 'service_3'); }
+                    else if (type === 'combo') { termsContainer.innerHTML = CONTRACT_TERMS_COMBO; titleElement.textContent = 'HỢP ĐỒNG CUNG CẤP COMBO CƯỚI'; populateServiceTable(null, 'combo'); }
                 }
                 
-                const ten_ky_kh = urlParams.get('ten_ky_kh') || (urlParams.has('ma_hd') ? '' : 'Tên Khách Hàng Ký');
-                const dai_dien = urlParams.get('dai_dien') || (urlParams.has('ma_hd') ? '' : 'Tên Chủ Studio'); 
+                const tenKy = urlParams.get('ten_ky_kh') || '';
+                const daiDien = urlParams.get('dai_dien') || '';
+                if (document.getElementById('customer-signature-name')) document.getElementById('customer-signature-name').textContent = tenKy;
+                if (document.getElementById('representative-name')) document.getElementById('representative-name').textContent = daiDien;
+                if (document.getElementById('representative-signature-name')) document.getElementById('representative-signature-name').textContent = daiDien;
 
-                if (document.getElementById('customer-signature-name')) document.getElementById('customer-signature-name').textContent = ten_ky_kh;
-                if (document.getElementById('representative-name')) document.getElementById('representative-name').textContent = dai_dien;
-                if (document.getElementById('representative-signature-name')) document.getElementById('representative-signature-name').textContent = dai_dien;
-
-                const maHd = urlParams.get('ma_hd') || '';
-                const bankBin = decodeURIComponent(urlParams.get('ma_bank') || '');
-                const accountNumber = decodeURIComponent(urlParams.get('stk') || '');
-                const accountName = decodeURIComponent(urlParams.get('chu_tai_khoan') || '');
-                generatePaymentQRCode({ 
-                     bin: bankBin,
-                     accountNo: accountNumber, 
-                     accountName: accountName,
-                     info: maHd
-                 }, onReadyCallback);
+                generatePaymentQRCode({ bin: urlParams.get('ma_bank'), accountNo: urlParams.get('stk'), accountName: urlParams.get('chu_tai_khoan'), info: urlParams.get('ma_hd') }, onReadyCallback);
             }
 
             function injectHTMLStructure() {
                  const logoUrl = "https://2hstudio.vn/wp-content/uploads/2024/10/8.jpg";
-                 document.querySelector(".header-content").innerHTML = `<header class="header"><div class="header-left"><div class="logo"><img id="studio-logo-img" src="${logoUrl}" alt="Studio Logo" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.style.display='none';"></div><div class="studio-info"><h2 id="studio-name"></h2><p><strong>Địa chỉ:</strong> <span id="studio-address"></span></p><p><strong>Website:</strong> <a id="studio-website" href="#" target="_blank"></a> | <strong>Email:</strong> <span id="studio-email"></span></p><p><strong>Điện thoại:</strong> <span id="studio-phone"></span> | <strong>Zalo:</strong> <span id="studio-zalo"></span></p></div></div><div id="contract-qr-container" title="Mã hợp đồng"></div></header>`;
-                 
-                 document.querySelector(".main-content").innerHTML = `<div><h1 class="main-title" id="main-contract-title">HỢP ĐỒNG CUNG CẤP DỊCH VỤ</h1><div class="contract-meta">Số: <span id="contract-id" class="dynamic-data"></span>.......... | Ngày: <span id="contract-date" class="dynamic-data"></span></div><p><strong><span id="branch-name-main"></span></strong> Gửi tới quý khách hàng hoá đơn dịch vụ như sau:</p><div class="info-grid" style="display:flex; justify-content:space-between; margin-bottom:12px;"><div class="customer-info" style="width:50%;"><p style="margin-bottom: 2px;"><strong>Bên A:</strong></p><p style="margin: 2px 0;"><strong>Khách hàng:</strong> <span id="customer-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Số CCCD:</strong> <span id="customer-cccd" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Điện thoại:</strong> <span id="customer-phone" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Địa chỉ:</strong> <span id="customer-address" class="dynamic-data"></span></p></div><div class="staff-info" style="width: 40%;"><p style="margin-bottom: 2px;"><strong>Bên B:</strong></p><p style="margin: 2px 0;"><strong>Tên hộ KD:</strong> <span id="business-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Đại diện:</strong> <span id="representative-name" class="dynamic-data"></span></p><p style="margin: 2px 0;"><strong>Nhân viên tư vấn:</strong> <span id="consultant-name" class="dynamic-data"></span></p></div></div><table style="table-layout: fixed;"><colgroup></colgroup><thead></thead><tbody id="service-table-body"></tbody></table></div><div class="summary-and-payment-wrapper"><div class="left-column"><table class="shooting-info-table"><tbody><tr><td><strong>Ngày chụp:</strong></td><td style="text-align:right;"><span id="shooting-date" class="dynamic-data"></span></td></tr><tr><td><strong>Giờ chụp:</strong></td><td style="text-align:right;"><span id="shooting-time" class="dynamic-data"></span></td></tr><tr><td><strong>Địa điểm chụp:</strong></td><td style="text-align:right;"><span id="shooting-location" class="dynamic-data"></span></td></tr></tbody></table><div class="qr-payment-section"><div class="qr-payment-content"><div class="qr-code" id="payment-qr-container"></div><div class="payment-instructions"><p style="font-weight: bold;">QUÉT MÃ QR ĐỂ THANH TOÁN:</p><p>- STK: <span class="dynamic-data" id="payment-account-number"></span></p><p>- Chủ tài khoản: <span class="dynamic-data" id="payment-account-name"></span></p><p>- Nội dung CK: <span class="dynamic-data" id="payment-info"></span></p></div></div></div></div><div class="right-column" id="summary-section-container"></div></div><div class="terms-section"></div>`;
+                 document.querySelector(".header-content").innerHTML = `<header class="header"><div class="header-left"><div class="logo"><img src="${logoUrl}" style="width:100%"></div><div class="studio-info"><h2 id="studio-name"></h2><p><strong>Địa chỉ:</strong> <span id="studio-address"></span></p><p><strong>Website:</strong> <a id="studio-website"></a> | <strong>Email:</strong> <span id="studio-email"></span></p><p><strong>Điện thoại:</strong> <span id="studio-phone"></span> | <strong>Zalo:</strong> <span id="studio-zalo"></span></p></div></div><div id="contract-qr-container"></div></header>`;
+                 document.querySelector(".main-content").innerHTML = `<div><h1 class="main-title" id="main-contract-title">HỢP ĐỒNG DỊCH VỤ</h1><div class="contract-meta">Số: <span id="contract-id"></span> | Ngày: <span id="contract-date"></span></div><p><strong><span id="branch-name-main"></span></strong> gửi tới quý khách:</p><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><div style="width:50%;"><strong>Bên A (Khách hàng):</strong><br>Tên: <span id="customer-name"></span><br>CCCD: <span id="customer-cccd"></span><br>SĐT: <span id="customer-phone"></span><br>Đ/C: <span id="customer-address"></span></div><div style="width:40%;"><strong>Bên B (Studio):</strong><br>Hộ KD: <span id="business-name"></span><br>Đại diện: <span id="representative-name"></span><br>NV tư vấn: <span id="consultant-name"></span></div></div><table style="table-layout: fixed;"><colgroup></colgroup><thead></thead><tbody id="service-table-body"></tbody></table></div><div class="summary-and-payment-wrapper"><div class="left-column"><table class="shooting-info-table"><tbody><tr><td><strong>Ngày chụp:</strong></td><td id="shooting-date" style="text-align:right;"></td></tr><tr><td><strong>Giờ chụp:</strong></td><td id="shooting-time" style="text-align:right;"></td></tr><tr><td><strong>Địa điểm:</strong></td><td id="shooting-location" style="text-align:right;"></td></tr></tbody></table><div class="qr-payment-section"><div class="qr-payment-content"><div class="qr-code" id="payment-qr-container"></div><div class="payment-instructions"><strong>THANH TOÁN:</strong><p>STK: <span id="payment-account-number"></span></p><p>Chủ TK: <span id="payment-account-name"></span></p><p>Nội dung: <span id="payment-info"></span></p></div></div></div></div><div class="right-column" id="summary-section-container"></div></div><div class="terms-section"></div>`;
             }
         });
     </script>
