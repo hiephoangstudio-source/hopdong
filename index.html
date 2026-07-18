@@ -140,14 +140,13 @@
             font-size: 13px;
         }
         .page-wrapper {
-            display: block; /* Tránh lỗi mất lề trái của flexbox khi scroll trên mobile */
-            overflow-x: auto; /* Kích hoạt cuộn ngang */
-            -webkit-overflow-scrolling: touch; /* Mượt mà trên iOS */
+            display: block; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
             padding: 10px;
         }
         .a4-page {
             margin: 0 auto;
-            /* Width vẫn giữ nguyên var(--page-width) để đảm bảo không sai tỷ lệ khi in/xuất file */
         }
     }
 
@@ -192,7 +191,7 @@
     
     <script>
         let globalServiceData =[]; 
-        let currentContractType = 'service_2'; // CẬP NHẬT: Mặc định hiển thị hợp đồng TT 2 lần
+        let currentContractType = 'service_2';
 
         const SIGNATURE_BLOCK_TEMPLATE = `
             <div class="signature-block print-block">
@@ -234,7 +233,7 @@
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
                 <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
+                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
                 <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
@@ -261,7 +260,7 @@
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
                 <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
+                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
                 <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
@@ -311,7 +310,7 @@
             <div class="print-block">
                 <h3>Điều 3: Cam kết thực hiện</h3>
                 <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
+                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
             </div>
             ${SIGNATURE_BLOCK_TEMPLATE}`;
         
@@ -329,7 +328,7 @@
             <div class="print-block">
                 <h3>Điều 2: Cam kết thực hiện</h3>
                 <ul><li>Hai bên cam kết thực hiện tất cả các điều khoản đã ghi trong hợp đồng.</li><li>Trong quá trình thực hiện nếu gặp khó khăn hai Bên phải kịp thời thông báo cho nhau, cần thiết thì trao đổi bằng văn bản tìm giải pháp thích hợp.</li></ul>
-                <p>Hợp đồng này được lập thành 02 bản có giá trị như nhau, Bên A giữ 01 bản, Bên B giữ 01 bản và có hiệu lực kể từ ngày ký hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại Điều 1 và Bên A thanh toán xong phí dịch vụ cho Bên B thì hợp đồng này xem như được thanh lý hoặc cả hai bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</p>
+                <p>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</p>
                 <ul><li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm tính từ ngày ký hợp đồng.</li></ul>
             </div>
              ${SIGNATURE_BLOCK_TEMPLATE}`;
@@ -363,7 +362,7 @@
                 <ul>
                     <li>Hai bên cam kết thực hiện các điều khoản ghi trong hợp đồng:</li>
                     <li>Trong quá trình thực hiện nếu gặp khó khăn hai bên phải kịp thời thông báo cho nhau, cần thiết sẽ trao đổi bằng văn bản và tìm giải pháp thích hợp.</li>
-                    <li>Hợp đồng này được lập thành 02 bản có giá trị như nhau. Bên A giữ 1 bản, Bên B giữ 1 bản và có hiệu lực từ ngày kí kết hợp đồng, cho đến khi bên B hoàn thành các dịch vụ quy định tại điều 1 và bên A thanh toán xong phí dịch vụ cho bên B thì xem như hợp đồng này được thanh lý hoặc cả 2 bên cùng thống nhất chấm dứt hợp đồng bằng văn bản.</li>
+                    <li>Hợp đồng này được lập thành 02 (hai) bản có giá trị pháp lý như nhau, mỗi bên giữ 01 (một) bản. Hợp đồng có hiệu lực kể từ ngày ký và chấm dứt khi hai bên hoàn thành toàn bộ nghĩa vụ quy định trong hợp đồng, hoặc cùng thống nhất chấm dứt bằng văn bản.</li>
                     <li>Các điều khoản dịch vụ được sử dụng trong vòng 1 năm kể từ ngày kí hợp đồng.</li>
                 </ul>
             </div>
@@ -507,7 +506,6 @@
                     } 
                  }
                  
-                 // CẬP NHẬT: Render mặc định là service_2 thay vì service_3
                  renderContractTerms('service_2'); 
                  generateContractQRCode(params.get('ma_hd'));
             }
@@ -556,7 +554,6 @@
                     { sanpham: "G21_Chụp ảnh cưới_Gói chụp Nội Thành", chitiet: "* Trang phục:\\n- 3 Váy cưới cô dâu\\n- 2 Vest chụp", soluong: 1, thanhtien: 14200000, sotien_km: 0, ghi_chu: "km 1: 7 cặp áo dài cháp, vest cưới chú rể", hang_muc: "Hợp đồng", loai_dich_vu: "Dịch vụ" }, 
                     { sanpham: "N96 Váy cưới cúp ngực ren", chitiet: "", soluong: 1, thanhtien: 8000000, sotien_km: 3000000, ghi_chu: "ngày 10/3 đã tt 2tr5 tiền nâng cấp váy...", loai_dich_vu: "Trang phục", hang_muc: "Phát sinh", ngay_lay: "15/03/2025", ngay_tra: "18/03/2025" }, 
                 ];
-                 // CẬP NHẬT: Render mặc định là service_2 thay vì service_3
                  renderContractTerms('service_2');
             }
             
