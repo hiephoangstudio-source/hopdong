@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dynamic Island Web - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: { colors: { neonBlue: "#0a84ff", neonPink: "#ff375f" } },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f2f2f7;
+        transition: all 0.4s;
+        color: black;
+      }
+      html.dark body {
+        background-color: #000000;
+        color: white;
+      }
+      .pill-card {
+        background-color: #ffffff;
+        border-radius: 36px;
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        transition: all 0.3s;
+      }
+      html.dark .pill-card {
+        background-color: #1c1c1e;
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .pill-card:hover {
+        transform: scale(1.02);
+      }
+      .dynamic-island {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      html.dark .glow-accent {
+        box-shadow: 0 0 30px rgba(10, 132, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body class="flex flex-col items-center py-6 px-4 gap-8">
+    <header
+      class="dynamic-island w-full max-w-2xl bg-black dark:bg-[#1c1c1e] text-white h-16 rounded-full flex items-center justify-between px-6 shadow-2xl sticky top-6 z-50 border border-white/10 hover:w-[45rem]"
+    >
+      <div class="flex items-center gap-3">
+        <div class="w-2 h-2 rounded-full bg-neonPink animate-pulse"></div>
+        <span class="font-bold text-sm tracking-tight hidden sm:block"
+          >Han's Website</span
+        >
+      </div>
+      <nav class="flex gap-6 text-xs font-semibold text-gray-400">
+        <a
+          href="#"
+          class="text-white hover:text-neonBlue transition-colors uppercase"
+          >Services</a
+        >
+        <a href="#" class="hover:text-neonPink transition-colors uppercase"
+          >Gallery</a
+        >
+      </nav>
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="bg-white/20 p-2 rounded-full"
+      >
+        <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i
+        ><i
+          data-lucide="sun"
+          class="w-4 h-4 hidden dark:block text-yellow-400"
+        ></i>
+      </button>
+    </header>
+
+    <main class="w-full max-w-5xl mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div
+        class="col-span-1 md:col-span-2 pill-card p-12 md:p-20 text-center flex flex-col items-center justify-center relative overflow-hidden glow-accent border-0 h-[400px]"
+      >
+        <h1 class="text-5xl md:text-7xl font-black mb-6 z-10 tracking-tighter">
+          iOS 18 Web Vibe
+        </h1>
+        <p class="text-lg text-gray-500 font-medium max-w-xl z-10">
+          Bố cục đảo động với hình khối bo tròn tuyệt đối. Trải nghiệm mượt mà
+          từ nút bấm đến hình ảnh.
+        </p>
+      </div>
+
+      <div class="pill-card p-10 flex flex-col h-[350px]">
+        <div
+          class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-500 flex items-center justify-center mb-auto"
+        >
+          <i data-lucide="image" class="w-8 h-8"></i>
+        </div>
+        <h2 class="text-4xl font-black mb-2">Bộ Ảnh Đẹp</h2>
+        <p class="text-gray-500 font-medium">Khám phá góc ảnh kỳ vỹ.</p>
+      </div>
+
+      <div
+        class="pill-card p-0 h-[350px] relative overflow-hidden group cursor-pointer border-0"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=1000&auto=format&fit=crop"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10"
+        >
+          <h2 class="text-4xl font-black text-white">Chân Dung</h2>
+        </div>
+      </div>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

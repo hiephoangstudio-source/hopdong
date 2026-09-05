@@ -1,0 +1,103 @@
+---
+description: Code review command. Performs systematic code review with severity-tagged feedback.
+---
+
+# /review - Code Review với Severity Tags
+
+$ARGUMENTS
+
+---
+
+## Purpose
+
+Kiểm tra chất lượng code trước khi merge. Output có severity tags rõ ràng để dễ ưu tiên fix.
+
+---
+
+## Severity Tags
+
+| Tag | Ý nghĩa | Hành động |
+|-----|---------|----------|
+| 🔴 **Critical** | Bug nghiêm trọng, security issue, data loss | **PHẢI fix trước merge** |
+| 🟡 **Warning** | Potential issue, code smell, performance | **Nên fix** |
+| 🟢 **Suggestion** | Nice to have, style improvement | **Tùy chọn** |
+| ✅ **Good** | Highlight code tốt | **Ghi nhận** |
+
+---
+
+## Review Checklist
+
+### 1. Code Quality
+- [ ] Clean code: tên biến rõ ràng, hàm ngắn, single responsibility
+- [ ] DRY: không lặp code
+- [ ] SOLID: đúng nguyên tắc thiết kế
+- [ ] Comments: chỉ comment "tại sao", không comment "cái gì"
+
+### 2. Security (xem `.agent/docs/content-safety.md`)
+- [ ] Không hardcode secrets/API keys
+- [ ] Input validation có đầy đủ
+- [ ] Auth/authz kiểm tra đúng
+- [ ] XSS/injection prevention
+
+### 3. Error Handling
+- [ ] Try-catch có ý nghĩa (không swallow)
+- [ ] Error messages rõ ràng cho user
+- [ ] Fallback/retry cho external calls
+
+### 4. Performance
+- [ ] Không N+1 queries
+- [ ] Lazy loading khi cần
+- [ ] Bundle size hợp lý
+
+### 5. Testing
+- [ ] Unit test cho logic chính
+- [ ] Edge cases covered
+- [ ] Test readable, maintainable
+
+### 6. Naming (xem `.agent/rules/naming-conventions.md`)
+- [ ] Cache keys đúng format
+- [ ] DB identifiers nhất quán
+- [ ] Env vars theo chuẩn
+
+---
+
+## Output Format
+
+```markdown
+## 📝 Code Review: [File/Feature]
+
+### 🔴 Critical (PHẢI fix)
+1. **[Mô tả vấn đề]**
+   - File: `path/to/file.ts:45`
+   - Vấn đề: [chi tiết]
+   - Fix: [đề xuất sửa]
+
+### 🟡 Warning (Nên fix)
+1. **[Mô tả]**
+   - [chi tiết + đề xuất]
+
+### 🟢 Suggestion (Tùy chọn)
+1. **[Mô tả]**
+   - [chi tiết]
+
+### ✅ Good (Làm tốt)
+1. **[Highlight điều tốt]**
+
+### Summary
+- 🔴 Critical: X issues
+- 🟡 Warning: X issues
+- 🟢 Suggestion: X issues
+- ✅ Good practices: X found
+- **Verdict: APPROVE / REQUEST CHANGES / BLOCK**
+```
+
+---
+
+## Examples
+
+```
+/review component BookingForm
+/review API endpoint /api/publish
+/review toàn bộ thay đổi hôm nay
+/review PR #42
+```

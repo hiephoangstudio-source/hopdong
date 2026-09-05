@@ -1,0 +1,2 @@
+﻿- [09/05/2026] Hoàn thiện Dashboard Quản Lý Lương, giải quyết thành công SPA Gotcha và Drilldown Architecture. Update file SKILL dashboard-builder.
+- [09/05/2026] Chuẩn hóa toàn bộ bảng chi tiết trong Dash_BaoCao_TongHopChiNhanh (Phân trang 15 dòng Client-side, gộp Tab thông minh, loại bỏ cuộn dọc).

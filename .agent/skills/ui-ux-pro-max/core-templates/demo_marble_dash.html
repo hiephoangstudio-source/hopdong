@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Marble Dash - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ["Inter"], serif: ["Playfair Display"] },
+            colors: { marbleGold: "#d4af37" },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fafafa;
+        background-image: url("https://images.unsplash.com/photo-1596726880092-2fe68d66cbcc?q=80&w=2500&auto=format&fit=crop");
+        background-size: cover;
+        color: #111;
+        font-family: "Inter", sans-serif;
+      }
+      html.dark body {
+        background-image: url("https://images.unsplash.com/photo-1579273166152-d725a4e2b755?q=80&w=2500&auto=format&fit=crop");
+        color: #f1f1f1;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.4);
+        z-index: -1;
+      }
+      html.dark .overlay {
+        background: rgba(0, 0, 0, 0.7);
+      }
+      .marble-card {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 16px;
+        box-shadow:
+          0 20px 40px -10px rgba(0, 0, 0, 0.08),
+          0 10px 20px -5px rgba(212, 175, 55, 0.08);
+      }
+      html.dark .marble-card {
+        background-color: rgba(15, 15, 15, 0.95);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow:
+          0 20px 40px -10px rgba(0, 0, 0, 0.8),
+          0 10px 20px -5px rgba(212, 175, 55, 0.05);
+      }
+    </style>
+  </head>
+  <body class="p-6 flex h-screen gap-6 relative z-0">
+    <div class="overlay"></div>
+    <aside
+      class="w-64 h-full marble-card flex flex-col p-6 font-semibold shrink-0"
+    >
+      <h1 class="font-serif text-2xl font-bold mb-10 text-center">
+        <span class="text-marbleGold">Han's</span> Studio VIP
+      </h1>
+      <nav class="flex flex-col gap-4 text-sm tracking-widest uppercase">
+        <a class="text-marbleGold flex items-center gap-2"
+          ><i data-lucide="crown" class="w-4 h-4"></i> Trang Chủ CRM</a
+        >
+        <a
+          class="opacity-70 hover:text-marbleGold transition flex items-center gap-2 cursor-pointer"
+          ><i data-lucide="folder-open" class="w-4 h-4"></i> Gói Chụp Royal</a
+        >
+        <a
+          class="opacity-70 hover:text-marbleGold transition flex items-center gap-2 cursor-pointer"
+          ><i data-lucide="gem" class="w-4 h-4"></i> Lịch Khách VIP</a
+        >
+      </nav>
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="mt-auto border border-marbleGold text-marbleGold py-3 flex justify-center hover:bg-marbleGold hover:text-white dark:hover:text-black transition uppercase text-xs font-bold tracking-widest rounded-lg"
+      >
+        Đổi Chế Độ Đêm
+      </button>
+    </aside>
+    <main class="flex-1 h-full flex flex-col gap-6 overflow-hidden">
+      <header
+        class="h-24 marble-card px-10 flex items-center justify-between shrink-0"
+      >
+        <h2 class="font-serif font-bold text-3xl">
+          Báo Cáo Doanh Thu Hoàng Gia
+        </h2>
+        <div class="flex items-center gap-4 text-marbleGold font-semibold">
+          <i data-lucide="bell" class="w-5 h-5"></i> <span>Quản Trị VVIP</span>
+        </div>
+      </header>
+      <div class="grid grid-cols-2 gap-6 shrink-0">
+        <div class="marble-card p-10 flex flex-col items-start gap-4">
+          <div
+            class="p-3 border border-marbleGold rounded-full text-marbleGold"
+          >
+            <i data-lucide="gem"></i>
+          </div>
+          <div>
+            <p
+              class="text-sm font-bold uppercase tracking-widest opacity-60 mb-2"
+            >
+              Tổng Gói Chốt
+            </p>
+            <h3 class="text-5xl font-serif font-bold text-marbleGold">
+              4,5
+              <span class="text-3xl text-slate-800 dark:text-white"
+                >Tỷ VNĐ</span
+              >
+            </h3>
+          </div>
+        </div>
+        <div
+          class="marble-card p-10 bg-slate-900 dark:bg-black text-white border-0 shadow-2xl flex flex-col items-start gap-4 cursor-pointer hover:-translate-y-2 transition-transform"
+        >
+          <div
+            class="p-3 bg-marbleGold rounded-full text-white dark:text-black"
+          >
+            <i data-lucide="crown"></i>
+          </div>
+          <div>
+            <p
+              class="text-sm font-bold uppercase tracking-widest text-slate-300 mb-2"
+            >
+              Hợp Đồng Chờ Ký
+            </p>
+            <h3 class="text-5xl font-serif font-bold text-white">
+              12 <span class="text-3xl text-marbleGold">Bộ</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="marble-card p-8 flex-1 overflow-y-auto">
+        <h3
+          class="font-serif font-bold text-xl mb-6 text-marbleGold border-b border-marbleGold/20 pb-4"
+        >
+          Giao Dịch Gần Nhất
+        </h3>
+        <div class="flex flex-col gap-4">
+          <div
+            class="flex justify-between items-center p-4 hover:bg-marbleGold/10 rounded-lg cursor-pointer transition"
+          >
+            <div>
+              <h4 class="font-bold text-lg">Phạm Nhật V.</h4>
+              <p class="text-slate-500 text-sm">Gói Tiệc Cưới Dát Vàng</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-bold text-marbleGold">550,000,000₫</p>
+              <p
+                class="text-xs font-bold bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-400 px-2 py-1 rounded inline-block mt-1"
+              >
+                Đã Thanh Toán
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skeuomorphic Prototype - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ['"Inter"', "sans-serif"] },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #e6e9ef; /* Nền Light Mode xám nhẹ */
+        color: #334155;
+        transition: all 0.4s ease;
+      }
+
+      html.dark body {
+        background-color: #262930; /* Nền Dark Mode màu thép chải */
+        color: #f1f5f9;
+      }
+
+      /* ----- TACTILE 3D CLASSES (Light Mode) ----- */
+      .sk-card {
+        background: linear-gradient(145deg, #f0f3f9, #cfd3db);
+        border-radius: 28px;
+        box-shadow:
+          16px 16px 32px #c4c6cc,
+          -16px -16px 32px #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+      }
+
+      .sk-btn {
+        background: linear-gradient(145deg, #f0f3f9, #dce0e8);
+        border-radius: 16px;
+        box-shadow:
+          6px 6px 12px #c4c6cc,
+          -6px -6px 12px #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        user-select: none;
+      }
+
+      .sk-btn:hover {
+        box-shadow:
+          8px 8px 16px #bbc0c7,
+          -8px -8px 16px #ffffff;
+        transform: translateY(-2px);
+      }
+
+      .sk-btn:active {
+        background: #e6e9ef;
+        box-shadow:
+          inset 6px 6px 12px #c4c6cc,
+          inset -6px -6px 12px #ffffff;
+        transform: translateY(2px);
+        border: 1px solid transparent;
+      }
+
+      .sk-sunken {
+        background: #e1e4ea;
+        box-shadow:
+          inset 8px 8px 16px #c4c6cc,
+          inset -8px -8px 16px #ffffff;
+        border-radius: 20px;
+      }
+
+      /* ----- TACTILE 3D CLASSES (Dark Mode) ----- */
+      html.dark .sk-card {
+        background: linear-gradient(145deg, #2b2e36, #22252b);
+        box-shadow:
+          12px 12px 24px #1b1c21,
+          -12px -12px 24px #333741;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      html.dark .sk-btn {
+        background: linear-gradient(145deg, #2b2e36, #22252b);
+        box-shadow:
+          6px 6px 12px #1c1d22,
+          -6px -6px 12px #323740;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      html.dark .sk-btn:hover {
+        box-shadow:
+          8px 8px 16px #16171b,
+          -8px -8px 16px #393e49;
+        transform: translateY(-2px);
+      }
+
+      html.dark .sk-btn:active {
+        background: #262930;
+        box-shadow:
+          inset 4px 4px 8px #1b1c21,
+          inset -4px -4px 8px #333741;
+        border: 1px solid transparent;
+      }
+
+      html.dark .sk-sunken {
+        background: #22252a;
+        box-shadow:
+          inset 6px 6px 12px #18191c,
+          inset -6px -6px 12px #323740;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen w-full flex align-middle justify-center p-6 sm:p-10"
+  >
+    <main
+      class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-12 gap-8 my-auto"
+    >
+      <!-- HEADER WIDGET (COL SPAN 12) -->
+      <div
+        class="col-span-1 md:col-span-12 sk-card p-6 flex flex-col sm:flex-row justify-between items-center z-10 relative"
+      >
+        <div class="flex items-center gap-6">
+          <!-- 3D Logo -->
+          <div
+            class="w-16 h-16 rounded-3xl sk-sunken flex items-center justify-center"
+          >
+            <div
+              class="w-10 h-10 rounded-2xl bg-gradient-to-br from-indigo-400 to-blue-600 shadow-md border-t border-white/40 flex items-center justify-center text-white"
+            >
+              <i data-lucide="camera" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <div>
+            <h1
+              class="text-3xl font-black tracking-tight text-slate-800 dark:text-white"
+            >
+              macOS Big Sur 3D
+            </h1>
+            <p
+              class="text-slate-500 dark:text-slate-400 font-medium tracking-wide text-sm mt-1 uppercase"
+            >
+              Skeuomorphic Modern Design
+            </p>
+          </div>
+        </div>
+
+        <!-- Nút Toggle Chế Độ (Công tắc vật lý) -->
+        <button
+          onclick="toggleMode()"
+          class="mt-4 sm:mt-0 sk-btn h-14 px-6 flex items-center justify-center gap-3 font-bold text-sm text-slate-600 dark:text-slate-300"
+        >
+          <div
+            class="w-8 h-8 rounded-full sk-sunken flex items-center justify-center"
+          >
+            <i data-lucide="unplug" class="w-4 h-4 text-orange-500"></i>
+          </div>
+          CÔNG TẮC ĐIỆN
+        </button>
+      </div>
+
+      <!-- MAIN ACTION CARDS (COL SPAN 8) -->
+      <div class="col-span-1 md:col-span-8 flex flex-col gap-8">
+        <div class="sk-card p-8 min-h-[300px] flex flex-col justify-between">
+          <div class="flex justify-between items-start">
+            <h2 class="text-2xl font-extrabold text-slate-800 dark:text-white">
+              Bảng Điều Khiển
+            </h2>
+            <div
+              class="sk-sn bg-green-500/10 text-green-600 dark:text-green-400 font-bold px-3 py-1 rounded-lg border border-green-500/20 text-xs"
+            >
+              KẾT NỐI 100%
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-6 mt-8">
+            <!-- Physical Button 1 -->
+            <button
+              class="sk-btn aspect-square rounded-[24px] flex flex-col items-center justify-center gap-3 text-slate-600 dark:text-slate-300 outline-none"
+            >
+              <div
+                class="w-12 h-12 rounded-full sk-sunken flex items-center justify-center"
+              >
+                <i data-lucide="settings-2" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm">Cấu hình</span>
+            </button>
+            <!-- Physical Button 2 -->
+            <button
+              class="sk-btn aspect-square rounded-[24px] flex flex-col items-center justify-center gap-3 text-slate-600 dark:text-slate-300 outline-none"
+            >
+              <div
+                class="w-12 h-12 rounded-full sk-sunken flex items-center justify-center"
+              >
+                <i data-lucide="users" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm">Khách hàng</span>
+            </button>
+            <!-- Physical Button 3 -->
+            <button
+              class="sk-btn aspect-square rounded-[24px] flex flex-col items-center justify-center gap-3 text-slate-600 dark:text-slate-300 outline-none text-blue-600 dark:text-blue-400"
+            >
+              <div
+                class="w-12 h-12 rounded-full sk-sunken flex items-center justify-center text-blue-500"
+              >
+                <i data-lucide="briefcase" class="w-5 h-5"></i>
+              </div>
+              <span class="font-bold text-sm">Lên Hợp Đồng</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Data Screen -->
+        <div class="sk-card p-8">
+          <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+            <i data-lucide="bar-chart-3" class="w-5 h-5"></i> Báo Cáo Hiệu Suất
+          </h3>
+          <div
+            class="w-full h-32 sk-sunken p-4 flex gap-4 items-end justify-between overflow-hidden relative"
+          >
+            <!-- Fake Bars -->
+            <div
+              class="w-full bg-gradient-to-t from-blue-500 to-cyan-400 h-[40%] rounded-t-lg shadow-lg border-t border-white/40"
+            ></div>
+            <div
+              class="w-full bg-gradient-to-t from-indigo-500 to-purple-400 h-[70%] rounded-t-lg shadow-lg border-t border-white/40"
+            ></div>
+            <div
+              class="w-full bg-gradient-to-t from-rose-500 to-pink-400 h-[100%] rounded-t-lg shadow-lg border-t border-white/40"
+            ></div>
+            <div
+              class="w-full bg-gradient-to-t from-orange-400 to-amber-300 h-[60%] rounded-t-lg shadow-lg border-t border-white/40"
+            ></div>
+            <div
+              class="w-full bg-gradient-to-t from-teal-500 to-emerald-400 h-[85%] rounded-t-lg shadow-lg border-t border-white/40"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT SIDEBAR WIDGETS (COL SPAN 4) -->
+      <div class="col-span-1 md:col-span-4 flex flex-col gap-8">
+        <!-- Music Player 3D Widget -->
+        <div class="sk-card p-6 flex flex-col items-center">
+          <div
+            class="w-48 h-48 rounded-[38px] sk-sunken mb-6 overflow-hidden relative border-4 border-transparent dark:border-[#30333b]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=600&auto=format&fit=crop"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <h3 class="font-black text-xl mb-1 text-slate-800 dark:text-white">
+            Studio Focus
+          </h3>
+          <p class="text-sm font-medium text-slate-500 mb-6">Đang phát nền</p>
+
+          <div class="flex items-center gap-4 w-full justify-center">
+            <button
+              class="sk-btn w-12 h-12 rounded-full flex items-center justify-center outline-none"
+            >
+              <i data-lucide="skip-back" class="w-4 h-4"></i>
+            </button>
+            <button
+              class="sk-btn w-16 h-16 rounded-full flex items-center justify-center text-rose-500 outline-none"
+            >
+              <i data-lucide="play" class="w-6 h-6 ml-1"></i>
+            </button>
+            <button
+              class="sk-btn w-12 h-12 rounded-full flex items-center justify-center outline-none"
+            >
+              <i data-lucide="skip-forward" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Storage Widget -->
+        <div class="sk-card p-6">
+          <div class="flex justify-between items-center mb-4">
+            <div
+              class="w-10 h-10 sk-sunken rounded-full flex items-center justify-center text-blue-500"
+            >
+              <i data-lucide="hard-drive" class="w-4 h-4"></i>
+            </div>
+            <span class="font-bold text-sm">NAS Storage</span>
+          </div>
+          <h3 class="text-2xl font-black mb-1 text-slate-800 dark:text-white">
+            8.5 TB <span class="text-sm text-slate-500">/ 16.0 TB</span>
+          </h3>
+
+          <div
+            class="mt-4 h-4 sk-sunken rounded-full overflow-hidden w-full relative"
+          >
+            <div
+              class="absolute left-0 top-0 h-full w-[65%] bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)] border border-white/20"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      lucide.createIcons();
+      function toggleMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>

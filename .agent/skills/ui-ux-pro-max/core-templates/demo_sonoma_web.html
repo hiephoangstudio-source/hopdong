@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sonoma Web - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Inter"] } } },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #f5f5f7;
+        transition: background 0.3s;
+        font-family: "Inter", sans-serif;
+        color: #111;
+      }
+      html.dark body {
+        background-color: #121212;
+        color: #eee;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(28px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      }
+      html.dark .glass-panel {
+        background: rgba(20, 20, 20, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden">
+    <nav
+      class="fixed top-6 left-1/2 -translate-x-1/2 w-11/12 max-w-5xl glass-panel rounded-full h-16 flex items-center justify-between px-8 z-50"
+    >
+      <div class="font-bold text-lg tracking-widest">HAN'S MAC</div>
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#" class="hover:opacity-70">Trang chủ</a
+        ><a href="#" class="hover:opacity-70">Concept</a
+        ><a href="#" class="hover:opacity-70">Báo giá</a>
+      </div>
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="bg-black/10 dark:bg-white/10 p-2 rounded-full hover:bg-black/20"
+      >
+        <i data-lucide="moon" class="w-4 h-4 dark:hidden"></i
+        ><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i>
+      </button>
+    </nav>
+
+    <main class="w-full max-w-6xl mx-auto pt-32 p-6">
+      <section class="text-center py-20">
+        <h1
+          class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-400"
+        >
+          Khoảnh Khắc<br />Tuyệt Đẹp.
+        </h1>
+        <p
+          class="text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto"
+        >
+          Thiết kế website trong trẻo, tinh tế lấy cảm hứng từ cấu trúc kính mờ
+          của macOS Sonoma. Nâng tầm thương hiệu Studio.
+        </p>
+        <div class="flex justify-center gap-4">
+          <button
+            class="glass-panel px-8 py-3 rounded-full font-semibold hover:bg-white/70 dark:hover:bg-black/70"
+          >
+            Khám Phá Dịch Vụ
+          </button>
+          <button
+            class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700"
+          >
+            Book Lịch Ngay
+          </button>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div
+          class="glass-panel rounded-[32px] p-2 aspect-square relative group overflow-hidden cursor-pointer"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000&auto=format&fit=crop"
+            class="w-full h-full object-cover rounded-[24px] group-hover:scale-105 transition-transform duration-700"
+          />
+          <div
+            class="absolute bottom-8 left-8 glass-panel px-6 py-3 rounded-full text-sm font-bold"
+          >
+            Album Cưới
+          </div>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div
+            class="glass-panel rounded-[32px] p-8 flex-1 flex flex-col justify-center"
+          >
+            <i data-lucide="camera" class="w-8 h-8 text-blue-500 mb-4"></i>
+            <h3 class="text-2xl font-bold mb-2">Chụp Ảnh Phóng Sự</h3>
+            <p class="text-gray-500 dark:text-gray-400">
+              Ghi lại từng cung bậc cảm xúc một cách tự nhiên nhất với đội ngũ 2
+              máy quay 4K chuyên nghiệp.
+            </p>
+          </div>
+          <div
+            class="glass-panel rounded-[32px] p-8 flex-1 bg-gradient-to-br from-blue-500/10 to-purple-500/10"
+          >
+            <h3 class="text-3xl font-bold mb-4">Ưu đãi mùa cưới</h3>
+            <p class="font-medium mb-6">
+              Giảm ngay 15% khi book lịch trước 3 tháng.
+            </p>
+            <button
+              class="glass-panel px-6 py-2 rounded-full font-bold text-sm"
+            >
+              Nhận Code
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web App Light - Han's Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ['"Plus Jakarta Sans"', "sans-serif"] },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fafafb; /* Trắng xám vô cùng tinh khiết */
+        color: #0f172a;
+        transition: all 0.5s ease;
+      }
+
+      /* Nền tối bổ sung (Soft Dark Mode) để không bị hỏng Vibe khi user chót bấm toggle */
+      html.dark body {
+        background-color: #111318;
+        color: #f1f5f9;
+      }
+
+      /* Thẻ (Card) nổi lơ lửng, trắng muốt */
+      .white-cloud-card {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.85
+        ); /* Không trắng 100% để có cảm giác thấu sáng nhẹ */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 36px;
+        box-shadow:
+          0 20px 40px -10px rgba(0, 0, 0, 0.04),
+          0 4px 6px -4px rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(255, 255, 255, 1);
+        transition:
+          transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.4s ease;
+      }
+
+      .white-cloud-card:hover {
+        transform: translateY(-6px);
+        box-shadow:
+          0 30px 50px -12px rgba(0, 0, 0, 0.08),
+          0 8px 12px -6px rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(255, 255, 255, 1);
+      }
+
+      /* Cho chế độ tối */
+      html.dark .white-cloud-card {
+        background-color: rgba(30, 32, 40, 0.85);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      html.dark .white-cloud-card:hover {
+        box-shadow: 0 30px 50px -12px rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Nút mềm (Soft Button) */
+      .soft-btn {
+        background-color: #ffffff;
+        color: #334155;
+        border-radius: 9999px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        transition: all 0.2s ease;
+      }
+      .soft-btn:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        transform: scale(1.02);
+      }
+
+      html.dark .soft-btn {
+        background-color: #2c313c;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen w-full relative flex flex-col items-center justify-start p-6 md:p-12 overflow-x-hidden selection:bg-slate-200"
+  >
+    <!-- BACKGROUND BLOB ĐIỀU HÒA MÀU TRẮNG -->
+    <div
+      class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-100 dark:bg-blue-900/20 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
+    ></div>
+    <div
+      class="absolute top-[20%] right-[-5%] w-72 h-72 bg-rose-50 dark:bg-rose-900/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"
+    ></div>
+
+    <!-- HỆ THỐNG HEADER TRONG TRẺO -->
+    <header
+      class="w-full max-w-5xl h-20 white-cloud-card z-50 flex items-center justify-between px-8 mb-12 shrink-0"
+    >
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-full bg-slate-900 text-white dark:bg-white dark:text-slate-900 flex items-center justify-center shadow-lg"
+        >
+          <i data-lucide="aperture" class="w-5 h-5"></i>
+        </div>
+        <span
+          class="font-extrabold text-lg tracking-tight text-slate-800 dark:text-white"
+          >Han's Studio</span
+        >
+      </div>
+
+      <nav
+        class="hidden md:flex gap-8 text-sm font-semibold text-slate-500 dark:text-slate-400"
+      >
+        <a
+          href="#"
+          class="text-slate-900 dark:text-white hover:text-slate-900 transition-colors"
+          >Portfolio</a
+        >
+        <a
+          href="#"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          >Dịch vụ</a
+        >
+        <a
+          href="#"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          >Báo giá</a
+        >
+        <a
+          href="#"
+          class="hover:text-slate-900 dark:hover:text-white transition-colors"
+          >Liên hệ</a
+        >
+      </nav>
+
+      <div class="flex gap-3">
+        <button
+          onclick="toggleMode()"
+          class="soft-btn w-10 h-10 flex items-center justify-center"
+        >
+          <i data-lucide="moon" class="w-4 h-4 text-slate-400 dark:hidden"></i>
+          <i
+            data-lucide="sun"
+            class="w-4 h-4 text-yellow-400 hidden dark:block"
+          ></i>
+        </button>
+        <button
+          class="soft-btn px-6 font-bold text-sm bg-slate-900 text-white hover:bg-slate-800 border-0 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200"
+        >
+          Đặt Lịch Khách
+        </button>
+      </div>
+    </header>
+
+    <!-- KHUNG CONTENT CHÍNH, BỒNG BỀNH -->
+    <main class="w-full max-w-5xl z-10 flex flex-col gap-12">
+      <!-- INTRO (Chữ khổng lồ, sạch sẽ) -->
+      <section
+        class="text-center md:text-left flex flex-col items-center md:items-start max-w-2xl px-4"
+      >
+        <p
+          class="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.2em] text-xs mb-4 flex items-center gap-2"
+        >
+          <span class="w-8 h-px bg-slate-300 dark:bg-slate-700"></span> Giao
+          Diện Web App Lõi Sáng
+        </p>
+        <h1
+          class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] tracking-tight mb-6"
+        >
+          Chụp Gọn <br />
+          <span class="text-slate-400 dark:text-slate-500"
+            >Mọi Khoảnh Khắc.</span
+          >
+        </h1>
+        <p
+          class="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-8 max-w-lg"
+        >
+          Thiết kế mang lại cảm giác dễ chịu tuyệt đối. Điểm rơi thị giác mượt
+          mà y như đang lật một cuốn tạp chí cưới trắng tinh khôi dập nổi bề mặt
+          thật.
+        </p>
+      </section>
+
+      <!-- KHỐI DỮ LIỆU (WHITE CLOUD CARDS) -->
+      <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card Ảnh Lớn -->
+        <div
+          class="lg:col-span-2 relative white-cloud-card aspect-[2/1] md:aspect-auto overflow-hidden group cursor-pointer border-4 border-white dark:border-transparent p-2"
+        >
+          <div class="w-full h-full rounded-[28px] overflow-hidden relative">
+            <img
+              src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2500&auto=format&fit=crop"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            />
+            <div
+              class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"
+            ></div>
+          </div>
+          <!-- Nút xem Album nổi lơ lửng -->
+          <div
+            class="absolute bottom-8 left-8 soft-btn px-5 py-2.5 rounded-full flex items-center gap-3 backdrop-blur-xl bg-white/80 dark:bg-black/60 shadow-xl opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+          >
+            <span class="font-bold text-sm tracking-wide"
+              >Xem toàn bộ Album</span
+            >
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Card Dữ liệu nhỏ 1 -->
+        <div
+          class="white-cloud-card p-8 flex flex-col justify-center items-start text-left cursor-pointer border-[6px] border-white dark:border-[#20232a]"
+        >
+          <div
+            class="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mb-6 shadow-sm"
+          >
+            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+          </div>
+          <h3
+            class="text-4xl font-extrabold text-slate-800 dark:text-white mb-2"
+          >
+            98%
+          </h3>
+          <p class="font-semibold text-slate-500 dark:text-slate-400 text-sm">
+            Feedback 5 Sao (Quý 3)
+          </p>
+        </div>
+
+        <!-- Card Dịch vụ -->
+        <div
+          class="white-cloud-card p-8 flex flex-col cursor-pointer border-[6px] border-white dark:border-[#20232a]"
+        >
+          <div class="flex justify-between w-full mb-6">
+            <div
+              class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 text-rose-500 flex items-center justify-center"
+            >
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+            Gói Váy Cưới VIP
+          </h4>
+          <p
+            class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed"
+          >
+            Bộ sưu tập Vera Wang cao cấp vừa cập bến với độ hoàn thiện tuyệt
+            hảo.
+          </p>
+        </div>
+
+        <!-- Card Dịch vụ -->
+        <div
+          class="white-cloud-card p-8 flex flex-col cursor-pointer border-[6px] border-white dark:border-[#20232a]"
+        >
+          <div class="flex justify-between w-full mb-6">
+            <div
+              class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-500 flex items-center justify-center"
+            >
+              <i data-lucide="star" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">
+            Chân Dung Profile
+          </h4>
+          <p
+            class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed"
+          >
+            Đánh sáng phông trơn Hàn Quốc, mang lại cảm giác quyền lực tĩnh.
+          </p>
+        </div>
+
+        <!-- Card Lịch Khách hàng gọn gàng -->
+        <div
+          class="white-cloud-card p-8 flex items-center gap-6 cursor-pointer border-[6px] border-white dark:border-[#20232a]"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+            class="w-20 h-20 rounded-full object-cover shadow-md border-4 border-white dark:border-[#2c313c]"
+          />
+          <div>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">
+              Tuấn & Trang
+            </h4>
+            <p class="text-slate-400 text-sm font-medium mb-2">
+              Concept Dạ Hội Trắng
+            </p>
+            <span
+              class="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-2.5 py-1 rounded-md"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> 14:00
+              Chiều Nay
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      lucide.createIcons();
+      function toggleMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>

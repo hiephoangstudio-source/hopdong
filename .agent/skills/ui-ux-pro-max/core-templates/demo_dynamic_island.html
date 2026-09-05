@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="vi" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Island Prototype - Han's Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ['"Inter"', "sans-serif"] },
+            colors: {
+              iosDark: "#000000",
+              iosCardDark: "#1c1c1e",
+              iosCardLight: "#ffffff",
+              iosLight: "#f2f2f7",
+              neonBlue: "#0a84ff",
+              neonPink: "#ff375f",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background-color: #f2f2f7;
+        transition:
+          background-color 0.4s ease,
+          color 0.4s ease;
+      }
+
+      html.dark body {
+        background-color: #000000;
+      }
+
+      /* Pill shapes - Dynamic Island */
+      .dynamic-pill {
+        border-radius: 9999px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .dynamic-card {
+        border-radius: 36px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          background-color 0.4s ease;
+      }
+
+      /* Khối cho Light Mode */
+      .pill-card {
+        background-color: #ffffff;
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.02);
+      }
+
+      /* Khối cho Dark Mode */
+      html.dark .pill-card {
+        background-color: #1c1c1e;
+        box-shadow: none;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .pill-card:hover {
+        transform: scale(1.02);
+      }
+
+      /* Glow effects cho Dark mode */
+      html.dark .glow-accent {
+        box-shadow: 0 0 20px rgba(10, 132, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body
+    class="h-screen w-full flex flex-col items-center justify-center text-gray-900 dark:text-white overflow-hidden p-6 gap-8"
+  >
+    <!-- THE DYNAMIC ISLAND (Header) -->
+    <header
+      class="dynamic-pill bg-black text-white dark:bg-[#1c1c1e] h-14 flex items-center justify-between px-6 shadow-2xl cursor-pointer hover:scale-105 w-full max-w-2xl mx-auto border border-white/10 relative z-50"
+    >
+      <div class="flex items-center gap-4">
+        <div class="flex gap-1">
+          <div class="w-1.5 h-1.5 rounded-full bg-neonPink animate-pulse"></div>
+          <div
+            class="w-1.5 h-1.5 rounded-full bg-neonBlue animate-pulse delay-75"
+          ></div>
+        </div>
+        <span class="font-semibold text-sm tracking-tight text-white/90"
+          >Han's Studio AI</span
+        >
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Tốc độ chạy chữ -->
+        <span
+          class="text-xs font-semibold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full"
+          >Hệ thống đang đồng bộ</span
+        >
+        <button
+          onclick="toggleMode()"
+          class="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors text-white"
+        >
+          <i
+            data-lucide="sun"
+            class="w-4 h-4 dark:block hidden text-yellow-400"
+          ></i>
+          <i
+            data-lucide="moon"
+            class="w-4 h-4 dark:hidden block text-blue-400"
+          ></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT MOCKUP -->
+    <main
+      class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 max-h-full overflow-y-auto pb-10"
+    >
+      <!-- Welcome Card -->
+      <div
+        class="dynamic-card pill-card col-span-1 md:col-span-2 lg:col-span-3 p-8 flex flex-col justify-end relative overflow-hidden min-h-[220px]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2500&auto=format&fit=crop"
+          class="absolute inset-0 w-full h-full object-cover opacity-80 dark:opacity-40"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-white via-white/80 dark:from-[#1c1c1e] dark:via-[#1c1c1e]/80 to-transparent"
+        ></div>
+        <div class="relative z-10">
+          <p
+            class="text-neonBlue dark:text-neonPink font-bold text-sm tracking-widest uppercase mb-2"
+          >
+            Đỉnh Cao Nghệ Thuật
+          </p>
+          <h1 class="text-4xl font-extrabold tracking-tight mb-2">
+            Trải Nghiệm iOS 18
+          </h1>
+          <p class="text-gray-500 dark:text-gray-400 font-medium">
+            Bố cục đảo động với hình khối bo tròn tuyệt đối.
+          </p>
+        </div>
+      </div>
+
+      <!-- Widget 1: Activity -->
+      <div class="dynamic-card pill-card p-6 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div
+            class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-500"
+          >
+            <i data-lucide="activity" class="w-6 h-6"></i>
+          </div>
+          <i data-lucide="more-horizontal" class="text-gray-400"></i>
+        </div>
+        <div>
+          <h3 class="text-3xl font-black mb-1">1,245</h3>
+          <p class="text-sm font-medium text-gray-500">
+            Lượt tương tác hôm nay
+          </p>
+        </div>
+      </div>
+
+      <!-- Widget 2: Revenue -->
+      <div class="dynamic-card pill-card p-6 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-4">
+          <div
+            class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-500"
+          >
+            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+          </div>
+          <div class="flex -space-x-2">
+            <img
+              class="w-8 h-8 rounded-full border-2 border-white dark:border-[#1c1c1e]"
+              src="https://ui-avatars.com/api/?name=Hiep&background=random"
+            />
+            <img
+              class="w-8 h-8 rounded-full border-2 border-white dark:border-[#1c1c1e]"
+              src="https://ui-avatars.com/api/?name=Admin&background=random"
+            />
+          </div>
+        </div>
+        <div>
+          <h3 class="text-3xl font-black mb-1">82.5M</h3>
+          <p class="text-sm font-medium text-gray-500">Doanh thu tuần này</p>
+        </div>
+      </div>
+
+      <!-- Widget 3: OLED Glow -->
+      <div
+        class="dynamic-card pill-card bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-fuchsia-700 text-white p-6 flex flex-col justify-between glow-accent border-0"
+      >
+        <div class="flex justify-between items-start">
+          <div class="p-2 bg-white/20 rounded-2xl backdrop-blur-sm">
+            <i data-lucide="zap" class="w-6 h-6 text-yellow-300"></i>
+          </div>
+          <span
+            class="text-xs font-bold px-3 py-1 bg-black/20 rounded-full backdrop-blur-md"
+            >VVIP</span
+          >
+        </div>
+        <div>
+          <h3 class="text-3xl font-black mb-1">Super Boost</h3>
+          <p class="text-sm font-medium text-white/80">
+            Chiến dịch Marketing đang chạy
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      lucide.createIcons();
+      function toggleMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+---
+description: Pull tất cả thay đổi từ GitHub — dùng khi chuyển sang máy mới hoặc bắt đầu session
+---
+
+// turbo-all
+
+# Workflow: Pull & Sync
+
+Workflow này pull code mới nhất từ GitHub khi chuyển máy hoặc bắt đầu session mới.
+
+## Bước 1: Pull tất cả repos
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "c:\AntiCode\master-agent\scripts\git-pull-all.ps1"
+```
+
+## Bước 2: Đọc memory để nắm context (Tích hợp /resume)
+
+> 🔴 **BẮT BUỘC** — Phục hồi trạng thái AI từ phiên trước (chức năng Resume) bằng cách đọc `session-state.md`, kèm `today.md` và `DEVLOG.md`.
+
+```powershell
+cat ".agent\memory\session-state.md"
+cat ".agent\memory\today.md"
+```
+
+## Bước 3: Đọc DEVLOG của project đang làm (nếu có)
+
+> Mỗi project có `DEVLOG.md` ở root — đọc để nắm trạng thái.
+
+Tìm DEVLOG trong project hiện tại:
+
+```powershell
+Get-ChildItem "c:\AntiCode" -Directory | ForEach-Object { if (Test-Path "$($_.FullName)\DEVLOG.md") { Write-Output "$($_.Name)/DEVLOG.md" } }
+```
+
+## Bước 4: Install dependencies (nếu cần)
+
+Chỉ chạy nếu project có `package.json` và chưa có `node_modules`:
+
+```powershell
+# Chạy trong folder project cần làm việc
+npm install
+```
+
+## Bước 5: Báo cáo cho user
+
+Sau khi đọc memory + DEVLOG, tóm tắt ngắn gọn:
+
+- Việc đã làm gần nhất
+- Việc cần làm tiếp theo
+- Có conflict hay lỗi gì không

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pure Glass Dash - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Plus Jakarta Sans"] } } },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fa8bff;
+        background-image:
+          radial-gradient(
+            at 40% 20%,
+            hsla(28, 100%, 74%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 80% 0%,
+            hsla(189, 100%, 56%, 1) 0px,
+            transparent 50%
+          );
+        background-attachment: fixed;
+        color: #1e293b;
+        transition: all 0.5s;
+      }
+      html.dark body {
+        background-color: #1a0b2e;
+        background-image:
+          radial-gradient(
+            at 40% 20%,
+            hsla(268, 100%, 24%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 80% 0%,
+            hsla(289, 100%, 16%, 1) 0px,
+            transparent 50%
+          );
+        color: white;
+      }
+      .glass-pure {
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(25px) saturate(200%);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+      }
+      html.dark .glass-pure {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      }
+      .glass-btn {
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+      }
+      html.dark .glass-btn {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .glass-btn:hover {
+        background: rgba(255, 255, 255, 0.6);
+      }
+      html.dark .glass-btn:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+    </style>
+  </head>
+  <body class="p-6 flex h-screen gap-6 overflow-hidden">
+    <aside
+      class="w-64 h-full glass-pure p-8 flex flex-col text-sm font-bold gap-4 shrink-0"
+    >
+      <h1 class="text-2xl font-extrabold tracking-tight mb-8">Pure Dash</h1>
+      <a class="glass-btn p-3 rounded-xl flex items-center gap-3"
+        ><i data-lucide="bar-chart-2"></i> Tổng Quan</a
+      >
+      <a
+        class="p-3 hover:bg-white/20 dark:hover:bg-black/20 rounded-xl transition flex items-center gap-3 cursor-pointer"
+        ><i data-lucide="users" class="w-5 h-5"></i> Đội Ngũ</a
+      >
+      <a
+        class="p-3 hover:bg-white/20 dark:hover:bg-black/20 rounded-xl transition flex items-center gap-3 cursor-pointer"
+        ><i data-lucide="calendar" class="w-5 h-5"></i> Lịch Trình</a
+      >
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="mt-auto glass-btn p-3 rounded-xl flex items-center justify-center gap-2"
+      >
+        <i data-lucide="sun-moon" class="w-5 h-5"></i> Giao Diện Đêm
+      </button>
+    </aside>
+    <main class="flex-1 h-full flex flex-col gap-6 overflow-y-auto pr-2">
+      <header
+        class="h-24 glass-pure px-10 flex items-center justify-between shrink-0"
+      >
+        <h2 class="font-extrabold text-3xl">Analytics CRM</h2>
+        <div
+          class="glass-btn px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2"
+        >
+          <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+          Live Mode
+        </div>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 shrink-0">
+        <div class="glass-pure p-10 flex flex-col justify-center">
+          <i
+            data-lucide="trending-up"
+            class="w-8 h-8 text-blue-600 dark:text-blue-400 mb-4"
+          ></i>
+          <p
+            class="font-semibold opacity-70 uppercase tracking-widest text-xs mb-2"
+          >
+            Truy cập Website
+          </p>
+          <h3 class="text-5xl font-black">
+            23,450 <span class="text-xl opacity-60">Lượt</span>
+          </h3>
+        </div>
+        <div class="glass-pure p-10 flex flex-col justify-center">
+          <i data-lucide="settings-2" class="w-8 h-8 text-rose-500 mb-4"></i>
+          <p
+            class="font-semibold opacity-70 uppercase tracking-widest text-xs mb-2"
+          >
+            Tốc độ chốt đơn
+          </p>
+          <h3 class="text-5xl font-black">
+            1.5 <span class="text-2xl opacity-70">Ng/Ngày</span>
+          </h3>
+        </div>
+      </div>
+      <div class="glass-pure p-8 flex-1">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-bold text-xl">Lượt tương tác mới nhất</h3>
+          <i data-lucide="more-horizontal" class="opacity-50"></i>
+        </div>
+        <div
+          class="glass-btn p-4 rounded-2xl flex justify-between items-center mb-4"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-12 h-12 bg-white/50 dark:bg-black/50 rounded-full flex items-center justify-center font-bold"
+            >
+              NT
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Ngọc Trinh</h4>
+              <p class="text-sm opacity-70">Vừa book Lịch chụp Beauty</p>
+            </div>
+          </div>
+          <div class="font-bold opacity-50">12 phút trước</div>
+        </div>
+      </div>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+description: (Ultimate Wrap-up) Lưu toàn bộ ngữ cảnh, rút ra bài học Gotchas, Commit Git và Deploy. Dùng 1 lần duy nhất khi kết thúc phiên làm việc.
+---
+
+// turbo-all
+
+# Workflow: Save, Sync & Memorize (Wrap-up)
+
+> **Mô tả:** Đây là lệnh Workflow quan trọng nhất để chống "mất trí nhớ" cho AI. Khi gọi `/save`, AI phải thức thi đầy đủ 5 bước sau đây để đóng gói mọi kiến thức, kinh nghiệm và code của phiên làm việc. Cấm bỏ qua bất kỳ bước nào!
+
+## Bước 1: Trích xuất & Cập nhật Bài Học (Gotchas & Learnings)
+
+- AI tư duy: _Mình có gặp lỗi nào lặp đi lặp lại hay giải pháp nào khó trong ca làm việc vừa rồi không?_
+- Nếu có: Dùng Tool tự động bổ sung ngay bài học đó vào cuối file `c:\AntiCode\master-agent\.agent\memory\gotchas.md`. (Ghi chú rõ ngày tháng, mã lỗi, cách fix phòng ngừa lỗi tương tự).
+- Nếu không: Bỏ qua đoạn này.
+
+## Bước 2: Lưu trạng thái Bàn giao (Session State & Today)
+
+- Dùng Tool để cập nhật file cục bộ `.agent\memory\session-state.md` (Đè vào mục "3. SESSION TẠM DỪNG"): Ghi chú rõ mình đang đứng ở đâu, làm được file nào, và ca sau vào sẽ làm gì tiếp theo của RIÊNG DỰ ÁN NÀY.
+- Cập nhật nhánh Tóm tắt các việc đã xử lý hôm nay vào file cục bộ `.agent\memory\today.md`.
+
+## Bước 3: Cập nhật nhật ký dự án (DEVLOG - BẮT BUỘC)
+
+- Mở thư mục gốc của dự án ĐANG LÀM (Ví dụ: `c:\AntiCode\pancake-2hstudio`).
+- Cập nhật file `DEVLOG.md` cục bộ của dự án đó: Thêm dòng Lịch sử thay đổi (ngày + list tính năng vừa thêm).
+
+## Bước 4: Lưu tấ cả Code (Auto Commit & Push)
+
+- Tiến hành đẩy toàn bộ code của toàn bộ thư mục lên Github. Điểm neo chắc chắn.
+
+```powershell
+git add .
+git commit -m "Auto wrap-up session"
+git push
+```
+
+## Bước 5: Auto Deploy (Nếu áp dụng)
+
+- Nếu dự án có tệp deploy lên VPS, bắt buộc phải chạy ngay lập tức.
+
+```powershell
+# Chạy script deploy của dự án tương ứng (Ví dụ: VPS)
+if (Test-Path "deploy_vps2.js") {
+    node deploy_vps2.js
+}
+```
+
+---
+
+> **💬 Kết Lời:** Sau khi 5 bước trên chạy XONG TẤT CẢ, AI **BẮT BUỘC** phải xuất ra một Báo Cáo Chi Tiết tổng hợp toàn bộ những gì vừa thực hiện, bao gồm:
+> 1. Bài học (Gotchas) đã ghi nhận (hoặc "Không có")
+> 2. Trạng thái Bàn giao (Tiến độ và Việc cần làm ca sau)
+> 3. Nội dung cập nhật vào DEVLOG
+> 4. Trạng thái đẩy Code lên Github.
+> Cuối báo cáo kèm lời chúc: _"Toàn bộ tri thức, tiến độ, bài học và Code đã được niêm phong & đẩy lên Github. Chúc sếp nghỉ ngơi vui vẻ!"_

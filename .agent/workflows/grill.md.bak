@@ -1,0 +1,53 @@
+---
+description: Grilling Session command. Grills the user relentlessly to resolve design branches and builds project domain language & ADRs.
+---
+
+# /grill - Grilling Session & Domain Modeling
+
+$ARGUMENTS
+
+---
+
+## Purpose
+
+Phỏng vấn ngược người dùng (Grilling Session) để làm rõ 100% các ý định thiết kế, đồng thời tự động xây dựng file `CONTEXT.md` (Domain Language) và ghi chép quyết định kiến trúc `docs/ADR-{slug}.md`.
+
+---
+
+## 🛑 Rules Engine
+
+1. **Phỏng vấn từng câu một:** Không gửi danh sách 10 câu hỏi cùng lúc. Hỏi từng câu dồn dập, giải quyết từng nhánh quyết định.
+2. **Xây dựng Ngôn Ngữ Chung (Ubiquitous Language):** Chuẩn hóa tất cả khái niệm dự án vào file `CONTEXT.md`.
+3. **Ghi lại ADR:** Tạo file `docs/ADR-{task-slug}.md` lưu trữ lý do đưa ra các quyết định kỹ thuật quan trọng.
+
+---
+
+## Workflow Steps
+
+### Step 1: Khởi Tạo Thuật Ngữ & Phạm Vi
+- Đọc file `CONTEXT.md` (nếu có).
+- Xác định mục tiêu của yêu cầu: `$ARGUMENTS`.
+
+### Step 2: Phỏng Vấn Ngược (Grilling Loop)
+- Đặt các câu hỏi xoáy đáp xoay về:
+  1. *Chủ thể & Khách hàng:* Dự án/Tính năng này dành cho ai?
+  2. *Luồng xử lý (Happy path & Edge cases):* Điều gì xảy ra khi lỗi? Nếu nhập sai dữ liệu thì sao?
+  3. *Ranh giới phạm vi (Scope Boundary):* Tính năng nào là V1 (cần ngay), tính năng nào dời V2?
+  4. *Thuật ngữ chuyên môn:* Tên gọi chính xác của các khái niệm là gì?
+
+### Step 3: Tổng Hợp & Cập Nhật Docs
+- Thêm thuật ngữ mới vào `CONTEXT.md`.
+- Xuất file `docs/ADR-{task-slug}.md` ghi nhận:
+  - Context (Ngữ cảnh)
+  - Decision (Quyết định chọn giải pháp nào)
+  - Consequences (Hệ quả / Ưu nhược điểm)
+
+---
+
+## Usage Examples
+
+```bash
+/grill thiết kế tính năng đặt lịch chụp ảnh online
+/grill refactor module thanh toán Studio ERP
+/grill thêm tính năng tạo Typography tự động
+```

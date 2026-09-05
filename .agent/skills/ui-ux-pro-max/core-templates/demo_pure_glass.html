@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pure Glass Prototype - Han's Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: { sans: ['"Plus Jakarta Sans"', "sans-serif"] },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fa8bff;
+        background-image:
+          radial-gradient(
+            at 40% 20%,
+            hsla(28, 100%, 74%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 80% 0%,
+            hsla(189, 100%, 56%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 0% 50%,
+            hsla(355, 100%, 93%, 1) 0px,
+            transparent 50%
+          );
+        background-attachment: fixed;
+        transition: all 0.5s;
+      }
+
+      html.dark body {
+        background-color: #1a0b2e;
+        background-image:
+          radial-gradient(
+            at 40% 20%,
+            hsla(268, 100%, 24%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 80% 0%,
+            hsla(289, 100%, 16%, 1) 0px,
+            transparent 50%
+          ),
+          radial-gradient(
+            at 0% 50%,
+            hsla(315, 100%, 13%, 1) 0px,
+            transparent 50%
+          );
+      }
+
+      .glass-pure {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(25px) saturate(200%);
+        -webkit-backdrop-filter: blur(25px) saturate(200%);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 8px 32px 0 rgba(119, 44, 232, 0.15);
+        transition: all 0.3s;
+      }
+      html.dark .glass-pure {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      .glass-element {
+        background: rgba(255, 255, 255, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+      }
+      html.dark .glass-element {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-10"
+  >
+    <div class="w-full max-w-5xl flex justify-end mb-4 z-20 relative">
+      <button
+        onclick="toggleMode()"
+        class="w-12 h-12 rounded-full glass-element flex items-center justify-center hover:bg-white/60 dark:hover:bg-black/60 transition-colors text-slate-800 dark:text-white"
+      >
+        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+      </button>
+    </div>
+
+    <main
+      class="w-full max-w-5xl glass-pure flex flex-col md:flex-row overflow-hidden relative min-h-[600px]"
+    >
+      <section
+        class="w-full md:w-1/2 p-10 flex flex-col relative z-10 border-r border-white/30 dark:border-white/10"
+      >
+        <h1
+          class="text-xs font-bold uppercase tracking-[0.2em] text-indigo-900/60 dark:text-purple-300/60 mb-2"
+        >
+          Pure Glassmorphism
+        </h1>
+        <h2
+          class="text-4xl font-extrabold text-slate-800 dark:text-white tracking-tight leading-none mb-8"
+        >
+          Trắng Trong Veo.
+        </h2>
+
+        <div
+          class="glass-element p-6 rounded-2xl mb-6 hover:bg-white/60 dark:hover:bg-black/60 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div
+              class="w-10 h-10 rounded-full bg-white dark:bg-black flex items-center justify-center text-rose-500 shadow-sm"
+            >
+              <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-black mb-1 text-slate-800 dark:text-white">
+            Khung kính
+          </h3>
+        </div>
+      </section>
+
+      <section
+        class="w-full md:w-1/2 p-10 flex flex-col justify-center relative z-10 bg-white/10 dark:bg-black/20"
+      >
+        <h3 class="text-2xl font-bold mb-6 text-slate-800 dark:text-white">
+          Cấu hình Đặt lịch
+        </h3>
+        <input
+          type="text"
+          placeholder="Nhập tên..."
+          class="w-full h-12 glass-element rounded-xl px-4 outline-none font-medium mb-4 placeholder-slate-500 dark:placeholder-slate-400"
+        />
+        <button
+          class="w-full h-12 rounded-xl bg-slate-800 dark:bg-white text-white dark:text-black font-bold tracking-widest uppercase hover:bg-slate-900 shadow-xl"
+        >
+          Chốt Lịch Ngay
+        </button>
+      </section>
+    </main>
+
+    <script>
+      lucide.createIcons();
+      function toggleMode() {
+        document.documentElement.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>

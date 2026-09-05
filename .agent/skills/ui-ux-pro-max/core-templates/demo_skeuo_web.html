@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Skeuo Web - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Inter"] } } },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #e6e9ef;
+        color: #334155;
+        transition: all 0.4s;
+        font-family: "Inter", sans-serif;
+      }
+      html.dark body {
+        background-color: #262930;
+        color: #f1f5f9;
+      }
+      .sk-card {
+        background: linear-gradient(145deg, #f0f3f9, #cfd3db);
+        border-radius: 32px;
+        box-shadow:
+          20px 20px 40px #c4c6cc,
+          -20px -20px 40px #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+      }
+      html.dark .sk-card {
+        background: linear-gradient(145deg, #2b2e36, #22252b);
+        box-shadow:
+          15px 15px 30px #1b1c21,
+          -15px -15px 30px #333741;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .sk-btn {
+        background: linear-gradient(145deg, #f0f3f9, #dce0e8);
+        border-radius: 16px;
+        box-shadow:
+          6px 6px 12px #c4c6cc,
+          -6px -6px 12px #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: all 0.15s;
+        cursor: pointer;
+      }
+      .sk-btn:hover {
+        box-shadow:
+          8px 8px 16px #bbc0c7,
+          -8px -8px 16px #ffffff;
+        transform: translateY(-2px);
+      }
+      .sk-btn:active {
+        box-shadow:
+          inset 6px 6px 12px #c4c6cc,
+          inset -6px -6px 12px #ffffff;
+        transform: translateY(2px);
+        border-color: transparent;
+      }
+      html.dark .sk-btn {
+        background: linear-gradient(145deg, #2b2e36, #22252b);
+        box-shadow:
+          6px 6px 12px #1c1d22,
+          -6px -6px 12px #323740;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      html.dark .sk-btn:active {
+        box-shadow:
+          inset 4px 4px 8px #1b1c21,
+          inset -4px -4px 8px #333741;
+      }
+      .sk-sunken {
+        background: #e1e4ea;
+        box-shadow:
+          inset 8px 8px 16px #c4c6cc,
+          inset -8px -8px 16px #ffffff;
+        border-radius: 24px;
+      }
+      html.dark .sk-sunken {
+        background: #22252a;
+        box-shadow:
+          inset 6px 6px 12px #18191c,
+          inset -6px -6px 12px #323740;
+      }
+    </style>
+  </head>
+  <body class="p-6 md:p-12 flex flex-col items-center overflow-x-hidden">
+    <nav
+      class="w-full max-w-6xl sk-card p-6 flex justify-between items-center z-50 mb-12"
+    >
+      <h1 class="text-2xl font-black">Han's Tactile</h1>
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="sk-btn px-6 py-3 font-bold text-sm tracking-wider uppercase flex gap-2"
+      >
+        <i data-lucide="power" class="w-4 h-4"></i> Switch Mode
+      </button>
+    </nav>
+    <main class="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="flex flex-col justify-center py-10">
+        <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+          Cảm Giác <br />Phím Cơ.
+        </h2>
+        <p class="text-xl font-bold opacity-70 mb-10 max-w-md">
+          Thiết kế website nút bấm 3D chân thực, lún xuống mỗi khi click mang
+          lại khoái cảm vật lý trên Web.
+        </p>
+        <div class="flex gap-4">
+          <button
+            class="sk-btn px-10 py-5 font-black text-blue-600 dark:text-blue-400 text-lg rounded-2xl w-max"
+          >
+            Khám Phá Dịch Vụ
+          </button>
+        </div>
+      </div>
+      <div class="sk-card p-8 group">
+        <div
+          class="sk-sunken w-full aspect-square relative p-4 flex flex-col justify-between"
+        >
+          <div class="flex justify-between w-full p-4">
+            <div
+              class="sk-btn w-12 h-12 rounded-full flex items-center justify-center text-rose-500"
+            >
+              <i data-lucide="heart"></i>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-3xl font-black mb-2">Album Phóng Sự</h3>
+            <p class="font-bold opacity-70">Gói quay chụp Cinematic 4K</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

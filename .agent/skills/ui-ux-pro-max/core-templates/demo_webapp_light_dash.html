@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebApp Light Dash - Han's Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Plus Jakarta Sans"] } } },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fafafb;
+        transition: all 0.5s;
+        color: #0f172a;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      html.dark body {
+        background-color: #111318;
+        color: #f1f5f9;
+      }
+      .white-cloud-card {
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 24px;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 1);
+        transition: all 0.3s;
+      }
+      .white-cloud-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 30px 50px -12px rgba(0, 0, 0, 0.08);
+      }
+      html.dark .white-cloud-card {
+        background-color: rgba(30, 32, 40, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body class="flex h-screen overflow-hidden p-6 gap-6">
+    <!-- Sidebar -->
+    <aside class="w-64 h-full white-cloud-card flex flex-col p-6 shrink-0">
+      <div class="flex items-center gap-3 mb-10 text-xl font-black">
+        <div
+          class="w-8 h-8 rounded-lg bg-black dark:bg-white text-white dark:text-black flex items-center justify-center"
+        >
+          <i data-lucide="aperture" class="w-5 h-5"></i>
+        </div>
+        Studio UI
+      </div>
+      <nav class="flex flex-col gap-2 font-semibold">
+        <a
+          class="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white flex gap-3"
+          ><i data-lucide="layout-dashboard"></i> Tổng Quan</a
+        >
+        <a
+          class="p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-500 flex gap-3"
+          ><i data-lucide="users"></i> Khách Hàng</a
+        >
+      </nav>
+      <button
+        onclick="document.documentElement.classList.toggle('dark')"
+        class="mt-auto p-3 rounded-xl border flex justify-center hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-700"
+      >
+        Đổi Chế Độ
+      </button>
+    </aside>
+    <!-- Main -->
+    <main class="flex-1 h-full overflow-y-auto pr-2 pb-10 flex flex-col gap-6">
+      <header
+        class="white-cloud-card h-20 flex items-center justify-between px-8 shrink-0"
+      >
+        <h2
+          class="text-2xl font-bold border-l-4 border-slate-900 dark:border-white pl-4"
+        >
+          Dashboard Trắng Tinh Khôi
+        </h2>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="white-cloud-card p-8">
+          <div
+            class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-500 flex mb-6 items-center justify-center"
+          >
+            <i data-lucide="dollar-sign"></i>
+          </div>
+          <h3 class="text-4xl font-black mb-1">125.5M</h3>
+          <p class="text-slate-500 text-sm font-medium">Doanh thu tháng này</p>
+        </div>
+        <div class="white-cloud-card p-8">
+          <div
+            class="w-12 h-12 rounded-full bg-rose-50 dark:bg-rose-900/30 text-rose-500 flex mb-6 items-center justify-center"
+          >
+            <i data-lucide="heart"></i>
+          </div>
+          <h3 class="text-4xl font-black mb-1">45 Lịch</h3>
+          <p class="text-slate-500 text-sm font-medium">Lịch chụp mới</p>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="white-cloud-card p-8 flex-1">
+        <h3 class="font-bold text-lg mb-6">Lịch Làm Việc Hôm Nay</h3>
+        <div class="flex flex-col gap-4">
+          <div
+            class="flex items-center justify-between p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-100 dark:hover:border-slate-700 transition cursor-pointer"
+          >
+            <div class="flex items-center gap-4">
+              <div
+                class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center font-bold"
+              >
+                KT
+              </div>
+              <div>
+                <h4 class="font-bold text-lg">Khách Thu Trang</h4>
+                <p class="text-sm text-slate-500 mt-1">Gói Váy Cưới VIP</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <h4 class="font-bold text-lg">14:00 PM</h4>
+              <span
+                class="text-xs text-amber-500 bg-amber-50 dark:bg-amber-900/30 px-3 py-1 rounded-md font-bold mt-1 inline-block"
+                >Chờ Chụp</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
