@@ -73,9 +73,16 @@
   3. **Kết quả**: Cả 3 bản (Xem Trước, In Phiếu, Tải PDF) đều canh giữa dọc vuông vắn, chữ không bao giờ bị cắt đỉnh và cách đáy viền ô an toàn >25-30px, tự động co giãn linh hoạt 100% theo nội dung gói.
 
 ### [2026-09-04] Chrome Print Engine - Flexbox vs Grid
-- **Lỗi:** Thẻ flex con (lex-grow: 1) bị sập về min-content khi chạy trên @media print của Chrome, khiến bảng không giãn hết trang A4, để lại khoảng trắng.
-- **Giải pháp:** Cấm dùng lex-grow cho Print Layout. Bắt buộc chuyển sang dùng CSS Grid: Container đặt display: grid; grid-template-rows: max-content 1fr max-content; height: 100%; và thẻ table bên trong đặt height: 100%.
+- **Lỗi:** Thẻ flex con (flex-grow: 1) bị sập về min-content khi chạy trên @media print của Chrome, khiến bảng không giãn hết trang A4, để lại khoảng trắng.
+- **Giải pháp:** Cấm dùng flex-grow cho Print Layout. Bắt buộc chuyển sang dùng CSS Grid: Container đặt display: grid; grid-template-rows: max-content 1fr max-content; height: 100%; và thẻ table bên trong đặt height: 100%.
 
 ### [2026-09-04] Clasp Push - Lỗi rác môi trường Node vs GAS
-- **Lỗi:** Tạo file tạm bằng đuôi .js (như ix.js chứa lệnh Node equire('fs')) trong thư mục làm việc, sau đó chạy clasp push khiến file bị đẩy thẳng lên server GAS. GAS không hiểu equire dẫn đến trắng trang 500 toàn hệ thống.
+- **Lỗi:** Tạo file tạm bằng đuôi .js (như fix.js chứa lệnh Node require('fs')) trong thư mục làm việc, sau đó chạy clasp push khiến file bị đẩy thẳng lên server GAS. GAS không hiểu require dẫn đến trắng trang 500 toàn hệ thống.
 - **Giải pháp:** TUYỆT ĐỐI KHÔNG tạo script Node xử lý tạm với đuôi .js trong thư mục quản lý bởi Clasp, hoặc bắt buộc phải xóa sạch sành sanh trước khi gõ lệnh Deploy.
+
+### 13. [2026-09-05] Đường Nét Đứt Chia Đôi Trang A4 Trong Chrome Print Dialog Bị Vô Hình
+- **Vấn đề**: Đường nét đứt chia đôi trang (`.cut-line`) dùng màu xám nhạt (`#999999`) và độ dày `1px dashed`, khi xem trên màn hình preview thì thấy mờ mờ, nhưng khi vào hộp thoại In của Chrome (Print Dialog / In thật) thì bị thuật toán nén ảnh và khử răng cưa (subpixel anti-aliasing) của Chromium khử mất hoàn toàn, biến thành khoảng trắng. Ngoài ra nếu 2 liên đặt chiều cao `50%` thì dòng kẻ bị kẹp giữa và có thể bị background trắng của liên sau che lấp.
+- **Giải pháp**:
+  1. Nâng cấp đường cắt lên màu đen đậm `#000000` với độ dày `1.5px dashed` (`border-top: 1.5px dashed #000000 !important; width: 95% !important;`).
+  2. Gán `height: 1px !important; z-index: 10 !important; position: relative !important;` và `print-color-adjust: exact !important;`.
+  3. Đặt chiều cao mỗi liên là `calc(50% - 1px) !important;` cùng `flex: 1 1 0 !important;` để dòng kẻ có vị trí độc lập, hai liên tự động cân bằng 50-50 và không bao giờ bị phình sang trang thứ 2.
