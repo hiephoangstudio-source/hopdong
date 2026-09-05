@@ -5,6 +5,20 @@
 
 ---
 
+## 05/09/2026
+- **Hoàn thành & Nghiệm thu toàn bộ Phân Hệ In Ấn (Print Engine) - ĐÓNG BĂNG 100% [🔒 FROZEN / LOCKED]**:
+  - **In Hợp Đồng (`PrintEngine_HopDong.html`)**: Cả 4 loại hợp đồng cưới/dịch vụ chuẩn lề A4, viền mỏng, mã VietQR và nền trắng tinh.
+  - **In Chứng Từ (`PrintEngine_ChungTu.html`)**: Form 1 (Giao nhận vật tư), Form 2 (Hóa đơn 2 liên), Form 3 (Xác nhận công việc vừa khít 1 trang A4).
+  - **In Phiếu Thu Chi (`PrintEngine_Engine.html` & `PrintEngine_UI.html`)**:
+    + Bỏ viền bao ngoài 2 liên (`border: none !important;`), giữ đường nét đứt chia đôi trang ở giữa.
+    + Ép 100% chữ màu đen đặc sắc nét, chống lem màu Dark Mode.
+    + Giãn chiều cao bảng nội dung thêm ~40%, dòng kẻ chấm thanh mảnh.
+    + Cụm chữ ký dịch lên sát dòng "Kèm theo:", bỏ in đậm chữ ký.
+    + Hai liên đối xứng hoàn hảo, lề dưới vừa khít chuẩn A4.
+  - **Triển khai Live Exec**: Đã deploy thành công lên Version 851 trên Google Apps Script.
+
+---
+
 ## 29/07/2026
 - Sửa lỗi caching trình duyệt cứng đầu trên main.js (v113.0 -> version động).
 - Sửa lỗi CSS padding wildcard của tab Pose.
