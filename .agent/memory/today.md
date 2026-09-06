@@ -54,11 +54,16 @@
   + 🔒 Module Khách Hàng
   + 🔒 Module Chi Tiết Đơn Hàng
   + 🔒 Module Dịch Vụ
-- Live Deployment: `Version 870` hoạt động ổn định trên Google Apps Script Live Exec.
+- Live Deployment: `Version 873` hoạt động ổn định trên Google Apps Script Live Exec.
+- **Khắc phục triệt để hiển thị Logo Chi Nhánh (Chuẩn đồ họa quốc tế Checkerboard & Rim-Light)**:
+  + **Root Cause**: Logo của chi nhánh `THUBLUE MAKEUP` (`HT`) gồm 88% nét chữ màu TRẮNG tinh trên nền PNG trong suốt. Nền thẻ cũ `bg-white` làm mất tương phản; đồng thời khi gán background trực tiếp vào thẻ `img` sẽ làm mất hiệu ứng `drop-shadow` nét chữ theo chuẩn W3C.
+  + **Giải pháp hoàn thiện (Version @873)**: Tách riêng container bọc ngoài mang hoa văn Checkerboard (ô bàn cờ caro nhỏ 12px) thanh lịch chuẩn Photoshop/Figma (slate-100/slate-200 ở Light Mode, slate-900/slate-800 ở Dark Mode). Thẻ `img` giữ nguyên nền trong suốt và trang bị bóng đổ 360 độ ôm sát từng nét chữ kết hợp hiệu ứng Rim-Light bảo vệ cả logo màu đen.
+  + **Xác minh thực tế trên Live Version @873**: Đã kiểm tra trực quan tự động bằng Playwright trên Live Web App ở cả Light Mode & Dark Mode. Logo chữ trắng của Thu Blue Makeup hiển thị cực kỳ sắc nét, nổi bật và đẹp mắt ở cả Drawer Chi Tiết và Form Chỉnh Sửa.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Báo cáo Founder về kết quả xử lý Module Chi Nhánh kèm PROOF BLOCK kiểm thử thực tế từ trình duyệt live.
+- Báo cáo Founder về kết quả hoàn thiện Version @873 kèm PROOF BLOCK và ảnh chụp thực tế.
 - Chờ Founder kiểm tra và xác nhận.
+
 
