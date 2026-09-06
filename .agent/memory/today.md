@@ -34,6 +34,13 @@
    - Phân cấp Hạng Mục & Loại Dịch Vụ động: Tự động reset ô Loại Dịch Vụ khi đổi Hạng Mục; tách biệt hoàn toàn khỏi danh mục xưởng in; Hạng Mục "Sản phẩm" chỉ hiển thị đúng loại nghiệp vụ của Studio (`"Nâng cấp"`).
    - Tự động chuyển đổi giao diện form: Ẩn/hiện linh hoạt các trường Lương chụp/make/photoshop và mô tả chi tiết theo Hạng Mục.
    - Xuất Excel `.xlsx` và Xuất PDF vector chuẩn thương hiệu Hans Studio.
+6. [🔒 FROZEN / LOCKED] **Module Chi Nhánh (ChiNhanh)**:
+   - Các file: `Mod_ChiNhanh_Logic.html`, `Mod_ChiNhanh_View.html`, `Mod_ChiNhanh_Server.js`.
+   - Chuẩn hóa phân quyền đọc danh sách chi nhánh (Super Admin nạp đầy đủ chi nhánh, không bị xóa rỗng).
+   - Hiển thị danh sách bảng chi nhánh đầy đủ, status badge xanh, tìm kiếm, phân trang, nút Thêm, Sửa, Xóa mượt mà.
+   - Drawer xem chi tiết và Form chỉnh sửa/thêm mới hoạt động mượt mà, không bị kẹt hay đơ giao diện.
+   - Hiển thị Logo thương hiệu theo chuẩn đồ họa Checkerboard (ô bàn cờ caro 12px) kết hợp viền bóng 360 độ và hào quang Rim-Light, hiển thị sắc nét 100% mọi ảnh tách nền PNG (chữ trắng hoặc chữ đen) trên cả Light Mode và Dark Mode.
+   - Xuất Excel `.xlsx` chuẩn tách cột, có cột STT.
 
 ---
 
@@ -54,6 +61,7 @@
   + 🔒 Module Khách Hàng
   + 🔒 Module Chi Tiết Đơn Hàng
   + 🔒 Module Dịch Vụ
+  + 🔒 Module Chi Nhánh
 - Live Deployment: `Version 873` hoạt động ổn định trên Google Apps Script Live Exec.
 - **Khắc phục triệt để hiển thị Logo Chi Nhánh (Chuẩn đồ họa quốc tế Checkerboard & Rim-Light)**:
   + **Root Cause**: Logo của chi nhánh `THUBLUE MAKEUP` (`HT`) gồm 88% nét chữ màu TRẮNG tinh trên nền PNG trong suốt. Nền thẻ cũ `bg-white` làm mất tương phản; đồng thời khi gán background trực tiếp vào thẻ `img` sẽ làm mất hiệu ứng `drop-shadow` nét chữ theo chuẩn W3C.

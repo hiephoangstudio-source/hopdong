@@ -24,6 +24,12 @@
 | `Mod_DonHangCT_Logic.html`| [🔒 FROZEN] Module Chi Tiết Đơn Hàng (Đã duyệt OK 100%) |
 | `Mod_DonHangCT_View.html` | [🔒 FROZEN] Module Chi Tiết Đơn Hàng (Đã duyệt OK 100%) |
 | `Mod_DonHangCT_Server.js` | [🔒 FROZEN] Module Chi Tiết Đơn Hàng (Đã duyệt OK 100%) |
+| `Mod_DichVu_Logic.html`   | [🔒 FROZEN] Module Dịch Vụ (Đã duyệt OK 100%) |
+| `Mod_DichVu_View.html`    | [🔒 FROZEN] Module Dịch Vụ (Đã duyệt OK 100%) |
+| `Mod_DichVu_Server.js`    | [🔒 FROZEN] Module Dịch Vụ (Đã duyệt OK 100%) |
+| `Mod_ChiNhanh_Logic.html` | [🔒 FROZEN] Module Chi Nhánh (Đã duyệt OK 100%) |
+| `Mod_ChiNhanh_View.html`  | [🔒 FROZEN] Module Chi Nhánh (Đã duyệt OK 100%) |
+| `Mod_ChiNhanh_Server.js`  | [🔒 FROZEN] Module Chi Nhánh (Đã duyệt OK 100%) |
 
 ## Cách sử dụng
 
