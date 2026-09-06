@@ -86,3 +86,11 @@
   1. Nâng cấp đường cắt lên màu đen đậm `#000000` với độ dày `1.5px dashed` (`border-top: 1.5px dashed #000000 !important; width: 95% !important;`).
   2. Gán `height: 1px !important; z-index: 10 !important; position: relative !important;` và `print-color-adjust: exact !important;`.
   3. Đặt chiều cao mỗi liên là `calc(50% - 1px) !important;` cùng `flex: 1 1 0 !important;` để dòng kẻ có vị trí độc lập, hai liên tự động cân bằng 50-50 và không bao giờ bị phình sang trang thứ 2.
+
+### 14. [2026-09-06] Xung Đột Danh Mục Vật Tư Xưởng In Và Loại Dịch Vụ Gói Bán Studio
+- **Vấn đề**: Quét nhóm từ khóa quá rộng trong bảng cài đặt (`nhomNorm.includes("san pham")`) dẫn đến nhặt nhầm các danh mục vật tư gia công của Xưởng In (`Album, Bộ khung, Sét khung, Ảnh in...`) nhét vào dropdown `loai_dich_vu` của Hạng mục "Sản phẩm" ở Module Dịch Vụ.
+- **Giải pháp**:
+  1. Loại trừ triệt để các nhóm xưởng in/vật tư (`sp in`, `chi tiet san pham`, `xuong in`, `gia xuong`).
+  2. Phân loại dịch vụ của từng Hạng mục chỉ lấy từ các bản ghi thực tế trong bảng `dich_vu` (với Hạng mục "Sản phẩm" hiện tại là `"Nâng cấp"`).
+  3. Khi chuyển sang Hạng mục chưa có loại, trường Loại Dịch Vụ tự động reset về rỗng (`-- Chọn Loại Dịch Vụ --`) và dropdown không bị nhồi các option sai lệch.
+

@@ -28,20 +28,31 @@
    - Hiển thị đầy đủ tên nhân viên (NV Sale Offline, Online) trong drawer chi tiết thay vì mã thô.
    - Xuất Excel `.xlsx` chuẩn tách cột, có STT, tự động format tiền tệ `#,##0`.
    - Xuất PDF chuẩn vector Roboto tiếng Việt có dấu, Dark Header Hans Studio và đánh số trang footer.
+5. [🔒 FROZEN / LOCKED] **Module Dịch Vụ (DichVu)**:
+   - Các file: `Mod_DichVu_Logic.html`, `Mod_DichVu_View.html`, `Mod_DichVu_Server.js`.
+   - Cột Trạng thái chuẩn nhãn `"Đang hoạt động"` / `"Dừng hoạt động"` trên Form, Drawer và Xuất Excel.
+   - Phân cấp Hạng Mục & Loại Dịch Vụ động: Tự động reset ô Loại Dịch Vụ khi đổi Hạng Mục; tách biệt hoàn toàn khỏi danh mục xưởng in; Hạng Mục "Sản phẩm" chỉ hiển thị đúng loại nghiệp vụ của Studio (`"Nâng cấp"`).
+   - Tự động chuyển đổi giao diện form: Ẩn/hiện linh hoạt các trường Lương chụp/make/photoshop và mô tả chi tiết theo Hạng Mục.
+   - Xuất Excel `.xlsx` và Xuất PDF vector chuẩn thương hiệu Hans Studio.
 
 ---
 
-## ✅ TRẠNG THÁI HIỆN TẠI (Version @861 Live)
-- Đã giải quyết triệt để sự cố Xuất Excel (dồn cột A, thiếu STT) bằng engine `window.exportToXLSX` chuẩn OpenXML trên toàn bộ hệ thống.
-- Đã giải quyết triệt để sự cố Xuất PDF (thiếu thư viện PDFMake) bằng engine `window.exportToPDF` chuẩn vector, Dark Header Hans Studio và hỗ trợ tiếng Việt có dấu 100%.
-- Đã khóa chỉnh sửa 4 phân hệ/module hoàn hảo:
+## ✅ TRẠNG THÁI HIỆN TẠI (Version @865 Live)
+- **Module Dịch Vụ (DichVu)**:
+  + Cột Trạng thái trong Form & Drawer đã map chuẩn hiển thị Tên trạng thái: `"Đang hoạt động"` / `"Dừng hoạt động"` (thay vì boolean thô `true`/`false`).
+  + Tính năng tự reset Loại Dịch Vụ *: Khi người dùng đổi Hạng Mục, ô Loại Dịch Vụ tự động reset về rỗng `-- Chọn Loại Dịch Vụ --`.
+  + Khắc phục triệt để lỗi quét nhầm vật tư xưởng in (Album, Khung...): Hệ thống đã loại bỏ hoàn toàn các nhóm xưởng in. Đối với Hạng mục "Sản phẩm", dropdown hiển thị đúng phân loại nghiệp vụ thực tế của Studio là `"Nâng cấp"` (hoặc các loại sản phẩm thực tế trong bảng dịch vụ).
+  + Tự động chuyển đổi giao diện nhập liệu: Khi Hạng mục là "Sản phẩm", ẩn các trường Lương chụp/make/photoshop chi tiết và chỉ hiển thị 1 trường "LƯƠNG PHÁT SINH". Khi Hạng mục là "Dịch vụ", tự động hiện lại đầy đủ các trường lương chi tiết và template mô tả buổi chụp.
+- **Toàn hệ thống**:
+  + Xuất Excel `.xlsx` và Xuất PDF tiếng Việt chuẩn vector trên toàn bộ các module.
   + [🔒 LOCKED] Phân Hệ In Hợp Đồng
   + [🔒 LOCKED] Phân Hệ In Chứng Từ & Phiếu Thu Chi
   + [🔒 LOCKED] Module Khách Hàng
   + [🔒 LOCKED] Module Chi Tiết Đơn Hàng
-- Live Deployment: `Version 861` hoạt động ổn định trên Google Apps Script Live Exec.
+- Live Deployment: `Version 865` hoạt động ổn định trên Google Apps Script Live Exec.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
+- Đã khóa chỉnh sửa 5 module/phân hệ hoàn hảo.
 - Sẵn sàng chuyển sang module hoặc tính năng tiếp theo theo chỉ thị của Founder Hiệp Hoang.
