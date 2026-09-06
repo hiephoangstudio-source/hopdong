@@ -37,22 +37,28 @@
 
 ---
 
-## ✅ TRẠNG THÁI HIỆN TẠI (Version @869 Live)
+## ✅ TRẠNG THÁI HIỆN TẠI (Version @870 Live)
+- **Khắc phục triệt để lỗi Module Chi Nhánh (`ChiNhanh`) bị trống danh sách**:
+  + **Root Cause 1 (Server Phân quyền)**: Trong `Mod_ChiNhanh_Server.js`, khi user profile mặc định hoặc chưa truyền lúc SSR/bootstrap, cờ `isSystemAdmin` bị tính thành `false` và nhánh `else { branches = []; }` đã xóa sạch toàn bộ danh sách chi nhánh về rỗng `[]`. Đã chuẩn hóa logic kiểm tra `isSystemAdmin` toàn diện, gán quyền fallback an toàn cho admin và chỉ lọc chi nhánh khi user có danh sách cụ thể, loại bỏ hoàn toàn việc xóa rỗng dữ liệu.
+  + **Root Cause 2 (Client Profile & Cache)**: Trong `Mod_ChiNhanh_Logic.html` và `Shell_JS.html`, chuẩn hóa việc đọc user profile ưu tiên từ `localStorage.getItem('erp_master_profile')` và cập nhật an toàn vào `GLOBAL_DATA_CACHE`.
+  + **Giao diện & Thao tác**: Bảng hiển thị đầy đủ 2 chi nhánh (`HH` - HAN'S STUDIO và `HT` - THUBLUE MAKEUP) với status badge xanh `"Đang hoạt động"`, phân trang, nút Xuất Excel, nút Thêm Chi Nhánh, Sửa, Xóa và xem Drawer Detail mượt mà.
+  + Đã test live 100% trên trình duyệt thật bằng DevTools: Danh sách nạp đầy đủ, mở Drawer xem chi tiết chi nhánh hoạt động tốt, mở Form Thêm Chi Nhánh hoạt động tốt và đóng form mượt mà.
 - **Khắc phục triệt để sự cố Tê liệt (Freeze) Form Modal trên toàn bộ hệ thống**:
   + Sửa lỗi kẹt `pointer-events-none`: Trong `openModal`, bổ sung gỡ bỏ `pointer-events-none` và cấp `pointer-events-auto` cho `#crud-modal` và backdrop, khôi phục 100% khả năng click, gõ phím, chọn dropdown và bấm nút.
   + Nâng cấp Z-Index: Đưa `#crud-modal-backdrop` lên `z-[60]` (vượt trội hơn toàn bộ các drawer/offcanvas `z-50`), bảo đảm Form Modal luôn nằm trên cùng và không bị bất kỳ thành phần nào che lấp.
-  + Thoát hiểm thông minh: Cho phép click vùng ngoài backdrop để đóng form, đồng thời hỗ trợ phím `Escape` (ưu tiên đóng dropdown gợi ý trước, bấm lần 2 đóng modal form).
-  + Tự động đóng Drawer Detail khi chuyển module: Đã vận hành ổn định trên toàn hệ thống từ Version @867.
+  + Thoát hiểm thông minh: Cho phép click vùng ngoài backdrop để đóng form, đồng thời hỗ trợ phím `Escape`.
+  + Tự động đóng Drawer Detail khi chuyển module: Đã vận hành ổn định trên toàn hệ thống.
 - **Các Module đã khóa chỉnh sửa hoàn hảo**:
   + 🔒 Phân Hệ In Hợp Đồng
   + 🔒 Phân Hệ In Chứng Từ & Phiếu Thu Chi
   + 🔒 Module Khách Hàng
   + 🔒 Module Chi Tiết Đơn Hàng
   + 🔒 Module Dịch Vụ
-- Live Deployment: `Version 869` hoạt động ổn định trên Google Apps Script Live Exec.
+- Live Deployment: `Version 870` hoạt động ổn định trên Google Apps Script Live Exec.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Báo cáo kết quả xử lý lỗi đơ form cho Founder Hiệp Hoang nghiệm thu.
+- Báo cáo Founder về kết quả xử lý Module Chi Nhánh kèm PROOF BLOCK kiểm thử thực tế từ trình duyệt live.
+- Chờ Founder kiểm tra và xác nhận.
 
