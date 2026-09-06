@@ -37,22 +37,22 @@
 
 ---
 
-## ✅ TRẠNG THÁI HIỆN TẠI (Version @867 Live)
-- **Tự động đóng triệt để Drawer Detail & Modal khi chuyển Module (Toàn hệ thống)**:
-  + Tích hợp hàm tập trung `Router.closeAllDrawersAndModals()` được kích hoạt ngay đầu vòng đời điều hướng `Router.navigateTo()`.
-  + Tự động thu hồi và đóng an toàn tất cả 14 nhóm Drawer, Offcanvas, Modal (AppCRUD Detail `#crud-drawer`, Form `#crud-modal`, Đơn Hàng Drilldown, Thu Chi Offcanvas, Lịch Công Việc, v.v.).
-  + Phân loại chuẩn 2 cơ chế backdrop (Fade backdrop & Hidden backdrop) bảo đảm khi người dùng mở lại drawer sau khi chuyển module không bị lỗi mất mờ hay hỏng click.
-  + Bảo toàn 100% quy tắc [🔒 FROZEN / LOCKED]: Chỉ can thiệp 1 file duy nhất `Shell_JS.html`, không chạm vào bất kỳ file module nào đã khóa.
+## ✅ TRẠNG THÁI HIỆN TẠI (Version @869 Live)
+- **Khắc phục triệt để sự cố Tê liệt (Freeze) Form Modal trên toàn bộ hệ thống**:
+  + Sửa lỗi kẹt `pointer-events-none`: Trong `openModal`, bổ sung gỡ bỏ `pointer-events-none` và cấp `pointer-events-auto` cho `#crud-modal` và backdrop, khôi phục 100% khả năng click, gõ phím, chọn dropdown và bấm nút.
+  + Nâng cấp Z-Index: Đưa `#crud-modal-backdrop` lên `z-[60]` (vượt trội hơn toàn bộ các drawer/offcanvas `z-50`), bảo đảm Form Modal luôn nằm trên cùng và không bị bất kỳ thành phần nào che lấp.
+  + Thoát hiểm thông minh: Cho phép click vùng ngoài backdrop để đóng form, đồng thời hỗ trợ phím `Escape` (ưu tiên đóng dropdown gợi ý trước, bấm lần 2 đóng modal form).
+  + Tự động đóng Drawer Detail khi chuyển module: Đã vận hành ổn định trên toàn hệ thống từ Version @867.
 - **Các Module đã khóa chỉnh sửa hoàn hảo**:
   + 🔒 Phân Hệ In Hợp Đồng
   + 🔒 Phân Hệ In Chứng Từ & Phiếu Thu Chi
   + 🔒 Module Khách Hàng
   + 🔒 Module Chi Tiết Đơn Hàng
   + 🔒 Module Dịch Vụ
-- Live Deployment: `Version 867` hoạt động ổn định trên Google Apps Script Live Exec.
+- Live Deployment: `Version 869` hoạt động ổn định trên Google Apps Script Live Exec.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Báo cáo kết quả đóng Drawer Detail tự động khi chuyển module cho Founder Hiệp Hoang nghiệm thu.
+- Báo cáo kết quả xử lý lỗi đơ form cho Founder Hiệp Hoang nghiệm thu.
 

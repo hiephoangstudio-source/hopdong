@@ -101,3 +101,10 @@
   2. Đóng cả qua JS API (`window.AppCRUD.closeDrawer()`, `window.AppCRUD.closeModal()`, các `MOD_X.closeOffcanvas()...`) và DOM Safety Net (thu hồi translate, gỡ bỏ class opened).
   3. Phân tách rõ ràng 2 cơ chế backdrop: Fade backdrop (`opacity-0 pointer-events-none`) và Hidden backdrop (`hidden opacity-0`) để khi người dùng mở lại drawer ở module mới không bị lỗi mất mờ hay hỏng click.
 
+### 16. [2026-09-06] Lỗi Kẹt `pointer-events-none` Trên Form Modal & Cấu Trúc Z-Index
+- **Vấn đề**: Khi Router thu hồi modal bằng cách gán `pointer-events-none`, nếu hàm `openModal()` không chủ động gỡ bỏ class này và cấp `pointer-events-auto`, Form Modal sẽ bị kẹt thuộc tính CSS `pointer-events: none`. Toàn bộ thao tác chuột của người dùng (click vào input, chọn dropdown, bấm nút "Hủy", "Lưu", "X" đóng form) bị trình duyệt bỏ qua xuyên thấu, dẫn đến hiện tượng form bị đơ cứng hoàn toàn và buộc phải reload trang.
+- **Giải pháp**:
+  1. Trong `openModal()`: Bắt buộc gỡ `pointer-events-none` và cấp `pointer-events-auto` cho `#crud-modal` và `#crud-modal-backdrop`.
+  2. Nâng Z-Index của `#crud-modal-backdrop` lên `z-[60]` (cao hơn tuyệt đối tất cả các drawer/offcanvas `z-50`), bảo đảm Form Modal luôn nằm trên cùng.
+  3. Bổ sung 2 chốt thoát hiểm: Cho phép click ra ngoài backdrop để đóng form và hỗ trợ phím `Escape` (ưu tiên đóng dropdown gợi ý trước, bấm lần 2 đóng modal form).
+
