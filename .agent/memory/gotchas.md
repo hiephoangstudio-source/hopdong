@@ -94,3 +94,10 @@
   2. Phân loại dịch vụ của từng Hạng mục chỉ lấy từ các bản ghi thực tế trong bảng `dich_vu` (với Hạng mục "Sản phẩm" hiện tại là `"Nâng cấp"`).
   3. Khi chuyển sang Hạng mục chưa có loại, trường Loại Dịch Vụ tự động reset về rỗng (`-- Chọn Loại Dịch Vụ --`) và dropdown không bị nhồi các option sai lệch.
 
+### 15. [2026-09-06] Thu Hồi Toàn Bộ Drawer Detail & Modal Khi Chuyển Module
+- **Vấn đề**: Thẻ Drawer Chi Tiết (`#crud-drawer`) và Modal Form (`#crud-modal`) được định nghĩa ở Shell Root (ngoài các `.mod-container`). Khi người dùng click sidebar chuyển module, `Router.navigateTo` chỉ ẩn `.mod-container` của module cũ, khiến drawer chi tiết của module trước vẫn bị kẹt giữ nguyên trên màn hình.
+- **Giải pháp**:
+  1. Tích hợp hàm dọn dẹp tập trung `Router.closeAllDrawersAndModals()` được gọi ngay đầu `Router.navigateTo()`.
+  2. Đóng cả qua JS API (`window.AppCRUD.closeDrawer()`, `window.AppCRUD.closeModal()`, các `MOD_X.closeOffcanvas()...`) và DOM Safety Net (thu hồi translate, gỡ bỏ class opened).
+  3. Phân tách rõ ràng 2 cơ chế backdrop: Fade backdrop (`opacity-0 pointer-events-none`) và Hidden backdrop (`hidden opacity-0`) để khi người dùng mở lại drawer ở module mới không bị lỗi mất mờ hay hỏng click.
+

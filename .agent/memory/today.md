@@ -37,22 +37,22 @@
 
 ---
 
-## ✅ TRẠNG THÁI HIỆN TẠI (Version @865 Live)
-- **Module Dịch Vụ (DichVu)**:
-  + Cột Trạng thái trong Form & Drawer đã map chuẩn hiển thị Tên trạng thái: `"Đang hoạt động"` / `"Dừng hoạt động"` (thay vì boolean thô `true`/`false`).
-  + Tính năng tự reset Loại Dịch Vụ *: Khi người dùng đổi Hạng Mục, ô Loại Dịch Vụ tự động reset về rỗng `-- Chọn Loại Dịch Vụ --`.
-  + Khắc phục triệt để lỗi quét nhầm vật tư xưởng in (Album, Khung...): Hệ thống đã loại bỏ hoàn toàn các nhóm xưởng in. Đối với Hạng mục "Sản phẩm", dropdown hiển thị đúng phân loại nghiệp vụ thực tế của Studio là `"Nâng cấp"` (hoặc các loại sản phẩm thực tế trong bảng dịch vụ).
-  + Tự động chuyển đổi giao diện nhập liệu: Khi Hạng mục là "Sản phẩm", ẩn các trường Lương chụp/make/photoshop chi tiết và chỉ hiển thị 1 trường "LƯƠNG PHÁT SINH". Khi Hạng mục là "Dịch vụ", tự động hiện lại đầy đủ các trường lương chi tiết và template mô tả buổi chụp.
-- **Toàn hệ thống**:
-  + Xuất Excel `.xlsx` và Xuất PDF tiếng Việt chuẩn vector trên toàn bộ các module.
-  + [🔒 LOCKED] Phân Hệ In Hợp Đồng
-  + [🔒 LOCKED] Phân Hệ In Chứng Từ & Phiếu Thu Chi
-  + [🔒 LOCKED] Module Khách Hàng
-  + [🔒 LOCKED] Module Chi Tiết Đơn Hàng
-- Live Deployment: `Version 865` hoạt động ổn định trên Google Apps Script Live Exec.
+## ✅ TRẠNG THÁI HIỆN TẠI (Version @867 Live)
+- **Tự động đóng triệt để Drawer Detail & Modal khi chuyển Module (Toàn hệ thống)**:
+  + Tích hợp hàm tập trung `Router.closeAllDrawersAndModals()` được kích hoạt ngay đầu vòng đời điều hướng `Router.navigateTo()`.
+  + Tự động thu hồi và đóng an toàn tất cả 14 nhóm Drawer, Offcanvas, Modal (AppCRUD Detail `#crud-drawer`, Form `#crud-modal`, Đơn Hàng Drilldown, Thu Chi Offcanvas, Lịch Công Việc, v.v.).
+  + Phân loại chuẩn 2 cơ chế backdrop (Fade backdrop & Hidden backdrop) bảo đảm khi người dùng mở lại drawer sau khi chuyển module không bị lỗi mất mờ hay hỏng click.
+  + Bảo toàn 100% quy tắc [🔒 FROZEN / LOCKED]: Chỉ can thiệp 1 file duy nhất `Shell_JS.html`, không chạm vào bất kỳ file module nào đã khóa.
+- **Các Module đã khóa chỉnh sửa hoàn hảo**:
+  + 🔒 Phân Hệ In Hợp Đồng
+  + 🔒 Phân Hệ In Chứng Từ & Phiếu Thu Chi
+  + 🔒 Module Khách Hàng
+  + 🔒 Module Chi Tiết Đơn Hàng
+  + 🔒 Module Dịch Vụ
+- Live Deployment: `Version 867` hoạt động ổn định trên Google Apps Script Live Exec.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Đã khóa chỉnh sửa 5 module/phân hệ hoàn hảo.
-- Sẵn sàng chuyển sang module hoặc tính năng tiếp theo theo chỉ thị của Founder Hiệp Hoang.
+- Báo cáo kết quả đóng Drawer Detail tự động khi chuyển module cho Founder Hiệp Hoang nghiệm thu.
+
