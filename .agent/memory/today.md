@@ -116,12 +116,22 @@
 - **8. Triển khai Production Live (Version @876)**:
   + Sau khi Founder xóa bớt version cũ trên Web Console, đã chạy `node deploy.js` tạo thành công **Version 876** và cập nhật Deployment chính thức `AKfycbx_Gc8Qd4ljWa_eCpRtMiJk--mjz4tREqX_qDryaZpeDhmC_uvKdqI828QLxf7PX2rhAg`.
   + Xác minh Live trên Chrome DevTools: Tên 3 module hiển thị chuẩn (`Chi Tiết Đơn`, `Nhân Viên`, `Thu Chi`), nhóm Nhân sự & Quyền chỉ còn 3 module, module Phân Quyền cũ đã biến mất hoàn toàn.
+- **9. Tinh Gọn Module Lịch Công Việc & Chuẩn Hóa Tiếng Việt Có Dấu (Version @880 Live)**:
+  + **Sửa lỗi ngầm nguy hiểm (Critical Parser Bug)**: Thay `accept="... image/*"` bằng danh sách MIME tường minh `image/png, image/jpeg, image/jpg, image/webp, image/svg+xml`, xử lý dứt điểm lỗi trình biên dịch Google Apps Script nuốt chửng 2,158 dòng code do hiểu nhầm ký tự `/*` là ghi chú chưa đóng.
+  + **Sửa cú pháp lồng khối if**: Tách biệt rõ ràng khối cấu hình thứ tự cột của `dinh_khoan` và `lich_cong_viec`.
+  + **Khóa chính đồng nhất**: Sửa triệt để `id_lich_cong_viec` thành `id_cong_viec` trong `Mod_DonHang_Server.js`, `Mod_Luong_Server.js` và bổ sung fallback an toàn trong `Mod_Luong_Logic.html`.
+  + **Chuẩn hóa 100% Tiếng Việt có dấu**: Đổi toàn bộ 22 nhãn trường dữ liệu sang Tiếng Việt có dấu chuẩn mực, trang trọng chuẩn nghiệp vụ Studio cưới & makeup.
+  + **Ẩn 9 trường kỹ thuật backend**: `lich_su_cap_nhat`, `nguoi_tao`, `ngay_tao`, `nguoi_cap_nhat`, `ngay_cap_nhat`, `id_luong`, `hang_muc`, `id_dich_vu`, `ten_dich_vu` được ẩn khỏi form nhập liệu để hệ thống tự xử lý ngầm.
+  + **Tích hợp Show_If động thông minh**: Form tự co giãn theo từng loại việc (Lịch thử đồ hiện & bắt buộc chọn chi tiết đồ thử; Lịch Photoshop ẩn giờ/địa điểm, hiện hạn trả ảnh demo; Lịch chụp/make hiện địa điểm, link nhóm Zalo và lương thợ; Lịch tư vấn và lấy/trả đồ ẩn lương thợ).
+  + **Bảng 6 Cột Đa Năng Thông Minh**: Thu gọn từ 11 cột dài sang 6 cột hiện đại không cần cuộn ngang (Công việc & Khách hàng, Thời gian & Địa điểm, Nhân sự phụ trách, Chi nhánh & Tiến độ, Tiền lương, Thao tác).
+  + **Deploy Version 880 & Verify Live**: Push 86 files và triển khai Version 880 thành công, xác minh tương tác tự động 100% bằng Playwright.
 
 ---
 
 ## 🎯 VIỆC TIẾP THEO
 - Báo cáo kết quả và trình diện Proof Block cho Founder (anh Hiệp).
-- Sẵn sàng tiếp nhận các yêu cầu hoàn thiện tiếp theo từ Founder.
+- Mời Founder nghiệm thu module Lịch Công Việc trên Production Live.
+- Sẵn sàng đưa Lịch Công Việc vào danh sách đóng băng `[🔒 FROZEN / LOCKED]` khi Founder duyệt OK.
 
 
 
