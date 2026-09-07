@@ -98,11 +98,15 @@
   + Kiểm chứng: Sidebar menu chỉ còn Khách Hàng; Nút Thêm Khách Hàng vẫn có; Cột Thao tác TRẮNG TINH, KHÔNG CÓ CÂY BÚT (SỬA) VÀ KHÔNG CÓ THÙNG RÁC (XÓA).
   + Đối chứng: Cấp lại toàn quyền Admin thì cây bút và thùng rác xuất hiện đầy đủ trở lại.
 
+- **8. Triển khai Production Live (Version @876)**:
+  + Sau khi Founder xóa bớt version cũ trên Web Console, đã chạy `node deploy.js` tạo thành công **Version 876** và cập nhật Deployment chính thức `AKfycbx_Gc8Qd4ljWa_eCpRtMiJk--mjz4tREqX_qDryaZpeDhmC_uvKdqI828QLxf7PX2rhAg`.
+  + Xác minh Live trên Chrome DevTools: Tên 3 module hiển thị chuẩn (`Chi Tiết Đơn`, `Nhân Viên`, `Thu Chi`), nhóm Nhân sự & Quyền chỉ còn 3 module, module Phân Quyền cũ đã biến mất hoàn toàn.
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Hướng dẫn Founder vào Google Apps Script Web Console xóa bớt 5-10 version cũ (Project History) do script chạm giới hạn tối đa 200 version, sau đó chạy `node deploy.js` để deploy lên link production chính thức.
-- Chờ Founder kiểm tra và nghiệm thu.
+- Báo cáo kết quả và trình diện Proof Block cho Founder (anh Hiệp).
+- Sẵn sàng tiếp nhận các yêu cầu hoàn thiện tiếp theo từ Founder.
 
 
 
