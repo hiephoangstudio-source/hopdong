@@ -1,4 +1,4 @@
-# TIẾN ĐỘ DỰ ÁN (06/09/2026)
+# TIẾN ĐỘ DỰ ÁN (07/09/2026)
 
 ## 🔒 [FROZEN / LOCKED] CÁC MODULE ĐÃ ĐƯỢC FOUNDER DUYỆT HOÀN HẢO - BẤT KHẢ XÂM PHẠM
 > 🔴 **NGHIÊM CẤM CHỈNH SỬA / REFACTOR / CAN THIỆP DƯỚI MỌI HÌNH THỨC VÀO CÁC FILE THUỘC DANH SÁCH NÀY:**
@@ -41,6 +41,21 @@
    - Drawer xem chi tiết và Form chỉnh sửa/thêm mới hoạt động mượt mà, không bị kẹt hay đơ giao diện.
    - Hiển thị Logo thương hiệu theo chuẩn đồ họa Checkerboard (ô bàn cờ caro 12px) kết hợp viền bóng 360 độ và hào quang Rim-Light, hiển thị sắc nét 100% mọi ảnh tách nền PNG (chữ trắng hoặc chữ đen) trên cả Light Mode và Dark Mode.
    - Xuất Excel `.xlsx` chuẩn tách cột, có cột STT.
+
+7. [🔒 FROZEN / LOCKED] **Module Nhân Viên (NhanVien)**:
+   - Các file: `Mod_NhanVien_Logic.html`, `Mod_NhanVien_View.html`, `Mod_NhanVien_Server.js`.
+   - Đã hoàn thiện: Form 3 Tab (Thông tin cơ bản, Tài khoản ngân hàng, Phân bổ đa chi nhánh tích hợp Ma Trận Phân Quyền 12 phân hệ).
+   - Tối ưu nút Lưu tức thì (spinner + disabled, batch write in-memory 0.2s), không còn bị khựng.
+8. [🔒 FROZEN / LOCKED] **Module Phân Bổ Nhân Sự (PhanBoNV / phan_bo_nv)**:
+   - Đã hoàn thiện: Form độc lập đồng bộ 100% với Tab Phân Bổ bên Nhân Viên.
+   - Combobox tìm chọn Nhân viên tự động điền họ tên, khóa mã NV & Chi nhánh khi chỉnh sửa để bảo toàn khóa ngoại `id_phan_bo`.
+   - Tích hợp Ma Trận Phân Quyền 12 Phân Hệ trực quan (Xem/Thêm/Sửa/Xóa với 3 nút chọn nhanh 1-chạm).
+9. [🔒 FROZEN / LOCKED] **Module Thu Chi (ThuChi)**:
+   - Các file: `Mod_ThuChi_Logic.html`, `Mod_ThuChi_View.html`, `Mod_ThuChi_Server.js`.
+   - Đã hoàn thiện: Quản lý phiếu thu/chi, tự động sinh mã, phân loại dòng tiền, liên kết tài khoản định khoản nợ/có và kết nối chuẩn mực với Bộ Máy In Phiếu Thu Chi 2 liên A4.
+10. [🔒 FROZEN / LOCKED] **Module Định Khoản Kế Toán (DinhKhoan)**:
+    - Các file: `Mod_DinhKhoan_Logic.html`, `Mod_DinhKhoan_View.html`, `Mod_DinhKhoan_Server.js`.
+    - Đã hoàn thiện: Hệ thống danh mục tài khoản kế toán, tài khoản tiền mặt, ngân hàng (STK), cấp bậc tài khoản cha-con và ánh xạ tên định khoản cho toàn bộ giao dịch.
 
 ---
 
