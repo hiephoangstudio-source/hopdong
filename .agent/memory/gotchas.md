@@ -107,4 +107,14 @@
   1. Trong `openModal()`: Bắt buộc gỡ `pointer-events-none` và cấp `pointer-events-auto` cho `#crud-modal` và `#crud-modal-backdrop`.
   2. Nâng Z-Index của `#crud-modal-backdrop` lên `z-[60]` (cao hơn tuyệt đối tất cả các drawer/offcanvas `z-50`), bảo đảm Form Modal luôn nằm trên cùng.
   3. Bổ sung 2 chốt thoát hiểm: Cho phép click ra ngoài backdrop để đóng form và hỗ trợ phím `Escape` (ưu tiên đóng dropdown gợi ý trước, bấm lần 2 đóng modal form).
+### 17. [2026-09-07] Hiểu Nhầm Comment Đa Dòng `/*` Trên Google Apps Script HtmlService (`image/*` bug)
+- **Vấn đề**: Khi viết thẻ HTML file upload `<input type="file" accept="image/png, image/*">` bên trong các file template HTML được ghép bởi `<?!= include(...) ?>` hoặc nằm trong file script, trình biên dịch HtmlService/Caja của Google Apps Script hiểu nhầm chuỗi ký tự `/*` là mở đầu một khối comment code đa dòng chưa đóng (`/* ... */`). Do không tìm thấy thẻ đóng `*/`, Apps Script đã nuốt chửng toàn bộ hàng nghìn dòng code phía sau và nuốt luôn cả thẻ đóng `</script>`, dẫn đến lỗi runtime `renderFormFields is not defined` và modal form bị đơ ở trạng thái "Đang tải...".
+- **Giải pháp**: Tuyệt đối không dùng ký tự `/*` (kể cả trong chuỗi MIME type `image/*`) trong bất kỳ file template HTML hoặc script nào trên Google Apps Script. Luôn liệt kê MIME type tường minh: `accept="image/png, image/jpeg, image/jpg, image/webp, image/svg+xml"`.
 
+### 18. [2026-09-07] Batch Write In-Memory Cho Bảng Con Thay Thế Vòng Lặp `deleteRow`/`appendRow`
+- **Vấn đề**: Khi lưu một form cha (như `nhan_vien`) có cập nhật các bảng con (như `phan_bo_nv`, `tai_khoan`), nếu code dùng vòng lặp gọi API Google Sheet nhiều lần (`sheet.deleteRow()` và `sheet.appendRow()`), mỗi lần gọi tốn 1-1.5s làm cả quá trình lưu bị khựng 4-5 giây.
+- **Giải pháp**: Áp dụng thuật toán Batch Write in-memory: Đọc toàn bộ 2D array của sheet vào RAM, lọc bỏ các dòng cũ của nhân viên đó, bổ sung các dòng mới vào mảng trong bộ nhớ, sau đó chỉ gọi `sheet.getRange(...).setValues(...)` ghi đè 1 lần duy nhất và dọn các dòng thừa ở đáy bằng `deleteRows()` 1 lần. Tốc độ lưu tăng gấp 20 lần (từ 5s xuống 0.2s).
+
+### 19. [2026-09-07] Giới Hạn Tối Đa 200 Versions Của Google Apps Script Project History
+- **Vấn đề**: Google Apps Script có hạn ngạch tối đa 200 version được lưu trong lịch sử dự án. Khi đạt mốc 200 version, lệnh `clasp version` sẽ báo lỗi không thể tạo thêm version mới và deploy thất bại.
+- **Giải pháp**: Định kỳ truy cập Google Apps Script Web Console (`script.google.com`) -> Vào mục "Project History" (Lịch sử dự án) và xóa bớt 10-20 version cũ không còn dùng để giải phóng hạn ngạch trước khi chạy lệnh deploy bản mới.

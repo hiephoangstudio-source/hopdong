@@ -1,8 +1,9 @@
-﻿# BÀN GIAO TIẾN ĐỘ & TRẠNG THÁI HỆ THỐNG (SESSION STATE)
+# BÀN GIAO TIẾN ĐỘ & TRẠNG THÁI HỆ THỐNG (SESSION STATE)
 
-> **Thời gian cập nhật:** 21:38 ngày 03/09/2026  
-> **Phiên bản hiện tại:** Version @770 (Live trên Google Apps Script)  
-> **Trạng thái:** ĐÃ HOÀN TẤT 100% VÀ ĐƯỢC FOUNDER DUYỆT OK: Phân hệ In Hợp Đồng Dịch Vụ (5 Mẫu, 2 Trang A4 vừa khít, Căn giữa dọc cả 3 bản Preview/In/Tải PDF, Chống cắt đỉnh và chạm đáy, Co giãn động). ĐÃ KÍCH HOẠT KHÓA BẢO VỆ [🔒 FROZEN / LOCKED].
+> **Thời gian cập nhật:** 22:30 ngày 07/09/2026  
+> **Phiên bản hiện tại:** Version @880 (Live trên Google Apps Script)  
+> **Trạng thái:** ĐÃ KHÓA ĐÓNG BĂNG 10 MODULE [🔒 FROZEN / LOCKED]: In Hợp Đồng, In Chứng Từ & Thu Chi, Khách Hàng (CRM), Chi Tiết Đơn, Dịch Vụ & Bảng Giá, Chi Nhánh, Nhân Viên, Phân Bổ Nhân Sự, Thu Chi, Định Khoản Kế Toán.  
+> **Module mới hoàn thiện:** Lịch Công Việc (`lich_cong_viec`) — Chuẩn hóa 100% Tiếng Việt có dấu, tích hợp Show_If động 5 loại việc và thu gọn 6 Cột Thông Minh.
 
 ---
 
@@ -15,23 +16,34 @@
 
 ---
 
-## 2. VIỆC ĐÃ HOÀN THÀNH TRONG CA LÀM VIỆC NÀY
-1. ✅ **[🔒 FROZEN / LOCKED] Module In Phiếu Thu Chi**: In 2 liên A4 chuẩn Kế toán, VietQR động.
-2. ✅ **[🔒 FROZEN / LOCKED] Module In Biểu Mẫu Chứng Từ (3 Mẫu Chuẩn 100% Repo formchungtu)**: Giao nhận váy, Hóa đơn bán hàng, Biên bản xác nhận.
-3. ✅ **[🔒 FROZEN / LOCKED] Phân Hệ In Hợp Đồng Dịch Vụ (5 Mẫu Chuẩn 100% Repo hopdong - Version @770 Live)**:
-   - **Đồng bộ căn giữa dọc (Vertical Middle)**:
-     + Khung thông tin (Bên A, Bên B, Ngày/Giờ/Địa điểm chụp), Bảng chi tiết dịch vụ và Bảng thanh toán đều căn giữa dọc cân đối.
-   - **Hoàn thiện bản Tải PDF 1-Click (downloadPdf)**:
-     + Khắc phục triệt để lỗi xung đột Specificity và Font Baseline: ép Inline Style `padding-top: 5px !important; padding-bottom: 9px !important; vertical-align: middle !important;` trên toàn bộ thẻ `td` và `th` trong DOM ảo.
-     + Chèn đệm đáy vật lý 8px tự động cho mọi ô có nội dung.
-     + Kết quả đo pixel thực tế: Chữ không bị cắt đỉnh, dòng cuối cách đường kẻ đáy viền ô >25-31px.
-     + Đảm bảo 100% co giãn linh hoạt theo độ dài thực tế của từng gói chụp.
-   - **Bảo vệ độc lập**: Bản In Phiếu (`printNow`) và Bản Xem Trước (Preview) giữ nguyên 100% hoạt động hoàn hảo.
-4. ✅ **Deploy Production Version @770**:
-   - Push và deploy thành công 88 files lên Google Apps Script Production, 0 lỗi cú pháp, đã verify trực quan qua Chrome DevTools MCP và trích xuất PDF đo đạc pixel.
+## 2. VIỆC ĐÃ HOÀN THÀNH TRONG CA LÀM VIỆC NÀY (07/09/2026)
+1. ✅ **Khắc phục triệt để lỗi khựng 4-5s khi bấm Lưu**:
+   - Chuyển Z-Index `#loader-overlay` lên `z-[99999]`.
+   - UI Feedback tức thì cho nút `#btn-submit-record` (spinner + disabled).
+   - Tối ưu thuật toán Server Batch Write in-memory ghi đè 1 lần duy nhất cho `phan_bo_nv` và `tai_khoan` (tăng tốc từ 5s xuống 0.2s).
+2. ✅ **Bổ sung Ma Trận Phân Quyền 12 Phân Hệ**:
+   - Tích hợp vào Tab Phân Bổ của Form Nhân Viên và Form Phân Bổ độc lập (4 quyền Xem/Thêm/Sửa/Xóa, 3 nút bấm 1-chạm).
+   - Xây dựng bộ máy thực thi phân quyền 4 tầng (Server Auth, Client Sidebar ẩn menu, UI Action Buttons ẩn cây bút/thùng rác, Server Mod_CRUD chặn lệnh).
+3. ✅ **Đổi tên 3 module & Gỡ bỏ module Phân Quyền cũ**:
+   - Đổi tên hiển thị: `Chi Tiết Đơn`, `Nhân Viên`, `Thu Chi`.
+   - Gỡ bỏ hoàn toàn module Phân Quyền cũ khỏi menu và codebase.
+4. ✅ **Khóa bảo vệ 4 module mới**:
+   - Founder đã nghiệm thu và đưa vào danh sách `[🔒 FROZEN / LOCKED]`: `Nhân Viên`, `Phân Bổ Nhân Sự`, `Thu Chi`, `Định Khoản Kế Toán`.
+5. ✅ **Tinh gọn Module Lịch Công Việc & Chuẩn hóa Tiếng Việt có dấu**:
+   - Sửa 2 lỗi lệch tên cột khóa chính ngầm `id_cong_viec`.
+   - Chuẩn hóa 100% nhãn 22 trường dữ liệu sang Tiếng Việt có dấu chuẩn mực.
+   - Ẩn 9 trường kỹ thuật backend khỏi form nhập liệu.
+   - Thiết lập Show_If động thông minh theo từng loại việc (Lịch thử đồ, Photoshop, Chụp, Make, Tư vấn, Lấy/Trả đồ).
+   - Gom gọn bảng từ 11 cột xuống 6 Cột Đa Năng Thông Minh (không còn cuộn ngang).
+   - Xử lý triệt để parser bug `image/*` của Google Apps Script.
+6. ✅ **Deploy Production Live Version @880**:
+   - Deploy thành công lên link chính thức, kiểm thử tự động toàn diện qua Playwright headless và Chrome DevTools MCP.
 
 ---
 
 ## 3. SESSION TẠM DỪNG & VIỆC CẦN LÀM TIẾP THEO TRONG CA SAU
-1. 🔒 **Module In Biểu Mẫu Chứng Từ (Form 1, 2, 3)**: Đã được cấu trúc lại sử dụng hoàn toàn CSS Grid (version 2.17.1). Đã fix triệt để lỗi Chrome Print Engine bỏ qua flex-grow. Layout in chuẩn xác 100%: chữ ký bám đáy, bảng giãn đều không hở trắng, không đè chữ ở chế độ Preview.
-2. 🚀 Cần theo dõi thêm phản hồi của Founder về 3 biểu mẫu này. Sẵn sàng nhận lệnh triển khai module tiếp theo.
+1. 🎯 Chờ Founder kiểm tra trải nghiệm trực tiếp module **Lịch Công Việc** trên bản live Version @880 và chốt đóng băng `[🔒 FROZEN / LOCKED]`.
+2. 🚀 Tiếp tục rà soát hoặc triển khai các module tiếp theo theo chỉ đạo của Founder:
+   - Module **Quản Lý Lương** (`luong`).
+   - Module **Báo Cáo & Thống Kê / Marketing**.
+
