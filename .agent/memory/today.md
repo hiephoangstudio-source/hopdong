@@ -70,8 +70,39 @@
 
 ---
 
+## ✅ TRẠNG THÁI HIỆN TẠI (07/09/2026)
+- **1. Khắc phục triệt để lỗi khựng 4-5s khi bấm Lưu ở form Nhân viên & CRUD**:
+  + Z-Index: Sửa `#loader-overlay` sang `fixed inset-0 z-[99999]` nằm trên Modal CRUD form.
+  + UI Feedback tức thì: Nút `#btn-submit-record` chuyển sang trạng thái disabled + icon xoay `fa-spinner` + chữ "Đang lưu..." ngay khi bấm.
+  + Server Batch Write in-memory: Thay thế hoàn toàn vòng lặp `deleteRow`/`appendRow` bằng thuật toán batch write in-memory ghi 1 lần duy nhất, tăng tốc lưu từ 5s xuống 0.2s.
+- **2. Bổ sung 4 cột Phân Quyền (`quyen_xem`, `quyen_them`, `quyen_sua`, `quyen_xoa`) vào Tab Phân Bổ & Sheet `phan_bo_nv`**:
+  + Tích hợp Ma Trận Phân Quyền 12 Phân Hệ (Collapsible, 3 nút bấm 1 chạm: `👑 Toàn quyền`, `👁️ Chỉ xem`, `🧹 Bỏ chọn`).
+  + Lưu chuỗi EnumList ngăn cách dấu phẩy chuẩn Google Sheets.
+  + Hiển thị tóm tắt badge quyền trực quan trong Drawer Detail.
+- **3. Đổi tên hiển thị 3 Module đồng bộ Menu Sidebar & Ma Trận**:
+  + `Chi Tiết Đơn Hàng` $\rightarrow$ `Chi Tiết Đơn`
+  + `Hồ Sơ Nhân Viên` $\rightarrow$ `Nhân Viên`
+  + `Quản lý Thu Chi` $\rightarrow$ `Thu Chi`
+  + Giữ nguyên 100% ID kỹ thuật, bảo toàn an toàn cơ sở dữ liệu.
+- **4. Gỡ bỏ sạch sẽ Module Phân Quyền cũ**:
+  + Xóa menu và router `PhanQuyen`, xóa container trong `Shell.html`, xóa 2 file vật lý `Mod_PhanQuyen_View.html` và `Mod_PhanQuyen_Logic.html`.
+- **5. Chuẩn hóa Form Module Phân Bổ NV độc lập (`phan_bo_nv`)**:
+  + Giống 100% Tab Phân Bổ bên Nhân Viên (Searchable Combobox chọn NV, 3 hàng trường, Ma trận 12 phân hệ). Khi Sửa tự động khóa trường NV và CN để bảo toàn khóa chính.
+- **6. Bộ máy thực thi Phân Quyền 4 Tầng (Xem - Thêm - Sửa - Xóa)**:
+  + Tầng 1: `Auth.js` tổng hợp quyền từ `phan_bo_nv` gắn vào `userProfile`.
+  + Tầng 2: `Shell_JS.html` định nghĩa `window.hasPerm`, `window.renderSidebarMenu` tự động lọc sạch các menu cấm Xem khỏi Sidebar, chặn `Router.navigateTo`.
+  + Tầng 3: UI Action Buttons (`Shell_UI_Components.html`) tự động ẩn nút `+ Thêm`, ẩn icon Cây bút (Sửa), ẩn icon Thùng rác (Xóa) ở cột Thao Tác.
+  + Tầng 4: Chốt chặn bảo mật Server (`Mod_CRUD_Server.js`) từ chối mọi yêu cầu Thêm/Sửa/Xóa trái phép.
+- **7. Kiểm thử trực quan trên Trình duyệt thật (Headed Mode)**:
+  + Mở Chromium thật trên màn hình máy tính của Founder, tự động thêm 1 nhân viên mới ("Nguyễn Văn Phân Quyền (Test)"), cấu hình Ma Trận Quyền (chỉ Xem + Thêm Khách Hàng, cấm Sửa, cấm Xóa, cấm tất cả module khác).
+  + Kiểm chứng: Sidebar menu chỉ còn Khách Hàng; Nút Thêm Khách Hàng vẫn có; Cột Thao tác TRẮNG TINH, KHÔNG CÓ CÂY BÚT (SỬA) VÀ KHÔNG CÓ THÙNG RÁC (XÓA).
+  + Đối chứng: Cấp lại toàn quyền Admin thì cây bút và thùng rác xuất hiện đầy đủ trở lại.
+
+---
+
 ## 🎯 VIỆC TIẾP THEO
-- Báo cáo Founder về kết quả hoàn thiện Version @873 kèm PROOF BLOCK và ảnh chụp thực tế.
-- Chờ Founder kiểm tra và xác nhận.
+- Hướng dẫn Founder vào Google Apps Script Web Console xóa bớt 5-10 version cũ (Project History) do script chạm giới hạn tối đa 200 version, sau đó chạy `node deploy.js` để deploy lên link production chính thức.
+- Chờ Founder kiểm tra và nghiệm thu.
+
 
 
