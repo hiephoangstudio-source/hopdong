@@ -124,3 +124,20 @@
 - **Bài học & Căn cứ thật**: 
   1. Trong bảng `quy_trinh` thật trên Google Sheets: Nhóm Ngành ảnh hoàn thành là mã `NA03` ("Đã hoàn thành"), Photoshop hoàn thành là `PTS03` ("Hoàn tất hậu kỳ"), Lịch tư vấn là `LV02`. Mã `HT01` là hoàn toàn bịa/đoán mò.
   2. Bất kỳ logic nào liên quan đến mã trạng thái, khóa ngoại hay quy tắc nghiệp vụ BẮT BUỘC phải đối soát trực tiếp từ bảng thật (Google Sheets, schema hoặc ảnh chụp AppSheet thật). Nếu không có bằng chứng rõ ràng, tuyệt đối không được phép đưa ra kết luận hay viết code giả định.
+
+### 21. [2026-09-08] Khóa Chặn Trùng Lặp Công Việc Bằng Loại Việc Cấp Cao (Idempotency Guard)
+- **Vấn đề**: Khi mở Form Đơn Hàng (`Mod_DonHang_Form.html`), hàm `syncJobsWithAutomations` dựa vào key chuỗi `detailIdentifier` để nhận diện lịch. Khi đơn hàng nạp từ database lên, các lịch cũ có thể thiếu `id_don_hang_ct` hoặc chuỗi tên dịch vụ chưa map khớp, dẫn đến hàm tưởng là chưa có và tiếp tục sinh thêm 3 dòng Chụp, Make, Photoshop đẩy tổng số lịch lên 7 dòng.
+- **Giải pháp**: Trang bị bộ cờ phân loại cấp cao `hasTuVan`, `hasChup`, `hasMake`, `hasPhotoshop` quét qua toàn bộ các lịch đã có trong đơn hàng. Khi đơn hàng đã có lịch thuộc loại nào từ trước, khóa cứng cờ và tuyệt đối không tạo thêm dòng mới thuộc cùng loại.
+
+### 22. [2026-09-08] Đồng Bộ Selector Drawer Khi Bắt Sự Kiện Accordion Toggle
+- **Vấn đề**: Nút xổ xuống (mũi tên accordion) trên toàn bộ các tab của Drawer Đơn Hàng (Dịch vụ con, Lịch sử thu chi, Lịch công việc) bị liệt hoàn toàn khi click.
+- **Root Cause**: Sự kiện click được ủy quyền (event delegation) gắn nhầm selector `#offcanvas .accordion-header` trong khi ID thực tế của phần tử Drawer trong HTML là `#mod-donhang-offcanvas`.
+- **Giải pháp**: Sửa selector thành `#mod-donhang-offcanvas .accordion-header`, khôi phục 100% khả năng đóng/mở chi tiết mượt mà cho tất cả các tab.
+
+### 23. [2026-09-08] Relational ID Protocol: Tuyệt Đối Không Hiển Thị ID Thô Trên Mọi Bảng & Drawer
+- **Vấn đề**: Module Lịch Công Việc và Drawer Đơn Hàng nhiều lần để lộ mã thô (`LV01`, `NA03`, `NV001`, `HC`, `SG`) gây khó hiểu cho người dùng.
+- **Giải pháp**: 
+  - Tạo hàm toàn cục `window.getStaffName(staffId)` tra cứu từ cache nhân sự `nhan_vien` để giải mã `NV001` sang `NV001 - Hoàng Đình Hiệp`.
+  - Cưỡng chế 100% cột trạng thái và chi nhánh đi qua `window.getTenTrangThai()` và `window.getBranchName()`.
+  - Quy chuẩn: Database lưu ID, Frontend/Drawer/Form 100% giải mã hiển thị Tên/Nhãn đầy đủ.
+

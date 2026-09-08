@@ -267,5 +267,29 @@
 
 ---
 
+## ✅ TRẠNG THÁI HIỆN TẠI (08/09/2026 - Tối): HOÀN THÀNH TOÀN DIỆN 5 ĐIỂM SỬA CHỮA ĐƠN HÀNG VÀ LỊCH CÔNG VIỆC (DEPLOY VERSION @900 LIVE)
+- **1. Khóa Chặn Tuyệt Đối Lỗi Sinh Trùng 7 Công Việc Trong Form Đơn Hàng (`Mod_DonHang_Form.html`)**:
+  * Phát hiện root cause: Logic `syncJobsWithAutomations` trước đây chỉ so khớp key chuỗi với `id_don_hang_ct` mà chưa nhận diện được các công việc đã nạp từ Database lên. Khi so sánh không khớp key, hệ thống tưởng là chưa có và tiếp tục tạo thêm 3 dòng mới.
+  * Bổ sung bộ cờ nhận diện cấp cao (`hasTuVan`, `hasChup`, `hasMake`, `hasPhotoshop`). Khi đơn hàng đã có lịch thuộc loại nào thì khóa cứng, tuyệt đối không sinh thêm dòng mới cùng loại.
+  * Kết quả xác minh thực tế: Form Đơn hàng hiển thị chuẩn xác đúng 4 công việc sạch sẽ, không trùng lặp.
+- **2. Mở Khóa Nút Accordion Toggle & Giải Mã Trạng Thái Tiếng Việt Trên Drawer Đơn Hàng (`Mod_DonHang_Logic.html`)**:
+  * Phát hiện root cause: Selector sự kiện click trỏ sai `#offcanvas .accordion-header` thay vì `#mod-donhang-offcanvas .accordion-header`.
+  * Sửa lại selector click handler, hỗ trợ mở/đóng chi tiết mượt mà trên cả 3 Tab: Tab 2 (Dịch vụ), Tab 3 (Thu chi) và Tab 4 (Lịch công việc).
+  * Cưỡng chế 100% badge trạng thái tại Drawer Tab 4 đi qua `getStatusBadge` và `window.getTenTrangThai`, giải mã mã ID (`LV01`, `NA03`, `NA01`) sang nhãn tiếng Việt ("01. Công việc mới", "03. Đã hoàn thành").
+- **3. Chuẩn Hóa Tên Nhân Viên & Khắc Phục Bảng Trống Trong Drawer Drilldown Nhân Viên (`Mod_LichCongViec_Logic.html`, `Shell_JS.html`)**:
+  * Thêm hàm toàn cục `window.getStaffName(staffId)` tra cứu động từ cache nhân sự, giải mã mã ID (`NV001`) sang Tên đầy đủ (`NV001 - Hoàng Đình Hiệp`), không in mã raw trên bảng thống kê.
+  * Sửa bộ lọc trong Drawer Drilldown Nhân viên để so khớp cả theo ID lẫn Tên nhân sự, bổ sung fallback nạp data đảm bảo bảng không bao giờ bị trống khi bên ngoài có số liệu thống kê.
+- **4. Tách Riêng Hai Cột "Chi Nhánh" Và "Tiến Độ" & Sửa Map Nhân Sự Phụ Trách (`Mod_LichCongViec_View.html`, `Mod_LichCongViec_Logic.html`)**:
+  * Cột 3 "Nhân sự phụ trách": Ánh xạ đúng tên nhân viên hoặc badge "Chưa phân công", không map nhầm sang "Chưa chia việc".
+  * Tách độc lập 2 cột `<th>Chi Nhánh</th>` và `<th>Tiến Độ</th>` trên cả Bảng chính và Bảng Drilldown: Chi nhánh hiển thị Badge mã + Tên đầy đủ; Tiến độ hiển thị Status Badge chuẩn.
+  * Chuẩn hóa nút Thao tác Sửa/Xóa: Viền sắc nét, tương phản cao, đúng chuẩn Han's Studio Design System.
+- **5. Triển Khai Production & Kiểm Thử E2E Live Trọn Vẹn (Version @900)**:
+  * Cú pháp 86 files JS/HTML hợp lệ 100%.
+  * Deploy thành công **Version @900** lên GAS Production (`AKfycbx_Gc8Qd4ljWa_eCpRtMiJk--mjz4tREqX_qDryaZpeDhmC_uvKdqI828QLxf7PX2rhAg`).
+  * Kiểm thử Playwright trên trình duyệt thật xác nhận thành công tất cả các điểm và lưu 6 ảnh chứng cứ thực tế.
+
+---
+
 ## 🎯 VIỆC TIẾP THEO
 - Hệ thống đã ở trạng thái ổn định và sẵn sàng cho các kế hoạch phát triển tiếp theo của Founder Hiệp.
+
