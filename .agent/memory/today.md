@@ -156,9 +156,43 @@
   + **Đồng bộ hiển thị (Mod_LichCongViec_Logic.html)**: Bổ sung nhận diện `NA03` và `PTS03` vào thống kê nhân viên, badge xanh lá cây và bộ lọc tab "Đã hoàn thành".
   + **Deploy Production Version @884 & Live Verification**: Kiểm thử tự động Live qua Playwright cả 2 kịch bản (Tuần tự và Nhảy cóc thẳng HD06) đạt tỉ lệ thành công 100%, dọn dẹp sạch sẽ dữ liệu test.
 
+- **12. [GHI NHỚ CHIẾN LƯỢC] ĐÚC KẾT TINH HOA 4 NỀN TẢNG EDTECH ĐƯA VÀO DỰ ÁN ENGLISHOIDS (ANH HIỆP)**:
+  + **1. Kế thừa từ Apollo English (Bảng Chữ Cái & Ngữ Âm Phonics Khởi Động)**:
+    * Dạy ÂM trước CHỮ (Sounds Before Letter Names): Nhấn vào chữ A phát âm vị tự nhiên `/æ/` trước, sau đó mới đến tên chữ cái và từ vựng `Apple`.
+    * Alpha-mime (Vận động thể chất TPR): Gợi ý động tác hình thể đi kèm âm thanh (ví dụ chữ S uốn tay như chú rắn /s-s-s/, chữ B làm động tác đập bóng /b/).
+    * Bật âm theo nhịp điệu (Chant & Rhythm): Ứng dụng kỹ thuật "Cả lớp cùng âm" với tiết tấu 4 nhịp vui tươi giúp trẻ hào hứng mở miệng phát âm không sợ sai.
+  + **2. Kế thừa từ Kyna English (3 Trụ Cột Đào Tạo & Khung Bài Học Chuẩn Sư Phạm)**:
+    * Trụ cột 1: Bám sát 100% Sách Giáo Khoa Global Success của Bộ GD&ĐT (Vũ khí tạo chuyển đổi thương mại P0 cho phụ huynh Việt Nam).
+    * Trụ cột 2: Chuẩn bị sẵn Adapter cắm-rút cho chương trình Cambridge YLE (Starters, Movers, Flyers).
+    * Trụ cột 3: Chu trình Micro-learning 10-15 phút: Flashcard từ vựng $\rightarrow$ Mẫu câu $\rightarrow$ Luyện âm $\rightarrow$ Bài tập $\rightarrow$ Giao tiếp AI.
+    * Động lực Gamification: Tích sao đổi quà thật kích thích học tập.
+  + **3. Kế thừa từ Learna AI (Phòng Luyện Giao Tiếp Với Bạn Robot Pip AI Persona)**:
+    * Bệ đỡ thị giác (Visual Scaffolding): Cung cấp 3 nút gợi ý câu trả lời 1 chạm (1-tap response) để trẻ nhỏ không bị lúng túng.
+    * Sửa lỗi song hành (Side-by-side correction): Hiển thị câu bé vừa nói, câu chuẩn tự nhiên và lời khuyên của bạn Pip.
+  + **4. Kế thừa từ TOMIA (Nâng Cấp Đột Phá "Góc Phụ Huynh" - Home Support Guidance)**:
+    * Thẻ hướng dẫn hành động 2 phút tại nhà: Bố mẹ không cần giỏi tiếng Anh vẫn đồng hành cùng con được qua nút bấm loa phát câu hỏi mẫu.
+    * Thang đo tiến trình 3 cấp độ thực chất: 🟡 Làm quen $\rightarrow$ 🔵 Đang rèn luyện $\rightarrow$ 🟢 Thành thạo.
+
+- **13. [NGHIÊN CỨU MỚI] WEBAPP QUẢN LÝ LỚP HỌC V2.0 (GSHEETS.VN & GOOGLE APPS SCRIPT)**:
+  + **Nguồn tài liệu**: 
+    * Webapp Quản Lý Lớp Học v2.0: `https://gsheets.vn/template/webapp-quan-ly-lop-hoc-v2-0/`
+    * Google Apps Script Editor: `https://script.google.com/u/0/home/projects/1-m9obv2e4XEf0fXrNo-OmZuR7d8ikJH0v6RZiAxq9lrIK405BCWFINzX/edit`
+  + **Kiến trúc & 18 Tính năng cốt lõi**:
+    * Quản trị Học sinh, Lớp học, Khối học, Sĩ số, Thời khóa biểu Giáo viên & Phòng học.
+    * Điểm danh nhanh, theo dõi tỷ lệ chuyên cần, lịch sử vắng có phép.
+    * Đánh giá nhận xét hàng ngày, quản lý BTVN, kỷ luật, xếp loại học tập tự động.
+    * Bảng điểm kiểm tra định kỳ chi tiết & tổng hợp theo khối.
+    * Tự động tính học phí theo số buổi thực tế từng tháng, quản lý hóa đơn, giảm giá, thanh toán nhiều đợt.
+    * In ấn chuẩn A4: Báo cáo học tập gửi phụ huynh, phiếu thu tiền, hóa đơn học phí.
+    * Quản lý thu chi khác, thống kê Doanh thu - Chi phí - Lợi nhuận.
+    * Phân quyền 4 vai trò: Admin, Kế toán, Giáo viên, Trợ giảng.
+    * Lưu trữ đồng bộ 100% trên Google Sheets, xuất Excel.
+  + **Phân tích vấn đề Mã Hóa Script (Obfuscation)**:
+    * Script bị mã hóa bằng Javascript Obfuscator (biến `_0x...`, chuỗi Hex/Base64) nhằm bảo vệ bản quyền thương mại của gsheets.vn.
+    * Giải pháp: Ta hoàn toàn có thể tái hiện và nâng cấp toàn bộ kiến trúc trên thành mã nguồn sạch (Clean Code), an toàn, chuẩn REST API / GAS Serverless mà không bị phụ thuộc vào mã rác của bên thứ 3.
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Báo cáo kết quả và trình diện Proof Block cho Founder (anh Hiệp).
-- Mời Founder nghiệm thu toàn bộ tính năng tự động hóa Cumulative Backfill trên Production Live Version @884.
-- Sẵn sàng đưa Module Lịch Công Việc và Đơn Hàng vào danh sách đóng băng `[🔒 FROZEN / LOCKED]` khi Founder duyệt OK.
+- Báo cáo phân tích chuyên sâu về mô hình Webapp Quản lý lớp học v2.0 cho anh Hiệp.
+- Phân tích cơ chế giải mã / bóc tách kiến trúc Google Apps Script và đề xuất phương án kết nối giữa Web App Học Tập (EnglishKids) và Dashboard Quản Lý Lớp Học (School Admin Portal).
