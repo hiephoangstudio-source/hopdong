@@ -1,4 +1,10 @@
-# TIẾN ĐỘ DỰ ÁN (07/09/2026)
+# TIẾN ĐỘ DỰ ÁN (08/09/2026)
+
+## 🛑 KỶ LUẬT TỐI THƯỢNG TỪ FOUNDER HIỆP (KHẮC GHI VÀO NÃO)
+> 🔴 **"TUYỆT ĐỐI KHÔNG ĐƯỢC LÀM GÌ KHI KHÔNG CÓ CĂN CỨ, TÀI LIỆU RÕ RÀNG."**
+> - Nghiêm cấm phán bừa, suy đoán mò mã trạng thái hay quy tắc hệ thống (Ví dụ: phán bừa mã `HT01` mà không tra bảng `quy_trinh` là vi phạm kỷ luật nghiêm trọng).
+> - Mọi nhận định, đề xuất, dòng code viết ra BẮT BUỘC phải đối soát trực tiếp từ bảng thật, dữ liệu thật, tài liệu hoặc ảnh chụp cấu hình AppSheet thật.
+> - Không biết/chưa rõ $\rightarrow$ Báo cáo trung thực, hỏi rõ ràng, không được tự ý bịa dữ liệu giả định.
 
 ## 🔒 [FROZEN / LOCKED] CÁC MODULE ĐÃ ĐƯỢC FOUNDER DUYỆT HOÀN HẢO - BẤT KHẢ XÂM PHẠM
 > 🔴 **NGHIÊM CẤM CHỈNH SỬA / REFACTOR / CAN THIỆP DƯỚI MỌI HÌNH THỨC VÀO CÁC FILE THUỘC DANH SÁCH NÀY:**

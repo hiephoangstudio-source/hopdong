@@ -23,4 +23,13 @@ TẤT CẢ các Agent hoạt động trong dự án này **PHẢI** đọc, kh�
   - **Đơn giản hóa để tăng năng suất:** Thay vì bắt người dùng làm thủ công 30-40 phút, công cụ phải hỗ trợ tự động hóa các khâu nặng để rút ngắn quy trình xuống còn vài phút.
 
 ---
-*Ghi nhớ:* "Hoàn thành > Hoàn hảo. Code ít > Code nhiều. Tiện ích thực tế > Số lượng chức năng."
+
+## 3. Kỷ Luật Tối Thượng: Tuyệt Đối Không Làm Gì Khi Không Có Căn Cứ, Tài Liệu Rõ Ràng
+* **Triết lý:** *"Tuyệt đối không được làm gì khi không có căn cứ, tài liệu rõ ràng lưu ngay vào não đi cho anh."*
+* **Kỷ luật bất di bất dịch:**
+  - **Nghiêm cấm phán bừa, suy đoán mò:** Tuyệt đối cấm đoán mò mã trạng thái, tên cột, cấu trúc bảng, quy tắc nghiệp vụ hay luồng xử lý mà không có bằng chứng từ mã nguồn, cơ sở dữ liệu thật hoặc tài liệu chính thức.
+  - **Bắt buộc đối soát từ gốc (Evidence-First):** Trước khi kết luận hoặc triển khai, bắt buộc phải tra cứu trực tiếp từ bảng thật (ví dụ: `quy_trinh`, `cai_dat`, schema, ảnh chụp màn hình cấu hình thật...). Nếu không tìm thấy hoặc chưa rõ $\rightarrow$ PHẢI báo cáo và hỏi rõ, tuyệt đối không được tự ý "chữa cháy" bằng dữ liệu giả định.
+  - **Mọi kết luận đều phải có dẫn chứng:** Trích dẫn rõ file, dòng code, sheet hoặc ảnh chụp chứng minh cho logic được đề xuất.
+
+---
+*Ghi nhớ:* "Hoàn thành > Hoàn hảo. Code ít > Code nhiều. Tiện ích thực tế > Số lượng chức năng. Căn cứ xác thực > Phán đoán mò."

@@ -167,14 +167,16 @@ Agent kích hoạt → Kiểm tra frontmatter "skills:"
 - Gotcha: [bài học rút ra → ghi vào gotchas.md, "Không" nếu không có]
 ```
 
-### 🚫 ZERO GUESSING
+### 🛑 NGUYÊN TẮC BẮT BUỘC: TUYỆT ĐỐI KHÔNG ĐƯỢC LÀM GÌ KHI KHÔNG CÓ CĂN CỨ, TÀI LIỆU RÕ RÀNG (ZERO GUESSING & EVIDENCE-FIRST)
 
-> 🔴 **KHÔNG NGOẠI LỆ:**
+> 🔴 **LỜI DẠY CỐT LÕI CỦA FOUNDER (KHẮC GHI VÀO NÃO):**
+> *"Tuyệt đối không được làm gì khi không có căn cứ, tài liệu rõ ràng."*
 
-- **KHÔNG** suy đoán, bịa dữ liệu (tên cột, bảng, giá trị, cấu trúc)
-- **CHỈ** ghi dữ liệu đã xác minh từ nguồn (UI, file, API, DOM)
-- Không đọc được → nói thẳng, không đoán
-- 💰 Khi đề xuất dịch vụ bên thứ 3 → **nói rõ** miễn phí hay trả phí + ước tính chi phí
+- **CẤM TUYỆT ĐỐI** suy đoán, phán bừa (mã trạng thái, tên cột, cấu trúc bảng, quy tắc nghiệp vụ). Ví dụ: cấm tự đoán mã `HT01` khi chưa tra bảng `quy_trinh`.
+- **CHỈ** ghi dữ liệu và viết logic khi đã xác minh trực tiếp từ nguồn chính xác (Google Sheet thật, AppSheet definition, file schema, API, DOM).
+- Không tìm thấy dữ liệu hoặc tài liệu chưa rõ $\rightarrow$ **Nói thẳng, báo cáo trung thực với Founder kèm câu hỏi cụ thể, tuyệt đối không đoán mò để làm tiếp**.
+- Mọi giải pháp, phân tích hay đề xuất $\rightarrow$ **PHẢI có dẫn chứng cụ thể** (trích dẫn tên file, dòng code, ảnh chụp màn hình hoặc hàng trong Sheet).
+- 💰 Khi đề xuất dịch vụ bên thứ 3 $\rightarrow$ nói rõ miễn phí hay trả phí + ước tính chi phí.
 
 ### 🔍 Chủ Động Phát Hiện Vấn Đề & Tự Động Sửa Bug
 

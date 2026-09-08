@@ -118,3 +118,9 @@
 ### 19. [2026-09-07] Giới Hạn Tối Đa 200 Versions Của Google Apps Script Project History
 - **Vấn đề**: Google Apps Script có hạn ngạch tối đa 200 version được lưu trong lịch sử dự án. Khi đạt mốc 200 version, lệnh `clasp version` sẽ báo lỗi không thể tạo thêm version mới và deploy thất bại.
 - **Giải pháp**: Định kỳ truy cập Google Apps Script Web Console (`script.google.com`) -> Vào mục "Project History" (Lịch sử dự án) và xóa bớt 10-20 version cũ không còn dùng để giải phóng hạn ngạch trước khi chạy lệnh deploy bản mới.
+
+### 20. [2026-09-08] Kỷ Luật Tối Thượng: Tuyệt Đối Không Làm Gì Khi Không Có Căn Cứ & Bảng Quy Trình
+- **Vấn đề**: Khi xây dựng logic tự động hóa chuyển trạng thái, AI suy đoán mã trạng thái hoàn thành là `HT01` mà không tra cứu cơ sở dữ liệu thật từ bảng `quy_trinh`, suýt làm sai lệch toàn bộ luồng tính lương của thợ chụp/make.
+- **Bài học & Căn cứ thật**: 
+  1. Trong bảng `quy_trinh` thật trên Google Sheets: Nhóm Ngành ảnh hoàn thành là mã `NA03` ("Đã hoàn thành"), Photoshop hoàn thành là `PTS03` ("Hoàn tất hậu kỳ"), Lịch tư vấn là `LV02`. Mã `HT01` là hoàn toàn bịa/đoán mò.
+  2. Bất kỳ logic nào liên quan đến mã trạng thái, khóa ngoại hay quy tắc nghiệp vụ BẮT BUỘC phải đối soát trực tiếp từ bảng thật (Google Sheets, schema hoặc ảnh chụp AppSheet thật). Nếu không có bằng chứng rõ ràng, tuyệt đối không được phép đưa ra kết luận hay viết code giả định.
