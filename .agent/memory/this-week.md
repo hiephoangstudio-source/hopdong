@@ -5,6 +5,33 @@
 
 ---
 
+## 08/09/2026
+- **Hoàn thành & Nghiệm thu toàn diện Web App Học Tiếng Anh EnglishKids & Quản Lý Lớp Học v2.0 [🔒 FROZEN / LOCKED]**:
+  - **1. Tích hợp 4 Tinh Hoa Sư Phạm Thực Chiến**:
+    + **Apollo English**: Dạy ÂM trước CHỮ (`/æ/` trước `Apple`), Chant 4 nhịp và chỉ dẫn Alpha-mime vận động TPR.
+    + **Kyna English**: Khung 112 bài học bám sát 100% SGK Global Success Bộ GD&ĐT từ Vỡ Lòng đến Lớp 6, cấu trúc micro-learning 10-15 phút.
+    + **Learna AI**: Tab Giao tiếp bổ sung 3 nút gợi ý câu trả lời 1-chạm (1-tap response) biến đổi linh hoạt theo ngữ cảnh của Robot Pip; tính năng sửa lỗi song hành.
+    + **TOMIA**: Góc Phụ Huynh với Thang đo tiến trình 3 màu trực quan và Thẻ "Bí Kíp 2 Phút Cho Bố Mẹ Giúp Con Tại Nhà" có nút bấm loa phát câu hỏi mẫu.
+  - **2. Phân Hệ Quản Lý Lớp Học v2.0 & VPS SQLite Microservice**:
+    + Dashboard chuẩn CSS tông tối `#1c1f2e` như mẫu gsheets.vn v2.0, avatar Thầy Hiệp trực tuyến VPS SQLite.
+    + Ma trận Điểm danh theo ngày linh hoạt, 4 nút tròn trạng thái (`✓`, `✕`, `P`, `T`), nút điểm danh nhanh `⚡ Cả lớp`.
+    + Tự động tính học phí theo số buổi thực tế từng tháng, in ấn Phiếu thu học phí chuẩn A4 kèm mã VietQR và chữ ký 3 bên.
+    + Microservice Node.js SQLite nội bộ cổng 3001 zero-dependency bảo mật và siêu tốc trên VPS.
+  - **3. Chuẩn Hóa Giao Diện & Trải Nghiệm Người Dùng (UI/UX Clean Code)**:
+    + Khử triệt để thanh cuộn ngang ở Header, lược bỏ icon và câu chữ thừa (bỏ tag `v2.0`, giữ 1 icon cho lớp và VIP).
+    + Đồng bộ chiều rộng của Header, HomePage và toàn bộ trang bài học (`LessonPage.jsx`) chuẩn xác 100% về `max-w-6xl mx-auto px-4 sm:px-6`.
+  - **4. Sửa Lỗi Critical & Hoàn Thiện Sư Phạm Bài Bản**:
+    + Khắc phục triệt để lỗi từ chạy liên tục trong trò chơi ghép câu (dùng `useMemo` đóng băng object, thuật toán Fisher-Yates, ghi nhớ `initialIndex`).
+    + Xây dựng Bảng Kiến Thức Ngữ Pháp 4 khối màu sinh động (`[CHỦ NGỮ] + [ĐỘNG TỪ] + [MẠO TỪ] + [DANH TỪ]`) và 3 Quy tắc vàng.
+    + Bổ sung mốc tốc độ `0.5x (Siêu chậm)` cho bé mới bắt đầu; quét sạch 100% các rate hardcode riêng lẻ; đồng bộ giọng đọc toàn bộ app.
+    + Sửa dứt điểm Tab 3 Phát Âm: hiện đầy đủ từ/câu mẫu, phiên âm IPA, nghĩa tiếng Việt, mẹo phát âm; bổ sung fallback từ vựng cho 100% bài học Lớp 0-6; gỡ bỏ nhãn hardcode `(0.88x)`.
+  - **5. Kiểm Thử & Triển Khai Live Production**:
+    + Toàn bộ **285/285 Unit Tests PASS 100%**.
+    + Build Vite production thành công không lỗi.
+    + Deploy Docker container & Nginx SSL live trên VPS `163.223.13.238`, chạy thông suốt tại [https://english.hansstudio.net/](https://english.hansstudio.net/).
+
+---
+
 ## 05/09/2026
 - **Hoàn thành & Nghiệm thu toàn bộ Phân Hệ In Ấn (Print Engine) - ĐÓNG BĂNG 100% [🔒 FROZEN / LOCKED]**:
   - **In Hợp Đồng (`PrintEngine_HopDong.html`)**: Cả 4 loại hợp đồng cưới/dịch vụ chuẩn lề A4, viền mỏng, mã VietQR và nền trắng tinh.
