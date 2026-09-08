@@ -138,9 +138,21 @@
   + **Bảo tồn tuyệt đối 9 module đã đóng băng**: Không sửa đổi CRM Khách Hàng, In Ấn, Nhân Viên, Thu Chi, Định Khoản.
   + **Deploy Version 883 & Verify Live 100%**: Đã deploy thành công lên Google Apps Script Production và chạy kịch bản kiểm thử E2E Playwright trên Live API: Tạo đơn hàng $\rightarrow$ Sinh đủ 4 lịch $\rightarrow$ Lưu lại lần 2 giữ nguyên 4 lịch $\rightarrow$ Xóa đơn dọn sạch 0 lịch (PASS 100%).
 
+- **11. Hoàn Thiện Cơ Chế Cumulative Backfill & Xác Minh Trạng Thái Chuẩn Quy Trình (Version @884 Live)**:
+  + **Xác minh căn cứ 100% từ bảng `quy_trinh` thực tế**: Bảng `quy_trinh` hoàn toàn không có mã `HT01` cho Lịch. Mã trạng thái chuẩn nghiệp vụ của Studio:
+    * Khởi tạo: `LV01` ("01. Công việc mới" cho Lịch tư vấn), `NA01` ("01. Công việc mới" cho Chụp/Make/PTS).
+    * Hoàn thành: `NA03` ("03. Đã hoàn thành" cho Chụp & Makeup), `PTS03` ("03. Đã hoàn thành" cho Photoshop).
+  + **Cơ chế Cumulative Backfill phân tầng thông minh (Mod_DonHang_Server.js, Mod_CRUD_Server.js)**:
+    * `Level 1 (>= HD03)`: Tự động kiểm tra và sinh "Lịch tư vấn" (`LV01`).
+    * `Level 2 (>= HD05)`: Tự động kiểm tra và sinh "Lịch chụp" và "Lịch makeup". Nếu đơn hàng đã `>= HD06`, khởi tạo trực tiếp trạng thái hoàn thành `NA03` và `ngay_hoan_thanh = todayStr`; nếu ở `HD05`, khởi tạo `NA01`.
+    * `Level 3 (>= HD06)`: Tự động sinh "Lịch photoshop" (`NA01`); đồng thời tự động quét và auto-complete toàn bộ Lịch chụp & Lịch makeup hiện có sang `NA03` và gắn `ngay_hoan_thanh = todayStr`.
+    * **Hỗ trợ luồng Nhảy Cóc (Jump-ahead Flow)**: Khi nhảy thẳng lên `HD06`, hệ thống tự bù đủ 4 lịch và set hoàn thành ngay lịch chụp/make.
+  + **Đồng bộ hiển thị (Mod_LichCongViec_Logic.html)**: Bổ sung nhận diện `NA03` và `PTS03` vào thống kê nhân viên, badge xanh lá cây và bộ lọc tab "Đã hoàn thành".
+  + **Deploy Production Version @884 & Live Verification**: Kiểm thử tự động Live qua Playwright cả 2 kịch bản (Tuần tự và Nhảy cóc thẳng HD06) đạt tỉ lệ thành công 100%, dọn dẹp sạch sẽ dữ liệu test.
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
 - Báo cáo kết quả và trình diện Proof Block cho Founder (anh Hiệp).
-- Mời Founder nghiệm thu toàn bộ tính năng tự động hóa trên Production Live Version @883.
+- Mời Founder nghiệm thu toàn bộ tính năng tự động hóa Cumulative Backfill trên Production Live Version @884.
 - Sẵn sàng đưa Module Lịch Công Việc và Đơn Hàng vào danh sách đóng băng `[🔒 FROZEN / LOCKED]` khi Founder duyệt OK.
