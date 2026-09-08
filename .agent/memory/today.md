@@ -126,12 +126,21 @@
   + **Bảng 6 Cột Đa Năng Thông Minh**: Thu gọn từ 11 cột dài sang 6 cột hiện đại không cần cuộn ngang (Công việc & Khách hàng, Thời gian & Địa điểm, Nhân sự phụ trách, Chi nhánh & Tiến độ, Tiền lương, Thao tác).
   + **Deploy Version 880 & Verify Live**: Push 86 files và triển khai Version 880 thành công, xác minh tương tác tự động 100% bằng Playwright.
 
+- **10. Chuyển Thể Trọn Bộ 4 Automation Bot Tạo Lịch & 3 Cascade Delete Bots Từ Bảng Cha don_hang (Version @883 Live)**:
+  + **Kiến trúc AppSheet chuẩn xác**: Xác thực từ ảnh hệ thống của Founder, toàn bộ 4 Automation Bot tạo lịch và 3 Bot xóa lịch được kích hoạt từ bảng cha `don_hang`.
+  + **Bộ 4 Automation Bot Tạo Lịch (Server-side Hook)**:
+    * Bot 8 (`Tự động tạo Lịch tư vấn`): Tự sinh ngay khi lưu đơn hàng mới (`ngay_bat_dau = TODAY()`, `trang_thai = "LV01"`, `luong_nhan_vien = 0`, địa điểm để trống).
+    * Bot 9 (`Tự động tạo Lịch chụp`): Kích hoạt cho từng dịch vụ `don_hang_ct` loại `"Dịch vụ"`, kế thừa ngày/giờ chụp, địa điểm và tra cứu định mức lương chụp từ bảng `dich_vu`.
+    * Bot 10 (`Tự động tạo Lịch makeup`): Kích hoạt cho dịch vụ, kế thừa ngày/giờ chụp và tra cứu lương make từ `dich_vu`.
+    * Bot 11 (`Tự động tạo Lịch photoshop`): Kích hoạt cho dịch vụ, ẩn giờ/địa điểm theo quy tắc Show_If và tra cứu lương PTS từ `dich_vu`.
+  + **Cơ chế chống trùng lặp (Strict Idempotency)**: Đảm bảo khi sửa hoặc lưu lại đơn hàng nhiều lần, số lượng lịch vẫn bảo toàn nguyên vẹn là 4, không sinh thêm bản ghi rác.
+  + **Bộ 3 Cascade Delete Bots**: Khi xóa đơn hàng cha qua `MOD_CRUD_deleteRecord`, máy chủ tự động dọn sạch toàn bộ dữ liệu con ở cả 3 bảng `don_hang_ct`, `thu_chi`, và `lich_cong_viec`.
+  + **Bảo tồn tuyệt đối 9 module đã đóng băng**: Không sửa đổi CRM Khách Hàng, In Ấn, Nhân Viên, Thu Chi, Định Khoản.
+  + **Deploy Version 883 & Verify Live 100%**: Đã deploy thành công lên Google Apps Script Production và chạy kịch bản kiểm thử E2E Playwright trên Live API: Tạo đơn hàng $\rightarrow$ Sinh đủ 4 lịch $\rightarrow$ Lưu lại lần 2 giữ nguyên 4 lịch $\rightarrow$ Xóa đơn dọn sạch 0 lịch (PASS 100%).
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
 - Báo cáo kết quả và trình diện Proof Block cho Founder (anh Hiệp).
-- Mời Founder nghiệm thu module Lịch Công Việc trên Production Live.
-- Sẵn sàng đưa Lịch Công Việc vào danh sách đóng băng `[🔒 FROZEN / LOCKED]` khi Founder duyệt OK.
-
-
-
+- Mời Founder nghiệm thu toàn bộ tính năng tự động hóa trên Production Live Version @883.
+- Sẵn sàng đưa Module Lịch Công Việc và Đơn Hàng vào danh sách đóng băng `[🔒 FROZEN / LOCKED]` khi Founder duyệt OK.
