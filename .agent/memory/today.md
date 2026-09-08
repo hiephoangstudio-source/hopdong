@@ -215,7 +215,43 @@
     * Nút Quản Lý Lớp Học: BỎ HẲN tag `v2.0`, chỉ giữ icon trường học `School` + chữ `Quản Lý Lớp Học` gọn gàng.
   + **Kiểm thử tự động & Deploy Live**: 254/254 Unit Tests PASS 100%, Vite build thành công trong 1.94s, deploy lên VPS `163.223.13.238` và verify trực quan qua Chrome DevTools.
 
+- **16. [FIX LỖI CRITICAL & NÂNG CẤP SƯ PHẠM] KHẮC PHỤC LỖI TỪ CHẠY LIÊN TỤC & XÂY DỰNG BẢNG KIẾN THỨC NGỮ PHÁP BÀI BẢN**:
+  + **Khắc phục triệt để lỗi các từ chạy liên tục (Word Shuffle Loop)**:
+    * *Chuyện gì xảy ra*: Trong trò chơi Thợ Xây Câu, các nút từ ghép câu (`a`, `I`, `calculator.`, `see`) bị đảo lộn vị trí liên tục không ngừng, giật lag màn hình.
+    * *Vì sao*: Trong `GrammarTab.jsx`, object `grammar` được khởi tạo mới ở mỗi render cycle. `useEffect([grammar])` kích hoạt liên tục và gọi `Math.random()` để xáo trộn từ vô hạn lần.
+    * *Đã sửa ra sao*: Dùng `useMemo` để đóng băng object `grammar`, đổi dependency sang chuỗi text câu hỏi `grammar?.practice_sentence?.question`, áp dụng thuật toán Fisher-Yates chuẩn xác và lưu `initialIndex` giúp từ khi bấm gỡ trả về đúng vị trí ban đầu.
+  + **Bổ sung Bảng Kiến Thức Ngữ Pháp Bài Bản & Đổi Tên Tab 2**:
+    * Đổi tên Tab 2 ở `LessonPage.jsx` thành **`2. Ngữ Pháp & Mẫu Câu`** (badge: `Ngữ pháp`).
+    * Thiết kế khu vực **📘 BẢNG KIẾN THỨC NGỮ PHÁP BÀI HỌC** trực quan:
+      - Bảng công thức cấu trúc câu 4 khối màu sinh động: `[CHỦ NGỮ]` (tím) + `[ĐỘNG TỪ]` (vàng) + `[MẠO TỪ]` (xanh lá) + `[DANH TỪ]` (lam).
+      - Thẻ ví dụ phân tích chi tiết có nút loa phát âm bản ngữ.
+      - **3 Quy tắc vàng giúp bé đạt điểm 10**: Quy tắc dùng `a/an` (u-e-o-a-i uể oải), quy tắc số ít/số nhiều (`-s/-es`), cấu trúc Hỏi - Đáp tương ứng (`What do you see? -> I see a...`).
+    * Sửa lỗi đọc ngữ pháp TTS: Loại bỏ các ký tự cú pháp bracket/slash `[/...]` trước khi đọc để giọng máy không phát âm các chữ "gạch chéo", "ngoặc vuông".
+  + **Kiểm thử tự động & Deploy Live**:
+    * Bổ sung 4 test suites chuyên sâu trong `tests/grammar-enhancement.test.js`: **273/273 unit tests PASS 100%**!
+    * Vite build thành công trong 1.96s.
+    * Deploy lên VPS `163.223.13.238`, container Docker `leaning_english_app` hoạt động trơn tru.
+    * Kiểm thử live bằng Chrome DevTools trên `https://english.hansstudio.net/`: Bảng ngữ pháp hiển thị đầy đủ sắc nét, trò chơi ghép câu đứng yên ổn định.
+
+- **17. [ĐỒNG BỘ TOÀN DIỆN] ĐỒNG BỘ CHIỀU RỘNG BÀI HỌC, THÊM TỐC ĐỘ 0.5X VÀ SỬA TRIỆT ĐỂ TAB PHÁT ÂM**:
+  + **1. Đồng bộ chiều rộng bài học (`LessonPage.jsx`)**:
+    * Chuẩn hóa toàn bộ container của `LessonPage` về đúng `max-w-6xl mx-auto px-4 sm:px-6 py-6`, đồng nhất 100% với `Navbar.jsx` và `HomePage.jsx`. Khi chuyển đổi giữa trang ngoài và vào bài học bên trong, mép lề 2 bên giữ nguyên vị trí, căn thẳng tắp với Header.
+  + **2. Bổ sung mốc tốc độ 0.5x & Đồng bộ tốc độ đọc toàn bộ app**:
+    * Thêm mức tốc độ **`0.5x (Siêu chậm - Cho bé mới bắt đầu)`** vào `VoiceSettingsModal.jsx`.
+    * Gỡ bỏ 100% các tham số rate hardcode riêng lẻ (`0.88x`, `0.82x`, `0.85x`, `0.75x`) ở tất cả các component: `PronunciationTab.jsx`, `VocabularyTab.jsx`, `GrammarTab.jsx`, `useSpeechPractice.js`, `useAiDialogue.js`, `ParentPortalModal.jsx`...
+    * Giờ đây 100% các nút loa trên toàn bộ app (Từ vựng, Ngữ pháp, Phát âm, Bài tập, Giao tiếp AI, Hướng dẫn phụ huynh) đều gọi qua `SpeechSynthesizer` trung tâm và phát âm đúng theo tốc độ người dùng đã chọn trong Giọng đọc.
+  + **3. Khắc phục triệt để lỗi Tab 3 (Luyện Phát Âm)**:
+    * *Chuyện gì xảy ra*: Tab Phát Âm bị trống trơn chữ mẫu, nghĩa tiếng Việt bị rỗng, nút loa hardcode `(0.88x)` và bấm không phát ra tiếng.
+    * *Vì sao*: Cấu trúc dữ liệu JSON bài Vỡ Lòng trước đây đặt tên thuộc tính `word` / `phonics_tip` thay vì `target_sentence` / `target_sentence_vi`, làm component đọc bị rỗng và truyền chuỗi rỗng vào loa.
+    * *Đã sửa*: Cập nhật đồng bộ 100% dữ liệu adapter 41 bài phát âm có đầy đủ `target_sentence`, `target_sentence_vi`, `ipa`, `phonics_tip`. Bổ sung cơ chế fallback thông minh nhiều lớp trong `PronunciationTab.jsx`.
+    * Gỡ bỏ hoàn toàn nhãn `(0.88x)`, đổi thành **`🔊 Nghe Giọng Đọc Mẫu`**.
+  + **Kiểm thử tự động & Deploy Live**:
+    * Viết thêm test suite chuyên sâu `tests/pronunciation-voice-sync.test.js`: **285/285 Unit Tests PASS 100%**!
+    * Build Vite thành công không lỗi linter/bundle.
+    * Deploy lên VPS `163.223.13.238`, Docker container & Nginx reload thành công.
+    * Kiểm thử trực tiếp bằng Chrome DevTools live trên `https://english.hansstudio.net/`: Trích xuất thành công dữ liệu từ mẫu "Apple", "/ˈæp.əl/", nghĩa "quả táo đỏ", nút loa phát âm to rõ; Modal Giọng đọc hiển thị đầy đủ 4 mức tốc độ.
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Lắng nghe phản hồi tiếp theo của Founder Hiệp sau khi trải nghiệm giao diện Header mới trên link live `https://english.hansstudio.net/`.
+- Báo cáo chi tiết cho Founder Hiệp trải nghiệm và nghiệm thu 3 hạng mục đã được xử lý hoàn hảo trên link live.
