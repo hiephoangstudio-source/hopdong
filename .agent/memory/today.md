@@ -206,8 +206,16 @@
     * Chạy kiểm thử tự động toàn diện: **254/254 unit tests PASS 100%**!
     * Build Vite production và deploy lên VPS `163.223.13.238` thành công rực rỡ, verify live 100% trên trình duyệt thật bằng Chrome DevTools.
 
+- **15. [TINH CHỈNH HOÀN MỸ THEO GÓP Ý FOUNDER] KHỬ THANH CUỘN HEADER, LƯỢC ICON THỪA & CĂN THẲNG HÀNG NỘI DUNG**:
+  + **Khử sạch thanh cuộn ở Header**: Gỡ bỏ triệt để `overflow-x-auto`, trang bị `w-full overflow-x-clip` bảo vệ cấp container cha, header phẳng lì không tì vết.
+  + **Căn lề thẳng hàng 100% với nội dung ở dưới**: Header và nội dung bên dưới dùng chung container `max-w-6xl mx-auto px-4 sm:px-6`, mép trái (Logo) và mép phải (nút Quản Lý) thẳng tắp một hàng dọc với 2 mép của Banner và Danh mục bài học.
+  + **Dọn sạch icon trùng lặp và chữ thừa**:
+    * Tên lớp: Bỏ icon mầm cây `🌱` và hậu tố `(ABC)`, chỉ giữ 1 icon mũ cử nhân `GraduationCap` + chữ `Vỡ Lòng`, `Lớp 1`...
+    * Nút VIP: Bỏ icon ngôi sao `⭐` thừa, chỉ giữ duy nhất icon vương miện `Crown` + `VIP`.
+    * Nút Quản Lý Lớp Học: BỎ HẲN tag `v2.0`, chỉ giữ icon trường học `School` + chữ `Quản Lý Lớp Học` gọn gàng.
+  + **Kiểm thử tự động & Deploy Live**: 254/254 Unit Tests PASS 100%, Vite build thành công trong 1.94s, deploy lên VPS `163.223.13.238` và verify trực quan qua Chrome DevTools.
+
 ---
 
 ## 🎯 VIỆC TIẾP THEO
-- Bàn giao và lắng nghe phản hồi của Founder Hiệp sau khi trải nghiệm thực tế trên link live `https://english.hansstudio.net/`.
-- Sẵn sàng mở rộng thêm dữ liệu điểm danh, xuất báo cáo học tập hoặc tích hợp thêm tính năng mới theo chỉ đạo của Founder.
+- Lắng nghe phản hồi tiếp theo của Founder Hiệp sau khi trải nghiệm giao diện Header mới trên link live `https://english.hansstudio.net/`.
