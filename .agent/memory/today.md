@@ -290,6 +290,19 @@
 
 ---
 
+## ✅ TRẠNG THÁI HIỆN TẠI (09/09/2026): HOÀN THÀNH SỬA LỖI ACCORDION FORM & ĐỒNG BỘ NHÂN SỰ ĐA CHIỀU (DEPLOY VERSION @907 LIVE)
+- **1. Sửa Lỗi Không Thu Gọn Được Accordion Trên Form Đơn Hàng (`Mod_DonHang_Form.html`, `Shell_JS.html`)**:
+  * Phát hiện root cause: Do xung đột giữa inline style `display: grid` và class `.hidden` thiếu `!important` khi đóng các dòng cũ hoặc thêm dòng mới.
+  * Giải pháp: Bổ sung CSS cưỡng chế `.accordion-body.hidden { display: none !important; }`; chuẩn hóa handler toàn cục `.accordion-header` gỡ bỏ style inline khi mở và gán dứt khoát `display: none` khi đóng.
+  * Kết quả: Accordion trên cả Tab 2 (Dịch vụ), Tab 3 (Thu chi) và Tab 4 (Lịch công việc) của Form Đơn Hàng đóng/mở và thu gọn 2 chiều mượt mà 100%.
+- **2. Hoàn Thiện & Kiểm Thử Đồng Bộ Nhân Sự Phụ Trách Đa Chiều (Form <-> Drawer <-> Sheet <-> Bảng Lịch <-> KPI)**:
+  * Khi gán/sửa nhân viên phụ trách ở Form Đơn hàng hoặc Drawer: Dữ liệu đồng bộ tức thì vào RAM Cache toàn cục `GLOBAL_DATA_CACHE["lich_cong_viec"]`, cập nhật Drawer Tab 4 (bảo toàn Tab không bị văng về Tab 1), và re-render cả Bảng Lịch công việc lẫn Bảng KPI nhân viên.
+- **3. Deploy & Kiểm Thử Playwright Live E2E**:
+  * Deploy thành công **Version @907** lên GAS Production (`AKfycbx_Gc8Qd4ljWa_eCpRtMiJk--mjz4tREqX_qDryaZpeDhmC_uvKdqI828QLxf7PX2rhAg`).
+  * Chạy test Playwright tự động vượt 2 tầng iframe trên Live WebApp: PASS 100% cả 2 phần kiểm tra và lưu 2 ảnh chụp thực tế tại `test-results/`.
+
+---
+
 ## 🎯 VIỆC TIẾP THEO
-- Hệ thống đã ở trạng thái ổn định và sẵn sàng cho các kế hoạch phát triển tiếp theo của Founder Hiệp.
+- Tiếp tục theo dõi và sẵn sàng hỗ trợ các tính năng tiếp theo theo yêu cầu của Founder Hiệp.
 
